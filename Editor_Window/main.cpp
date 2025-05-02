@@ -147,6 +147,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가
+
+            // DC (Device Context)란 출력에 필요한 모든 정보를 가지는 데이터 구조체이며 GDI모듈에 의해 관리됨
+
 			HBRUSH pinkBrush = CreateSolidBrush(RGB(255, 0, 255));      // 분홍색 브러시 생성
 			HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, pinkBrush);     // SelectObject함수는 이전에 사용하던 브러쉬를 반환
 
@@ -164,13 +167,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DeleteObject(redPen);    
 
             // 기본으로 자주 사용 되는 GDI오브젝트는 미리 DC안에 만들어져 있음
-            // 스톡 오브젝트라고 한다.
+            // 스톡 오브젝트라고 한다
+			HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
+			oldBrush = (HBRUSH)SelectObject(hdc, grayBrush);
 
-			HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH); // 회색 브러시
-			oldBrush = (HBRUSH)SelectObject(hdc, grayBrush); // 이전 브러시 저장
-
-			Rectangle(hdc, 10, 120, 100, 220); // 사각형 그리기 예시
-			SelectObject(hdc, oldBrush); // 이전 브러시 복원
+			Rectangle(hdc, 10, 120, 100, 220);
+			SelectObject(hdc, oldBrush);
 
             EndPaint(hWnd, &ps);
         }
