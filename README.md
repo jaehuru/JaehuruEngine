@@ -5,3 +5,5 @@
 ## step1. WinAPI 이해하기
 * WinMain의 코드흐름을 파악
 * DC 정의와 스톡 오브젝트
+* PeekMessage
+* 정적 라이브러리와 동적 라이브러리 장단점
