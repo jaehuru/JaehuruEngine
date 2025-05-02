@@ -1,17 +1,21 @@
-﻿// Editor_Window.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// Editor_Window.cpp : 애플리케이션에 대한 진입점을 정의
 //
 
 #include "framework.h"
 #include "Editor_Window.h"
 
+#include "..\\Engine_SOURCE\\huruApplication.h"
+
+Application app;
+
 #define MAX_LOADSTRING 100
 
-// 전역 변수:
-HINSTANCE hInst;                                // 현재 인스턴스입니다.
-WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
-WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+// 전역 변수
+HINSTANCE hInst;                                // 현재 인스턴스
+WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트
+WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름
 
-// 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
+// 이 코드 모듈에 포함된 함수의 선언을 전달
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -25,14 +29,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: 여기에 코드를 입력합니다.
-
-    // 전역 문자열을 초기화합니다.
+    // TODO:
+	app.test();
+    // 전역 문자열을 초기화
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_EDITORWINDOW, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
-    // 애플리케이션 초기화를 수행합니다:
+    // 애플리케이션 초기화를 수행
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
@@ -42,15 +46,37 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    // 픽 메시지 : 메시지큐에서 메세지 유무에 상관없이 함수를 호출
+    while (true)
+    {
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT)
+				break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+			    TranslateMessage(&msg);
+			    DispatchMessage(&msg);
+            }
+		}
+        else
+        {
+			// 메시지가 없을 때 수행할 작업
+			// 예를 들어, 애니메이션 업데이트, 게임 로직 처리 등
+			// Sleep(1); // CPU 사용량을 줄이기 위해 잠시 대기
+        }
+    }
+
+    // 기본 메시지 루프
+    /*while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
-    }
+    }*/
 
     return (int) msg.wParam;
 }
@@ -142,13 +168,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가
 
-            // DC (Device Context)란 출력에 필요한 모든 정보를 가지는 데이터 구조체이며 GDI모듈에 의해 관리됨
+            // DC(Device Context)란 출력에 필요한 모든 정보를 가지는 데이터 구조체이며 GDI모듈에 의해 관리됨
 
 			HBRUSH pinkBrush = CreateSolidBrush(RGB(255, 0, 255));      // 분홍색 브러시 생성
 			HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, pinkBrush);     // SelectObject함수는 이전에 사용하던 브러쉬를 반환
