@@ -6,7 +6,7 @@
 
 #include "..\\Engine_SOURCE\\huruApplication.h"
 
-Application app;
+huru::Application application;
 
 #define MAX_LOADSTRING 100
 
@@ -30,7 +30,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO:
-	app.test();
     // 전역 문자열을 초기화
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_EDITORWINDOW, szWindowClass, MAX_LOADSTRING);
@@ -47,6 +46,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
     MSG msg;
 
     // 픽 메시지 : 메시지큐에서 메세지 유무에 상관없이 함수를 호출
+    // 매프레임마다 메세지를 확인할수 있는 PeekMessage를 사용
     while (true)
     {
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
@@ -64,7 +64,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
         {
 			// 메시지가 없을 때 수행할 작업
 			// 예를 들어, 애니메이션 업데이트, 게임 로직 처리 등
-			// Sleep(1); // CPU 사용량을 줄이기 위해 잠시 대기
+			application.Run();
         }
     }
 
@@ -126,6 +126,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
+   application.Initalize(hWnd); // 애플리케이션 초기화
+
    if (!hWnd)
    {
       return FALSE;
@@ -177,29 +179,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             // DC(Device Context)란 출력에 필요한 모든 정보를 가지는 데이터 구조체이며 GDI모듈에 의해 관리됨
 
-			HBRUSH pinkBrush = CreateSolidBrush(RGB(255, 0, 255));      // 분홍색 브러시 생성
-			HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, pinkBrush);     // SelectObject함수는 이전에 사용하던 브러쉬를 반환
+			//HBRUSH pinkBrush = CreateSolidBrush(RGB(255, 0, 255));      // 분홍색 브러시 생성
+			//HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, pinkBrush);     // SelectObject함수는 이전에 사용하던 브러쉬를 반환
 
-			Rectangle(hdc, 10, 10, 100, 100);       // 사각형 그리기 예시
+			//Rectangle(hdc, 10, 10, 100, 100);       // 사각형 그리기 예시
 
-			(HBRUSH)SelectObject(hdc, oldBrush);    
-			DeleteObject(pinkBrush);                    
+			//(HBRUSH)SelectObject(hdc, oldBrush);    
+			//DeleteObject(pinkBrush);                    
 
-			HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));   
-		    HPEN oldPen = (HPEN)SelectObject(hdc, redPen);          
+			//HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));   
+		    //HPEN oldPen = (HPEN)SelectObject(hdc, redPen);          
 
-			Ellipse(hdc, 120, 10, 200, 100);        // 타원 그리기 예시
+			//Ellipse(hdc, 120, 10, 200, 100);        // 타원 그리기 예시
 
-            (HPEN)SelectObject(hdc, oldPen);
-			DeleteObject(redPen);    
+            //(HPEN)SelectObject(hdc, oldPen);
+			//DeleteObject(redPen);    
 
             // 기본으로 자주 사용 되는 GDI오브젝트는 미리 DC안에 만들어져 있음
             // 스톡 오브젝트라고 한다
-			HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
-			oldBrush = (HBRUSH)SelectObject(hdc, grayBrush);
+			//HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
+			//oldBrush = (HBRUSH)SelectObject(hdc, grayBrush);
 
-			Rectangle(hdc, 10, 120, 100, 220);
-			SelectObject(hdc, oldBrush);
+			//Rectangle(hdc, 10, 120, 100, 220);
+			//SelectObject(hdc, oldBrush);
 
             EndPaint(hWnd, &ps);
         }
