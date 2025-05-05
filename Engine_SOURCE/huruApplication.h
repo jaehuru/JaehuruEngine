@@ -23,6 +23,8 @@ namespace huru
 		HWND	mHwnd;
 		HDC		mHdc;
 
-		GameObject mPlayer;
+		GameObject mPlayer1;
+		GameObject mPlayer2;
+		GameObject mPlayer3;
 	};
 }

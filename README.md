@@ -9,4 +9,4 @@
 * 정적 라이브러리와 동적 라이브러리 장단점
 * Application 클래스 구현
 * 매 프레임마다 도형을 찍어보고 이동 PeekMessage + Application::Run()
-* GameObject 클래스 구현현
+* GameObject 클래스 구현

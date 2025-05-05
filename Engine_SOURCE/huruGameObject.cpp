@@ -2,10 +2,13 @@
 
 namespace huru
 {
-	GameObject::GameObject() :
+	GameObject::GameObject(DirectionKeySet keySet, ShapeType shape) :
 		mX(0.f),
 		mY(0.f),
-		mSpeed(0.01f)
+		mSpeed(0.01f),
+		mKeySet(keySet),
+		mColor(RGB(0, 0, 255)),
+		mShape(shape)
 	{
 
 	}
@@ -16,14 +19,33 @@ namespace huru
 
 	void GameObject::Update()
 	{
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
-			mY -= mSpeed;
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-			mY += mSpeed;
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-			mX -= mSpeed;
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-			mX += mSpeed;
+		switch (mKeySet)
+		{
+		case DirectionKeySet::Arrow:
+			if (GetAsyncKeyState(VK_UP) & 0x8000)    mY -= mSpeed;
+			if (GetAsyncKeyState(VK_DOWN) & 0x8000)  mY += mSpeed;
+			if (GetAsyncKeyState(VK_LEFT) & 0x8000)  mX -= mSpeed;
+			if (GetAsyncKeyState(VK_RIGHT) & 0x8000) mX += mSpeed;
+			break;
+
+		case DirectionKeySet::WASD:
+			if (GetAsyncKeyState('W') & 0x8000) mY -= mSpeed;
+			if (GetAsyncKeyState('S') & 0x8000) mY += mSpeed;
+			if (GetAsyncKeyState('A') & 0x8000) mX -= mSpeed;
+			if (GetAsyncKeyState('D') & 0x8000) mX += mSpeed;
+			break;
+		case DirectionKeySet::Auto:
+			if (mIsAutoMove)
+			{
+				mX += mSpeed;
+
+				if (mX >= 500)
+					mSpeed = -mSpeed;
+				else if (mX <= 0)
+					mSpeed = -mSpeed;
+			}
+			break;
+		}
 	}
 
 	void GameObject::LateUpdate()
@@ -33,18 +55,33 @@ namespace huru
 
 	void GameObject::Render(HDC hdc)
 	{
-		// 렌더링 코드
-		HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));      // 파랑색 브러시 생성
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);     // SelectObject함수는 이전에 사용하던 브러쉬를 반환
+		// 색상에 맞는 브러시 생성
+		HBRUSH brush = CreateSolidBrush(mColor);
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
 
-		HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-		HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
-		SelectObject(hdc, oldPen);
+		// 객체의 형태에 맞는 그리기
+		switch (mShape)
+		{
+		case ShapeType::Rectangle:
+			Rectangle(hdc, (int)(100 + mX), (int)(10 + mY), (int)(200 + mX), (int)(100 + mY));
+			break;
+		case ShapeType::Circle:
+			Ellipse(hdc, (int)(100 + mX), (int)(10 + mY), (int)(200 + mX), (int)(100 + mY));
+			break;
+		case ShapeType::Rhombus:
+			POINT points[4] = {
+			{(int)(150 + mX), (int)(10 + mY)},
+			{(int)(200 + mX), (int)(55 + mY)},   
+			{(int)(150 + mX), (int)(100 + mY)}, 
+			{(int)(100 + mX), (int)(55 + mY)}    
+			};
+			Polygon(hdc, points, 4);
+			break;
+		}
 
-		Rectangle(hdc, 100 + mX, 10 + mY, 200 + mX, 100 + mY);
-
+		// 이전 상태로 복원
 		SelectObject(hdc, oldBrush);
-		DeleteObject(blueBrush);
-		DeleteObject(redPen);
+		DeleteObject(brush);
+
 	}
 }
