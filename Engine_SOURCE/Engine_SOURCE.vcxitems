@@ -16,8 +16,10 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruGameObject.cpp" />
   </ItemGroup>
 </Project>
