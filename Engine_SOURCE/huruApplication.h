@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CommonInclude.h"
+#include "huruGameObject.h"
 
 namespace huru
 {
@@ -22,8 +23,6 @@ namespace huru
 		HWND	mHwnd;
 		HDC		mHdc;
 
-		float	mSpeed;
-		float	mX;
-		float	mY;
+		GameObject mPlayer;
 	};
 }
