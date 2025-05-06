@@ -20,9 +20,9 @@ namespace huru
 		void	Render();
 
 	private:
-		HWND	mHwnd;
-		HDC		mHdc;
+		HWND			mHwnd;
+		HDC				mHdc;
 
-		GameObject mPlayer;
+		GameObject		mPlayer;
 	};
 }

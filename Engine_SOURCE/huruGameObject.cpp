@@ -1,4 +1,5 @@
 #include "huruGameObject.h"
+#include "huruInput.h"
 
 namespace huru
 {
@@ -16,13 +17,13 @@ namespace huru
 
 	void GameObject::Update()
 	{
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		if (Input::GetKey(eKeyCode::Up))
 			mY -= mSpeed;
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		if (Input::GetKey(eKeyCode::Down))
 			mY += mSpeed;
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		if (Input::GetKey(eKeyCode::A))
 			mX -= mSpeed;
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		if (Input::GetKey(eKeyCode::D))
 			mX += mSpeed;
 	}
 
@@ -34,8 +35,8 @@ namespace huru
 	void GameObject::Render(HDC hdc)
 	{
 		// 렌더링 코드
-		HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));      // 파랑색 브러시 생성
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);     // SelectObject함수는 이전에 사용하던 브러쉬를 반환
+		HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
 
 		HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
 		HPEN oldPen = (HPEN)SelectObject(hdc, redPen);

@@ -1,4 +1,5 @@
 #include "huruApplication.h"
+#include "huruInput.h"
 
 namespace huru
 {
@@ -17,10 +18,11 @@ namespace huru
 
 	void Application::Initalize(HWND hwnd)
 	{
-		// 초기화 코드
 		mHwnd = hwnd;
-		mHdc = GetDC(hwnd); // 윈도우 핸들로부터 DC를 가져옴
+		mHdc = GetDC(hwnd);
 		mPlayer.SetPosition(0, 0);
+
+		Input::Initialize();
 	}
 
 	void Application::Run()
@@ -32,7 +34,8 @@ namespace huru
 
 	void Application::Update()
 	{
-		mPlayer.Update(); // 게임 오브젝트 업데이트
+		Input::Update();
+		mPlayer.Update();
 	}
 
 	void Application::LateUpdate()
@@ -42,6 +45,6 @@ namespace huru
 
 	void Application::Render()
 	{
-		mPlayer.Render(mHdc); // 게임 오브젝트 렌더링
+		mPlayer.Render(mHdc);
 	}
 }
