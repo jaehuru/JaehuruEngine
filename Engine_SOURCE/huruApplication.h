@@ -12,7 +12,7 @@ namespace huru
 		~Application();
 		
 
-		void	Initalize(HWND hwnd);
+		void	Initalize(HWND hwnd, UINT width, UINT height);
 		void	Run();
 
 		void	Update();
@@ -22,6 +22,12 @@ namespace huru
 	private:
 		HWND			mHwnd;
 		HDC				mHdc;
+
+		HDC				mBackHdc;
+		HBITMAP			mBackBitmap;
+
+		UINT			mWidth;
+		UINT			mHeight;
 
 		GameObject		mPlayer;
 	};

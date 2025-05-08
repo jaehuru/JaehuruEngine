@@ -11,3 +11,4 @@
 * 매 프레임마다 도형을 찍어보고 이동 PeekMessage + Application::Run()
 * GameObject 클래스 구현
 * DeltaTime은 프레임 간 시간 차이를 의미하며, 이를 통해 컴퓨터 사양(성능)에 따라 달라지는 실행 속도를 보정
+* 더블 버퍼링의 원리 학습

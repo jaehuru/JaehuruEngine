@@ -123,17 +123,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
+   const UINT width = 1600;
+   const UINT height = 900;
    HWND hWnd = CreateWindowW(
        szWindowClass,
        szTitle,
        WS_OVERLAPPEDWINDOW,
        CW_USEDEFAULT, CW_USEDEFAULT,       // 윈도우 위치 (x, y)
-       1600, 900,                           // 윈도우 너비와 높이
+       width, height,                           // 윈도우 너비와 높이
        nullptr, nullptr,
        hInstance,
        nullptr);
 
-   application.Initalize(hWnd); // 애플리케이션 초기화
+   application.Initalize(hWnd, width, height); // 애플리케이션 초기화
 
    if (!hWnd)
    {
