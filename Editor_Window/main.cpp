@@ -5,6 +5,7 @@
 #include "Editor_Window.h"
 
 #include "..\\Engine_SOURCE\\huruApplication.h"
+#include "..\\Engine\\huruLoadScenes.h"
 
 huru::Application application;
 
@@ -144,6 +145,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   //Load Scene
+   huru::LoadScenes();
 
    return TRUE;
 }

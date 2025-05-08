@@ -43,7 +43,7 @@ namespace huru
 		HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
 		SelectObject(hdc, oldPen);
 
-		Rectangle(hdc, 100 + (int)mX, 10 + (int)mY, 200 + (int)mX, 100 + (int)mY);
+		Ellipse(hdc, 20 + mX, 30 + mY, 100 + mX, 100 + mY);
 
 		SelectObject(hdc, oldBrush);
 		DeleteObject(blueBrush);

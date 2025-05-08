@@ -49,13 +49,14 @@ namespace huru
 		}
 
 	private:
-		static std::vector<Key> Keys;
-
 		static void createKeys();
 		static void updateKeys();
 		static void updateKey(Key& key);
 		static void updateKeyDown(Key& key);
 		static void updateKeyUp(Key& key);
+
+	private:
+		static std::vector<Key> Keys;
 	};
 }
 

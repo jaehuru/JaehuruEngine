@@ -132,6 +132,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="huruLoadScenes.h" />
+    <ClInclude Include="huruPlayScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="huruPlayScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
