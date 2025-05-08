@@ -19,7 +19,6 @@ namespace huru
 
 			return scene;
 		}
-
 		static Scene* LoadScene(const std::wstring& name)
 		{
 			std::map<std::wstring, Scene*>::iterator iter 

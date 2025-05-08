@@ -12,10 +12,12 @@
     <ClInclude Include="huruPlayScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="huruPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruPlayScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="huruPlayer.cpp" />
   </ItemGroup>
 </Project>

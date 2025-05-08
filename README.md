@@ -3,13 +3,14 @@
 클라이언트 개발자라면 렌더링 파이프라인같은 핵심 그래픽스 기술을 알아야 한다고 생각했기 때문이다.
 
 ## step1. WinAPI 이해하기
-* WinMain의 코드흐름을 파악
-* DC 정의와 스톡 오브젝트
-* PeekMessage
-* 정적 라이브러리와 동적 라이브러리 장단점
-* Application 클래스 구현
-* 매 프레임마다 도형을 찍어보고 이동 PeekMessage + Application::Run()
-* GameObject 클래스 구현
-* DeltaTime은 프레임 간 시간 차이를 의미하며, 이를 통해 컴퓨터 사양(성능)에 따라 달라지는 실행 속도를 보정
-* 더블 버퍼링의 원리 학습
-* Scene, SceneManager 클라스 구현
+1. WinMain의 코드흐름을 파악
+2. DC 정의와 스톡 오브젝트
+3. PeekMessage
+4. 정적 라이브러리와 동적 라이브러리 장단점
+5. Application 클래스 구현
+6. 매 프레임마다 도형을 찍어보고 이동 PeekMessage + Application::Run()
+7. GameObject 클래스 구현
+8. DeltaTime은 프레임 간 시간 차이를 의미하며, 이를 통해 컴퓨터 사양(성능)에 따라 달라지는 실행 속도를 보정
+9. 더블 버퍼링의 원리 학습
+10. Scene, SceneManager 클라스 구현
+11. Component 구조
