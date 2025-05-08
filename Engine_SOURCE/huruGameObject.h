@@ -24,9 +24,6 @@ namespace huru
 		float	GetPositionY() { return mY; }
 
 	private:
-		// 게임 오브젝트의 좌표
-		float		mSpeed;
-
 		float		mX;
 		float		mY;
 	};

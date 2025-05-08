@@ -1,12 +1,12 @@
 #include "huruGameObject.h"
 #include "huruInput.h"
+#include "huruTime.h"
 
 namespace huru
 {
 	GameObject::GameObject() :
 		mX(0.f),
-		mY(0.f),
-		mSpeed(0.01f)
+		mY(0.f)
 	{
 
 	}
@@ -17,14 +17,15 @@ namespace huru
 
 	void GameObject::Update()
 	{
-		if (Input::GetKey(eKeyCode::Up))
-			mY -= mSpeed;
-		if (Input::GetKey(eKeyCode::Down))
-			mY += mSpeed;
+		const int speed = 100.f;
+		if (Input::GetKey(eKeyCode::W))
+			mY -= speed * Time::DeltaTime();
+		if (Input::GetKey(eKeyCode::S))
+			mY += speed * Time::DeltaTime();
 		if (Input::GetKey(eKeyCode::A))
-			mX -= mSpeed;
+			mX -= speed * Time::DeltaTime();
 		if (Input::GetKey(eKeyCode::D))
-			mX += mSpeed;
+			mX += speed * Time::DeltaTime();
 	}
 
 	void GameObject::LateUpdate()
@@ -42,7 +43,7 @@ namespace huru
 		HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
 		SelectObject(hdc, oldPen);
 
-		Rectangle(hdc, 100 + mX, 10 + mY, 200 + mX, 100 + mY);
+		Rectangle(hdc, 100 + (int)mX, 10 + (int)mY, 200 + (int)mX, 100 + (int)mY);
 
 		SelectObject(hdc, oldBrush);
 		DeleteObject(blueBrush);

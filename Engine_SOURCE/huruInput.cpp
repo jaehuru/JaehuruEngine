@@ -2,7 +2,7 @@
 
 namespace huru
 {
-	std::vector<Input::Key> Input::mKeys;
+	std::vector<Input::Key> Input::Keys;
 
 	int ASCII[(int)eKeyCode::End] =
 	{
@@ -10,9 +10,20 @@ namespace huru
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN,
+		MK_LBUTTON, MK_RBUTTON
 	};
 
 	void Input::Initialize()
+	{
+		createKeys();
+	}
+
+	void Input::Update()
+	{
+		updateKeys();
+	}
+
+	void Input::createKeys()
 	{
 		for (size_t i = 0; i < (UINT)eKeyCode::End; ++i)
 		{
@@ -20,33 +31,45 @@ namespace huru
 			key.state = eKeyState::None;
 			key.keyCode = (eKeyCode)i;
 			key.bPressed = false;
-			mKeys.push_back(key);
+			Keys.push_back(key);
 		}
 	}
 
-	void Input::Update()
+	void Input::updateKeys()
 	{
-		for (size_t i = 0; i < mKeys.size(); i++)
-		{
-			// 키가 눌렸는지 아닌지
-			if (GetAsyncKeyState(ASCII[i]) & 0X8000)
-			{
-				if (mKeys[i].bPressed == true)
-					mKeys[i].state = eKeyState::Pressed;
-				else
-					mKeys[i].state = eKeyState::Down;
-
-				mKeys[i].bPressed = true;
-			}
-			else
-			{
-				if (mKeys[i].bPressed == true)
-					mKeys[i].state = eKeyState::Up;
-				else
-					mKeys[i].state = eKeyState::None;
-
-				mKeys[i].bPressed = false;
-			}
-		}
+		std::for_each(Keys.begin(), Keys.end(),
+			[](Key& key) -> void { updateKey(key); });		
 	}
+
+	static bool IsKeyDown(eKeyCode code)
+	{
+		return GetAsyncKeyState(ASCII[(UINT)code]) & 0x8000;
+	}
+
+	void Input::updateKey(Key& key)
+	{
+		IsKeyDown(key.keyCode) ? updateKeyDown(key) : updateKeyUp(key);
+	}
+
+	void Input::updateKeyDown(Key& key)
+	{
+		if (key.bPressed == true)
+			key.state = eKeyState::Pressed;
+		else
+			key.state = eKeyState::Down;
+
+		key.bPressed = true;
+	}
+
+	void Input::updateKeyUp(Key& key)
+	{
+		if (key.bPressed == true)
+			key.state = eKeyState::Up;
+		else
+			key.state = eKeyState::None;
+
+		key.bPressed = false;
+	}
+
+
 }

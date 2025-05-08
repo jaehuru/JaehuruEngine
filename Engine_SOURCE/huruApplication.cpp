@@ -1,5 +1,6 @@
 #include "huruApplication.h"
 #include "huruInput.h"
+#include "huruTime.h"
 
 namespace huru
 {
@@ -23,6 +24,7 @@ namespace huru
 		mPlayer.SetPosition(0, 0);
 
 		Input::Initialize();
+		Time::Initialize();
 	}
 
 	void Application::Run()
@@ -35,6 +37,8 @@ namespace huru
 	void Application::Update()
 	{
 		Input::Update();
+		Time::Update();
+
 		mPlayer.Update();
 	}
 
@@ -45,6 +49,9 @@ namespace huru
 
 	void Application::Render()
 	{
+		Rectangle(mHdc, 0, 0, 1600, 900);
+
+		Time::Render(mHdc);
 		mPlayer.Render(mHdc);
 	}
 }

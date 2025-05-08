@@ -18,10 +18,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruTime.cpp" />
   </ItemGroup>
 </Project>
