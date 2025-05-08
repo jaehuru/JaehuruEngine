@@ -1,9 +1,12 @@
 #include "huruGameObject.h"
 #include "huruInput.h"
 #include "huruTime.h"
+#include "Bullet.h"
 
 namespace huru
 {
+	std::vector<GameObject*> gGameObjects;
+
 	GameObject::GameObject() :
 		mX(0.f),
 		mY(0.f)
@@ -26,11 +29,30 @@ namespace huru
 			mX -= speed * Time::DeltaTime();
 		if (Input::GetKey(eKeyCode::D))
 			mX += speed * Time::DeltaTime();
+		if (Input::GetKeyDown(eKeyCode::SPACE))
+		{
+			float bulletX = mX + 150.f;
+			float bulletY = mY + 10;
+
+			gGameObjects.push_back(new Bullet(bulletX, bulletY));
+		}
 	}
 
 	void GameObject::LateUpdate()
 	{
-
+		for (int i = 0; i < gGameObjects.size(); )
+		{
+			Bullet* bullet = dynamic_cast<Bullet*>(gGameObjects[i]);
+			if (bullet && bullet->IsDead())
+			{
+				delete bullet;
+				gGameObjects.erase(gGameObjects.begin() + i);
+			}
+			else
+			{
+				++i;
+			}
+		}
 	}
 
 	void GameObject::Render(HDC hdc)
@@ -48,5 +70,10 @@ namespace huru
 		SelectObject(hdc, oldBrush);
 		DeleteObject(blueBrush);
 		DeleteObject(redPen);
+
+		for (GameObject* obj : gGameObjects)
+		{
+			obj->Render(hdc);
+		}
 	}
 }

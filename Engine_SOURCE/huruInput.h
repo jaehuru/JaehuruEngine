@@ -19,6 +19,7 @@ namespace huru
 		Z, X, C, V, B, N, M,
 		Left, Right, Up, Down,
 		LButton, RButton,
+		SPACE,
 		End,
 	};
 

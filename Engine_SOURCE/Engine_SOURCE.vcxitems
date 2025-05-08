@@ -14,6 +14,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Bullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h" />
@@ -21,6 +22,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruTime.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Bullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruInput.cpp" />

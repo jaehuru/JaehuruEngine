@@ -1,9 +1,12 @@
 #include "huruApplication.h"
 #include "huruInput.h"
 #include "huruTime.h"
+#include "huruGameObject.h"
+#include "Bullet.h"
 
 namespace huru
 {
+	extern std::vector<GameObject*> gGameObjects;
 
 	Application::Application() : 
 		mHwnd(nullptr),
@@ -65,6 +68,11 @@ namespace huru
 		Time::Update();
 
 		mPlayer.Update();
+
+		for (GameObject* obj : gGameObjects)
+		{
+			obj->Update(); // 각 게임 오브젝트의 Update 호출
+		}
 	}
 
 	void Application::LateUpdate()

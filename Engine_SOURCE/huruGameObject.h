@@ -10,9 +10,9 @@ namespace huru
 		GameObject();
 		~GameObject();
 
-		void	Update();
-		void	LateUpdate();
-		void	Render(HDC hdc);
+		virtual void	Update();
+		virtual void	LateUpdate();
+		virtual void	Render(HDC hdc);
 
 		void	SetPosition(float x, float y)
 		{
