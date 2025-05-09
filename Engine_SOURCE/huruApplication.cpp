@@ -79,7 +79,10 @@ namespace huru
 		mHwnd = hwnd;
 		mHdc = GetDC(hwnd);
 
-		RECT rect = { 0, 0, width, height };
+		RECT rect = 
+		{ 
+			0, 0, static_cast<LONG>(width), static_cast<LONG>(height) 
+		};
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
 		mWidth = rect.right - rect.left;

@@ -23,6 +23,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruScene.h" />

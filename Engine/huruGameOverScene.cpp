@@ -32,7 +32,7 @@ namespace huru
 
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"PlayScene");
+			SceneManager::LoadScene(L"TitleScene");
 		}
 	}
 

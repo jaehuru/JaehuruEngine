@@ -1,6 +1,6 @@
 #pragma once
 
-namespace huru
+namespace huru::enums
 {
 	enum class eLayerType
 	{

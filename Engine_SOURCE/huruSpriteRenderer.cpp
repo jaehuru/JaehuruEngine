@@ -39,7 +39,7 @@ namespace huru
 		Vector2 pos = tr->GetPosition();
 
 		Gdiplus::Graphics graphcis(hdc);
-		graphcis.DrawImage(mImgae, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
+		graphcis.DrawImage(mImgae, Gdiplus::Rect((int)pos.x, (int)pos.y, mWidth, mHeight));
 	}
 	void SpriteRenderer::ImageLoad(const std::wstring& path)
 	{

@@ -6,6 +6,7 @@
 #include "huruInput.h"
 #include "huruSceneManager.h"
 #include "huruGameOverScene.h"
+#include "huruObject.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -20,18 +21,10 @@ huru::PlayScene::~PlayScene()
 void huru::PlayScene::Initialize()
 {
 	{
-		bg = new Player();
-		Transform* tr = bg->AddComponent<Transform>();
-		tr->SetPos(Vector2(0, 0));
-
-		tr->SetName(L"TR");
-
-		SpriteRenderer* sr
-			= bg->AddComponent<SpriteRenderer>();
-		sr->SetName(L"SR");
+		bg = object::Instantiate<Player>
+			(enums::eLayerType::Background, Vector2(100.f, 100.f));
+		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 		sr->ImageLoad(L"C:\\Users\\USER-PC\\Documents\\CODING\\CPP\\JaehuruEngine\\Resources\\bg2.png");
-
-		AddGameObject(bg, eLayerType::Background);
 	}
 
 }
@@ -66,5 +59,5 @@ void huru::PlayScene::OnEnter()
 void huru::PlayScene::OnExit()
 {
 	Transform* tr = bg->GetComponent<Transform>();
-	tr->SetPos(Vector2(0, 0));
+	tr->SetPosition(Vector2(0, 0));
 }

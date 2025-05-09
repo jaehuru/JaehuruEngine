@@ -1,12 +1,13 @@
 #include "huruGameObject.h"
 #include "huruInput.h"
 #include "huruTime.h"
+#include "huruTransform.h"
 
 namespace huru
 {
 	GameObject::GameObject()
 	{
-
+		initializeTransform();
 	}
 	GameObject::~GameObject()
 	{
@@ -48,5 +49,10 @@ namespace huru
 		{
 			comp->Render(hdc);
 		}
+	}
+
+	void GameObject::initializeTransform()
+	{
+		AddComponent<Transform>();
 	}
 }

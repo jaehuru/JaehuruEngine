@@ -6,10 +6,7 @@ namespace huru
 	Scene::Scene() :
 		mLayers{}
 	{
-		mLayers.resize((UINT)eLayerType::Max);
-
-		std::for_each(mLayers.begin(), mLayers.end(), [](Layer*& layer) { layer = new Layer(); });
-
+		createLayers();
 	}
 
 	Scene::~Scene()
@@ -70,8 +67,16 @@ namespace huru
 		
 	}
 
-	void Scene::AddGameObject(GameObject* gameObj, const eLayerType type)
+	void Scene::AddGameObject(GameObject* gameObj, const enums::eLayerType type)
 	{
 		mLayers[(UINT)type]->AddGameObject(gameObj);
+	}
+
+	void Scene::createLayers()
+	{
+		mLayers.resize((UINT)enums::eLayerType::Max);
+
+		std::for_each(mLayers.begin(), mLayers.end(),
+			[](Layer*& layer) { layer = new Layer(); });
 	}
 }
