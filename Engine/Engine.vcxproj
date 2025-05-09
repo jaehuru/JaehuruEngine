@@ -132,11 +132,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="huruGameOverScene.h" />
     <ClInclude Include="huruLoadScenes.h" />
     <ClInclude Include="huruPlayer.h" />
     <ClInclude Include="huruPlayScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="huruGameOverScene.cpp" />
     <ClCompile Include="huruPlayer.cpp" />
     <ClCompile Include="huruPlayScene.cpp" />
   </ItemGroup>

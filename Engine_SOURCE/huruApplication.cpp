@@ -22,13 +22,13 @@ namespace huru
 		
 	}
 
-	void Application::Initalize(HWND hwnd, UINT width, UINT height)
+	void Application::Initialize(HWND hwnd, UINT width, UINT height)
 	{
 		adjustWindowRect(hwnd, width, height);
 		createBuffer(width, height);
 		initializeEtc();
 
-		SceneManager::Initalize();
+		SceneManager::Initialize();
 	}
 
 	void Application::Run()
@@ -49,6 +49,7 @@ namespace huru
 	void Application::LateUpdate()
 	{
 		// 후처리 업데이트 코드
+		SceneManager::LateUpdate();
 	}
 
 	void Application::Render()

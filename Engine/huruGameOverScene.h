@@ -4,13 +4,11 @@
 
 namespace huru
 {
-	class Player;
-
-	class PlayScene : public Scene
+	class GameOverScene : public Scene
 	{
 	public:
-		PlayScene();
-		~PlayScene();
+		GameOverScene();
+		~GameOverScene();
 
 		void	Initialize() override;
 		void	Update() override;
@@ -19,9 +17,8 @@ namespace huru
 
 		void	OnEnter() override;
 		void	OnExit() override;
-
 	private:
-		Player*		bg;
+
 	};
 }
 

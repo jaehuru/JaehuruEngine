@@ -9,6 +9,9 @@
 
 huru::Application application;
 
+ULONG_PTR gpToken;
+Gdiplus::GdiplusStartupInput gpsi;
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수
@@ -79,6 +82,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
         }
     }*/
 
+    Gdiplus::GdiplusShutdown(gpToken);
+
     return (int) msg.wParam;
 }
 
@@ -136,7 +141,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
        hInstance,
        nullptr);
 
-   application.Initalize(hWnd, width, height); // 애플리케이션 초기화
+   application.Initialize(hWnd, width, height); // 애플리케이션 초기화
 
    if (!hWnd)
    {
@@ -145,6 +150,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
    //Load Scene
    huru::LoadScenes();

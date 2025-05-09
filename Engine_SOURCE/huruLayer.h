@@ -2,29 +2,25 @@
 
 #include "huruEntity.h"
 #include "huruGameObject.h"
-#include "huruLayer.h"
 
 namespace huru
 {
-	class Scene : public Entity
+	class Layer : public Entity
 	{
 	public:
-		Scene();
-		~Scene();
+		Layer();
+		~Layer();
 
 		virtual void	Initialize();
 		virtual void	Update();
 		virtual void	LateUpdate();
 		virtual void	Render(HDC hdc);
 
-		virtual void	OnEnter();
-		virtual void	OnExit();
-
-		void AddGameObject(GameObject* gameObj, const eLayerType type);
-		
+		void AddGameObject(GameObject* gameObj);
 
 	private:
-		std::vector<Layer*> mLayers;
+		//eLayerType mType;
+		std::vector<GameObject*> mGameObjects;
 	};
 }
 

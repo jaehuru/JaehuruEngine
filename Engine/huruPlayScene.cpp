@@ -3,6 +3,9 @@
 #include "huruPlayer.h"
 #include "huruTransform.h"
 #include "huruSpriteRenderer.h"
+#include "huruInput.h"
+#include "huruSceneManager.h"
+#include "huruGameOverScene.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -14,51 +17,21 @@ huru::PlayScene::~PlayScene()
 
 }
 
-void huru::PlayScene::Initalize()
+void huru::PlayScene::Initialize()
 {
 	{
-		Player* pl = new Player();
-		Transform* tr
-			= pl->AddComponent<Transform>();
-		tr->SetPos(800, 450);
+		bg = new Player();
+		Transform* tr = bg->AddComponent<Transform>();
+		tr->SetPos(Vector2(0, 0));
 
 		tr->SetName(L"TR");
 
 		SpriteRenderer* sr
-			= pl->AddComponent<SpriteRenderer>();
+			= bg->AddComponent<SpriteRenderer>();
 		sr->SetName(L"SR");
+		sr->ImageLoad(L"C:\\Users\\USER-PC\\Documents\\CODING\\CPP\\JaehuruEngine\\Resources\\bg2.png");
 
-		AddGameObject(pl);
-	}
-
-	{
-		Player* pl = new Player();
-		Transform* tr
-			= pl->AddComponent<Transform>();
-		tr->SetPos(300, 450);
-
-		tr->SetName(L"TR");
-
-		SpriteRenderer* sr
-			= pl->AddComponent<SpriteRenderer>();
-		sr->SetName(L"SR");
-
-		AddGameObject(pl);
-	}
-
-	{
-		Player* pl = new Player();
-		Transform* tr
-			= pl->AddComponent<Transform>();
-		tr->SetPos(100, 650);
-
-		tr->SetName(L"TR");
-
-		SpriteRenderer* sr
-			= pl->AddComponent<SpriteRenderer>();
-		sr->SetName(L"SR");
-
-		AddGameObject(pl);
+		AddGameObject(bg, eLayerType::Background);
 	}
 
 }
@@ -71,9 +44,27 @@ void huru::PlayScene::Update()
 void huru::PlayScene::LateUpdate()
 {
 	Scene::LateUpdate();
+
+	if (Input::GetKeyDown(eKeyCode::N))
+	{
+		SceneManager::LoadScene(L"GameOverScene");
+	}
 }
 
 void huru::PlayScene::Render(HDC hdc)
 {
 	Scene::Render(hdc);
+	wchar_t str[50] = L"Play Scene";
+	TextOut(hdc, 0, 0, str, 10);
+}
+
+void huru::PlayScene::OnEnter()
+{
+
+}
+
+void huru::PlayScene::OnExit()
+{
+	Transform* tr = bg->GetComponent<Transform>();
+	tr->SetPos(Vector2(0, 0));
 }

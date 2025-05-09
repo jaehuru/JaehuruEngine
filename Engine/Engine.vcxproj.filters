@@ -4,6 +4,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{f9cafd38-ad0b-43cd-948a-be4ade971ee6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{a456dad2-24d0-4da9-bfc3-b3483cbe8996}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="huruLoadScenes.h">
@@ -12,12 +15,22 @@
     <ClInclude Include="huruPlayScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="huruPlayer.h" />
+    <ClInclude Include="huruPlayer.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="huruGameOverScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruPlayScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="huruPlayer.cpp" />
+    <ClCompile Include="huruPlayer.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="huruGameOverScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ namespace huru
 		~Application();
 		
 
-		void	Initalize(HWND hwnd, UINT width, UINT height);
+		void	Initialize(HWND hwnd, UINT width, UINT height);
 		void	Run();
 
 		void	Update();

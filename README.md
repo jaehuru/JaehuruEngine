@@ -14,3 +14,7 @@
 9. 더블 버퍼링의 원리 학습
 10. Scene, SceneManager 클라스 구현
 11. Component 구조
+12. 2D vector 구현
+13. Gdiplus로 배경화면 띄우기
+14. Scene의 Enter() Exit() 함수 구현
+15. Layer 구조를 보고 화면 출력 순서를 파악

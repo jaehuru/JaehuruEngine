@@ -6,7 +6,7 @@ namespace huru
 	Scene* SceneManager::mActiveScene = nullptr;
 
 
-	void SceneManager::Initalize()
+	void SceneManager::Initialize()
 	{
 
 	}

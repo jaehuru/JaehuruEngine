@@ -41,6 +41,6 @@ namespace huru
 		int len = wcsnlen_s(str, 50);
 
 		
-		TextOut(hdc, 10, 10, str, len);
+		TextOut(hdc, 0, 0, str, len);
 	}
 }

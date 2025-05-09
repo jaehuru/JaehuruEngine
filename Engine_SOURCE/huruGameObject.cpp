@@ -27,7 +27,7 @@ namespace huru
 
 	void GameObject::Update()
 	{
-		const int speed = 100.f;
+		const float speed = 100.f;
 		for (Component* comp : mComponents)
 		{
 			comp->Update();
