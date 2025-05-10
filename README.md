@@ -23,3 +23,6 @@
 18. Script 클래스 구현
 19. Camera Component 클래스 구현
 20. Animator, Animation 클래스 구현과 AlphaBlend 함수 사용해보기
+21. Position, Rotation, Scale로 object들을 관리할 수 있음
+22. 픽셀 투명화 처리기능 구현
+23. FSM패턴 적용하기

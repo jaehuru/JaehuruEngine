@@ -38,12 +38,27 @@ void huru::PlayScene::Initialize()
 	graphics::Texture* pacmanTextuer = 
 		Resources::Find<graphics::Texture>(L"Cat");
 
-	// 애니메이션 동작
 	Animator* animator = mPlayer->AddComponent<Animator>();
-	animator->CreateAnimation(L"CatFrontMove", pacmanTextuer, 
+
+	animator->CreateAnimation(L"DownWalk", pacmanTextuer, 
 		Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	animator->PlayAnimation(L"CatFrontMove");
+	animator->CreateAnimation(L"RightWalk", pacmanTextuer, 
+		Vector2(0.f, 32.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
+	animator->CreateAnimation(L"UpWalk", pacmanTextuer,
+		Vector2(0.f, 64.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
+	animator->CreateAnimation(L"LeftWalk", pacmanTextuer,
+		Vector2(0.f, 96.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
+	animator->CreateAnimation(L"SitDown", pacmanTextuer,
+		Vector2(0.f, 128.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
+	animator->CreateAnimation(L"Grooming", pacmanTextuer,
+		Vector2(0.f, 160.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
 	
+	animator->PlayAnimation(L"SitDown", false);
+	
+	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.f, 100.f));
+	mPlayer->GetComponent<Transform>()->SetScale(Vector2(3.f, 3.f));
+	mPlayer->GetComponent<Transform>()->SetRotation(0.f);
+
 	GameObject* bg = object::Instantiate<GameObject>
 		(enums::eLayerType::Background);
 	SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();

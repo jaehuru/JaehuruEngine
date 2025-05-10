@@ -17,6 +17,7 @@ namespace huru::enums
 		None,
 		Background,
 		Player,
+		Particle,
 		Max = 16,
 	};
 
