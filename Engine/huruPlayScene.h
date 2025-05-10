@@ -21,7 +21,7 @@ namespace huru
 		void	OnExit() override;
 
 	private:
-		Player*		bg;
+		Player*		mPlayer;
 	};
 }
 

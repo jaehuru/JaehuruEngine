@@ -2,6 +2,7 @@
 #include "huruGameObject.h"
 #include "huruTransform.h"
 #include "huruTexture.h"
+#include "huruRenderer.h"
 
 namespace huru
 {
@@ -41,6 +42,7 @@ namespace huru
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		pos = renderer::mainCamera-> CalculatePosition(pos);
 
 		if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
 		{

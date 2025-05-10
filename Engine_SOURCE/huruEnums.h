@@ -7,6 +7,7 @@ namespace huru::enums
 		Transform,
 		SpriteRenderer,
 		Script,
+		Camera,
 		End,
 	};
 

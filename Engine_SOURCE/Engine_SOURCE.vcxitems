@@ -16,6 +16,7 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruEnums.h" />
@@ -24,6 +25,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruScene.h" />
@@ -36,12 +38,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruScene.cpp" />

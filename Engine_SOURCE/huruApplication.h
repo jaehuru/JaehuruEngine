@@ -19,7 +19,9 @@ namespace huru
 		void	LateUpdate();
 		void	Render();
 
-		HDC		GetHDC() { return mHdc; }
+		HDC		GetHDC()	{ return mHdc; }
+		UINT	GetWidth()	{ return mWidth; }
+		UINT	GetHeight()	{ return mHeight; }
 
 	private:
 		void	clearRenderTarget();

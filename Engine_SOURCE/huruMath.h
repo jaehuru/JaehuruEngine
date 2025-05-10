@@ -24,5 +24,20 @@ namespace huru::math
 		{
 
 		}
+
+		Vector2 operator+(Vector2 other)
+		{
+			return Vector2(x + other.x, y + other.y);
+		}
+
+		Vector2 operator-(Vector2 other)
+		{
+			return Vector2(x - other.x, y - other.y);
+		}
+
+		Vector2 operator/(float value)
+		{
+			return Vector2(x / value, y / value);
+		}
 	};
 }
