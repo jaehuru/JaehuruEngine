@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CommonInclude.h"
+using namespace huru::math;
 
 namespace huru
 {

@@ -15,6 +15,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruComponent.h" />
@@ -37,6 +39,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimation.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruComponent.cpp" />

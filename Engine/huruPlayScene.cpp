@@ -12,7 +12,7 @@
 #include "huruPlayerScript.h"
 #include "huruCamera.h"
 #include "huruRenderer.h"
-
+#include "huruAnimator.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -30,21 +30,20 @@ void huru::PlayScene::Initialize()
 	GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.f, 442.f));
 	Camera* cameraComp = camera->AddComponent<Camera>();
 	renderer::mainCamera = cameraComp;
-	//camera->AddComponent<PlayerScript>();
-
-	
 
 	mPlayer = object::Instantiate<Player>
 		(enums::eLayerType::Player);
-	SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-	sr->SetSize(Vector2(3.f, 3.f));
-
-	graphics::Texture* pacmanTextuer = 
-		Resources::Find<graphics::Texture>(L"PacMan");
-	sr->SetTexture(pacmanTextuer);
 	mPlayer->AddComponent<PlayerScript>();
 
+	graphics::Texture* pacmanTextuer = 
+		Resources::Find<graphics::Texture>(L"Cat");
 
+	// 애니메이션 동작
+	Animator* animator = mPlayer->AddComponent<Animator>();
+	animator->CreateAnimation(L"CatFrontMove", pacmanTextuer, 
+		Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
+	animator->PlayAnimation(L"CatFrontMove");
+	
 	GameObject* bg = object::Instantiate<GameObject>
 		(enums::eLayerType::Background);
 	SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
