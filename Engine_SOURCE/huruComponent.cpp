@@ -2,9 +2,10 @@
 
 namespace huru
 {
-	huru::Component::Component()
+	huru::Component::Component(enums::eComponentType type) :
+		mType(type)
 	{
-
+		
 	}
 
 	huru::Component::~Component()

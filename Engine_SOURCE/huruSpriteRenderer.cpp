@@ -6,7 +6,7 @@
 namespace huru
 {
 	SpriteRenderer::SpriteRenderer() :
-		Component(),
+		Component(enums::eComponentType::SpriteRenderer),
 		mTexture(nullptr),
 		mSize(Vector2::One)
 
@@ -45,8 +45,8 @@ namespace huru
 		if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
 		{
 			TransparentBlt(hdc, (int)pos.x, (int)pos.y,
-				mTexture->GetWidth() * mSize.x,
-				mTexture->GetHeight() * mSize.y,
+				mTexture->GetWidth() * (int)mSize.x,
+				mTexture->GetHeight() * (int)mSize.y,
 				mTexture->GetHdc(), 0, 0,
 				mTexture->GetWidth(), mTexture->GetHeight(),
 				RGB(255, 0, 255));
@@ -54,12 +54,13 @@ namespace huru
 		else if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Png)
 		{
 			Gdiplus::Graphics graphics(hdc);
-			graphics.DrawImage(mTexture->GetImage(),
-								Gdiplus::Rect(
-									(int)pos.x,
-									(int)pos.y, 
-									mTexture->GetWidth() * mSize.x,
-									mTexture->GetHeight() * mSize.y));
+			graphics.DrawImage(
+				mTexture->GetImage(),
+				Gdiplus::Rect(
+					(int)pos.x,
+					(int)pos.y, 
+					mTexture->GetWidth() * (int)mSize.x,
+					mTexture->GetHeight() * (int)mSize.y));
 		}
 	}
 }

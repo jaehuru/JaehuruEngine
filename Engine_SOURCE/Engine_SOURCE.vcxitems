@@ -28,6 +28,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruSceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruTime.h" />
@@ -45,6 +46,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruSceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruTime.cpp" />

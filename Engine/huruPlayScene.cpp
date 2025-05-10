@@ -9,6 +9,7 @@
 #include "huruObject.h"
 #include "huruTexture.h"
 #include "huruResources.h"
+#include "huruPlayerScript.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -26,9 +27,11 @@ void huru::PlayScene::Initialize()
 	bg = huru::object::Instantiate<Player>
 		(enums::eLayerType::Background);
 	SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+	bg->AddComponent<PlayerScript>();
 
-	graphics::Texture* bg = Resources::Find<graphics::Texture>(L"BG");
-	sr->SetTexture(bg);
+	graphics::Texture* bgtex = Resources::Find<graphics::Texture>(L"BG");
+	sr->SetTexture(bgtex);
+	
 
 	Scene::Initialize();
 

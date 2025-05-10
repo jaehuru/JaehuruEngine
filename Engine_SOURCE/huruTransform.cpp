@@ -2,7 +2,8 @@
 
 namespace huru
 {
-	Transform::Transform()
+	Transform::Transform() :
+		Component(enums::eComponentType::Transform)
 	{
 
 	}

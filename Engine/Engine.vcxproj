@@ -135,6 +135,7 @@
     <ClInclude Include="huruGameOverScene.h" />
     <ClInclude Include="huruLoadScenes.h" />
     <ClInclude Include="huruPlayer.h" />
+    <ClInclude Include="huruPlayerScript.h" />
     <ClInclude Include="huruPlayScene.h" />
     <ClInclude Include="huruTitleScene.h" />
     <ClInclude Include="huruLoadResources.h" />
@@ -142,6 +143,7 @@
   <ItemGroup>
     <ClCompile Include="huruGameOverScene.cpp" />
     <ClCompile Include="huruPlayer.cpp" />
+    <ClCompile Include="huruPlayerScript.cpp" />
     <ClCompile Include="huruPlayScene.cpp" />
     <ClCompile Include="huruTitleScene.cpp" />
   </ItemGroup>
