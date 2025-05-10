@@ -1,13 +1,15 @@
 #include "huruSpriteRenderer.h"
 #include "huruGameObject.h"
 #include "huruTransform.h"
+#include "huruTexture.h"
 
 namespace huru
 {
 	SpriteRenderer::SpriteRenderer() :
-		mImgae(nullptr),
-		mWidth(0),
-		mHeight(0)
+		Component(),
+		mTexture(nullptr),
+		mSize(Vector2::One)
+
 	{
 
 	}
@@ -34,17 +36,30 @@ namespace huru
 
 	void SpriteRenderer::Render(HDC hdc)
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
+		if (mTexture == nullptr)
+			assert(false);
 
+		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
 
-		Gdiplus::Graphics graphcis(hdc);
-		graphcis.DrawImage(mImgae, Gdiplus::Rect((int)pos.x, (int)pos.y, mWidth, mHeight));
-	}
-	void SpriteRenderer::ImageLoad(const std::wstring& path)
-	{
-		mImgae = Gdiplus::Image::FromFile(path.c_str());
-		mWidth = mImgae->GetWidth();
-		mHeight = mImgae->GetHeight();
+		if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
+		{
+			TransparentBlt(hdc, (int)pos.x, (int)pos.y,
+				mTexture->GetWidth() * mSize.x,
+				mTexture->GetHeight() * mSize.y,
+				mTexture->GetHdc(), 0, 0,
+				mTexture->GetWidth(), mTexture->GetHeight(),
+				RGB(255, 0, 255));
+		}
+		else if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Png)
+		{
+			Gdiplus::Graphics graphics(hdc);
+			graphics.DrawImage(mTexture->GetImage(),
+								Gdiplus::Rect(
+									(int)pos.x,
+									(int)pos.y, 
+									mTexture->GetWidth() * mSize.x,
+									mTexture->GetHeight() * mSize.y));
+		}
 	}
 }

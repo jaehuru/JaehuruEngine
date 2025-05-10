@@ -7,6 +7,8 @@
 #include "huruSceneManager.h"
 #include "huruGameOverScene.h"
 #include "huruObject.h"
+#include "huruTexture.h"
+#include "huruResources.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -20,15 +22,18 @@ huru::PlayScene::~PlayScene()
 
 void huru::PlayScene::Initialize()
 {
-	{
-		bg = object::Instantiate<Player>
-			(enums::eLayerType::Background, Vector2(100.f, 100.f));
-		SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-		sr->ImageLoad(L"C:\\Users\\USER-PC\\Documents\\CODING\\CPP\\JaehuruEngine\\Resources\\bg2.png");
-	}
+	// 게임오브젝트 만들기전에 리소스를 전부 Load해두면 좋다
+	bg = huru::object::Instantiate<Player>
+		(enums::eLayerType::Background);
+	SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+
+	graphics::Texture* bg = Resources::Find<graphics::Texture>(L"BG");
+	sr->SetTexture(bg);
+
+	Scene::Initialize();
 
 }
-
+ 
 void huru::PlayScene::Update()
 {
 	Scene::Update();

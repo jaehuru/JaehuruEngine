@@ -34,10 +34,17 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)huruResource.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)huruResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruLayer.cpp">
       <Filter>Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruResources.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruTexture.cpp">
+      <Filter>Resource\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +84,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)huruResource.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)huruResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruLayer.h">
       <Filter>Layer</Filter>
     </ClInclude>
@@ -87,6 +92,15 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruObject.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruResources.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruTexture.h">
+      <Filter>Resource\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +124,12 @@
     </Filter>
     <Filter Include="Layer">
       <UniqueIdentifier>{dfedf40e-afad-4851-9d43-1378cdc2f026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{1718a6a1-20cb-444f-8470-6867c2f5fd9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Texture">
+      <UniqueIdentifier>{bc40ab8e-9920-4415-a885-62b4173ae442}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

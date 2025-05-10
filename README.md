@@ -19,3 +19,4 @@
 14. Scene의 Enter() Exit() 함수 구현
 15. Layer 구조를 보고 화면 출력 순서를 파악
 16. 오브젝트를 생성을 위한 Instantiate함수 구현
+17. Resource 클래스 구현

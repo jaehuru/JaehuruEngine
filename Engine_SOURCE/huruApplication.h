@@ -19,6 +19,8 @@ namespace huru
 		void	LateUpdate();
 		void	Render();
 
+		HDC		GetHDC() { return mHdc; }
+
 	private:
 		void	clearRenderTarget();
 		void	copyRenderTarget(HDC source, HDC dest);

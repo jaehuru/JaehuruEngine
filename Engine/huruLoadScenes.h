@@ -10,12 +10,12 @@ namespace huru
 {
 	void LoadScenes()
 	{
-		SceneManager::CreateScene<TitleScene>(L"Titlescene");
+		SceneManager::CreateScene<TitleScene>(L"TitleScene");
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
 		SceneManager::CreateScene<GameOverScene>(L"GameOverScene");
 		//SceneManager::CreateScene<GameClearScene>(L"GameClearScene");
 
 
-		SceneManager::LoadScene(L"Titlescene");
+		SceneManager::LoadScene(L"PlayScene");
 	}
 }

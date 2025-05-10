@@ -6,6 +6,7 @@
 
 #include "..\\Engine_SOURCE\\huruApplication.h"
 #include "..\\Engine\\huruLoadScenes.h"
+#include "..\\Engine\\huruLoadResources.h"
 
 huru::Application application;
 
@@ -154,6 +155,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
    //Load Scene
+   huru::LoadResources();
    huru::LoadScenes();
 
    return TRUE;

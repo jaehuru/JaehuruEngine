@@ -21,6 +21,10 @@
     <ClInclude Include="huruGameOverScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="huruTitleScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="huruLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruPlayScene.cpp">
@@ -30,6 +34,9 @@
       <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="huruGameOverScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="huruTitleScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>

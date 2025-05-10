@@ -38,9 +38,8 @@ namespace huru
 		
 		wchar_t str[50] = L"";
 		swprintf_s(str, 50, L"fps : %d", (int)fps);
-		int len = wcsnlen_s(str, 50);
+		int len = static_cast<int>(wcsnlen_s(str, 50));
 
-		
 		TextOut(hdc, 0, 0, str, len);
 	}
 }

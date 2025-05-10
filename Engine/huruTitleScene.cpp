@@ -40,7 +40,7 @@ namespace huru
 	{
 		Scene::Render(hdc);
 		wchar_t str[50] = L"Title Scene";
-		TextOut(hdc, 0, 0, str, 9);
+		TextOut(hdc, 0, 0, str, 11);
 	}
 
 	void TitleScene::OnEnter()
