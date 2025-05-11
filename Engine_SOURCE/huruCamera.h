@@ -18,6 +18,7 @@ namespace huru
 		void		LateUpdate() override;
 		void		Render(HDC hdc) override;
 
+		void SetTarget(GameObject* target) { mTarget = target; }
 
 	private:
 		class GameObject* mTarget;

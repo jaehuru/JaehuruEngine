@@ -38,6 +38,8 @@ void huru::PlayScene::Initialize()
 		(enums::eLayerType::Player);
 	PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
+	
+
 	graphics::Texture* playerTex = 
 		Resources::Find<graphics::Texture>(L"Player");
 
@@ -55,9 +57,9 @@ void huru::PlayScene::Initialize()
 	mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
 
 	// Cat
-	Cat* cat = object::Instantiate<Cat>
-		(enums::eLayerType::Animal);
+	Cat* cat = object::Instantiate<Cat> (enums::eLayerType::Animal);
 	cat->AddComponent<CatScript>();
+	cameraComp->SetTarget(cat);
 
 	graphics::Texture* catTex =
 		Resources::Find<graphics::Texture>(L"Cat");
