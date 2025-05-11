@@ -72,7 +72,11 @@ namespace huru
 			GameObject::eState active = (*iter)->GetActive();
 			if (active == GameObject::eState::Dead)
 			{
-				mGameObjects.erase(iter);
+				GameObject* deathObj = (*iter);
+				iter = mGameObjects.erase(iter);
+
+				delete deathObj;
+				deathObj = nullptr;
 				continue;
 			}
 			++iter;
