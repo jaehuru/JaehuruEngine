@@ -38,6 +38,11 @@ namespace huru
 			if (obj == nullptr)
 				continue;
 
+			GameObject::eState state = obj->GetActive();
+			if (state == GameObject::eState::Paused ||
+				state == GameObject::eState::Dead)
+				continue;
+
 			obj->Update();
 		}
 	}
@@ -49,6 +54,11 @@ namespace huru
 			if (obj == nullptr)
 				continue;
 
+			GameObject::eState state = obj->GetActive();
+			if (state == GameObject::eState::Paused ||
+				state == GameObject::eState::Dead)
+				continue;
+
 			obj->LateUpdate();
 		}
 	}
@@ -58,6 +68,11 @@ namespace huru
 		for (GameObject* obj : mGameObjects)
 		{
 			if (obj == nullptr)
+				continue;
+
+			GameObject::eState state = obj->GetActive();
+			if (state == GameObject::eState::Paused ||
+				state == GameObject::eState::Dead)
 				continue;
 
 			obj->Render(hdc);

@@ -38,8 +38,6 @@ void huru::PlayScene::Initialize()
 		(enums::eLayerType::Player);
 	PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
-	
-
 	graphics::Texture* playerTex = 
 		Resources::Find<graphics::Texture>(L"Player");
 
@@ -58,6 +56,7 @@ void huru::PlayScene::Initialize()
 
 	// Cat
 	Cat* cat = object::Instantiate<Cat> (enums::eLayerType::Animal);
+	//cat->SetActive(true);
 	cat->AddComponent<CatScript>();
 	cameraComp->SetTarget(cat);
 
@@ -66,7 +65,7 @@ void huru::PlayScene::Initialize()
 
 	Animator* catAnimator = cat->AddComponent<Animator>();
 
-	catAnimator->CreateAnimation(L"DownWalk", catTex,
+	/*catAnimator->CreateAnimation(L"DownWalk", catTex,
 		Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
 	catAnimator->CreateAnimation(L"RightWalk", catTex,
 		Vector2(0.f, 32.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
@@ -79,12 +78,26 @@ void huru::PlayScene::Initialize()
 	catAnimator->CreateAnimation(L"Grooming", catTex,
 		Vector2(0.f, 160.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
 	catAnimator->CreateAnimation(L"LayDown", catTex,
-		Vector2(0.f, 192.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
+		Vector2(0.f, 192.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);*/
+	catAnimator->CreateAnimationByFolder(
+									L"MushrommIdle",
+									L"..\\Resources\\Mushroom",
+									Vector2::Zero,
+									0.2f);
+	catAnimator->PlayAnimation(L"MushrommIdle", true);
 
-	catAnimator->PlayAnimation(L"SitDown", false);
 	cat->GetComponent<Transform>()->SetPosition(Vector2(200.f, 200.f));
 	cat->GetComponent<Transform>()->SetScale(Vector2(2.f, 2.f));
 	cat->GetComponent<Transform>()->SetRotation(0.f);
+
+	//...
+	/*GameObject* sheet = object::Instantiate<GameObject>
+		(enums::eLayerType::Animal);
+	SpriteRenderer* sheetSR = sheet->AddComponent<SpriteRenderer>();
+
+	graphics::Texture* mrIdle =
+		Resources::Find<graphics::Texture>(L"MushrommIdle");
+	sheetSR->SetTexture(mrIdle);*/
 	
 	// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init함수를 호출
 	Scene::Initialize();

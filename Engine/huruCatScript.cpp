@@ -32,7 +32,7 @@ namespace huru
 		mDeathTime += Time::DeltaTime();
 		if (mDeathTime > 6.f)
 		{
-			object::Destroy(GetOwner());
+			//object::Destroy(GetOwner());
 		}
 
 		if (mAnimator == nullptr)

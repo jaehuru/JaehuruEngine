@@ -1,14 +1,40 @@
 #include "huruTexture.h"
 #include "huruApplication.h"
+#include "huruResources.h"
 
-// 해당 전역변수가 존재함을 알리는 키워드
 extern huru::Application application;
 
 namespace huru::graphics
 {
-	Texture::Texture() :
-		Resource(enums::eResourceType::Texture)
+	Texture* Texture::Create(const std::wstring& name, UINT width, UINT height)
 	{
+		Texture* image = Resources::Find<Texture>(name);
+		if (image)
+			return image;
+
+		image = new Texture();
+		image->SetName(name);
+		image->SetWidth(width);
+		image->SetHeight(height);
+
+		HDC hdc = application.GetHDC();
+
+		image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
+		image->mHdc = CreateCompatibleDC(hdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
+		DeleteObject(oldBitmap);
+
+		Resources::Insert(name + L"Image", image);
+
+		return image;
+	}
+
+	Texture::Texture() :
+		Resource(enums::eResourceType::Texture),
+		mbAlpha(false)
+	{
+
 	}
 
 	Texture::~Texture()
@@ -33,6 +59,12 @@ namespace huru::graphics
 			
 			mWidth = info.bmWidth;
 			mHeight = info.bmHeight;
+
+			if (info.bmBitsPixel == 32)
+				mbAlpha == true;
+			else if (info.bmBitsPixel == 24)
+				mbAlpha == false;
+
 
 			HDC mainDC = application.GetHDC();
 			mHdc = CreateCompatibleDC(mainDC);

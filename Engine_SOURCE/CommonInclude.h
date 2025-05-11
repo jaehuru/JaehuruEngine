@@ -9,6 +9,7 @@
 #include <map>
 #include <algorithm>
 #include <functional>
+#include <filesystem>
 
 #include "huruMath.h"
 
