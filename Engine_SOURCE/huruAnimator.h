@@ -9,6 +9,29 @@ namespace huru
 	class Animator : public Component
 	{
 	public:
+		struct Event
+		{
+			void operator=(std::function<void()> func)
+			{
+				mEvent = std::move(func);
+			}
+
+			void operator()()
+			{
+				if (mEvent)
+					mEvent();
+			}
+
+			std::function<void()> mEvent;
+		};
+
+		struct Events
+		{
+			Event startEvent;
+			Event completeEvent;
+			Event endEvent;
+		};
+
 		Animator();
 		~Animator();
 
@@ -25,12 +48,22 @@ namespace huru
 									UINT spriteLength,
 									float duration);
 		Animation* FindAnimation(const std::wstring& name);
-		void PlayAnimation(const std::wstring& name, bool loop = true);
+		void PlayAnimation(const std::wstring& name, bool loop);
+
+		Events* FindEvents(const std::wstring& name);
+		std::function<void()>& GetStartEvent(const std::wstring& name);
+		std::function<void()>& GetCompleteEvent(const std::wstring& name);
+		std::function<void()>& GetEndEvent(const std::wstring& name);
+
+		bool IsComplete() { return mActiveAnimation->IsComplete(); }
 
 	private:
 		std::map<std::wstring, Animation*> mAnimations;
 		Animation* mActiveAnimation;
 		bool mbLoop;
+
+		//Event
+		std::map<std::wstring, Events*> mEvents;
 	};
 }
 

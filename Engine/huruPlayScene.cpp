@@ -33,43 +33,26 @@ void huru::PlayScene::Initialize()
 	Camera* cameraComp = camera->AddComponent<Camera>();
 	renderer::mainCamera = cameraComp;
 
+	// Player
 	mPlayer = object::Instantiate<Player>
 		(enums::eLayerType::Player);
-	mPlayer->AddComponent<PlayerScript>();
+	PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
-	graphics::Texture* pacmanTextuer = 
-		Resources::Find<graphics::Texture>(L"Cat");
+	graphics::Texture* playerTex = 
+		Resources::Find<graphics::Texture>(L"Player");
 
-	Animator* animator = mPlayer->AddComponent<Animator>();
+	Animator* playerAnimator = mPlayer->AddComponent<Animator>();
 
-	animator->CreateAnimation(L"DownWalk", pacmanTextuer, 
-		Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	animator->CreateAnimation(L"RightWalk", pacmanTextuer, 
-		Vector2(0.f, 32.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	animator->CreateAnimation(L"UpWalk", pacmanTextuer,
-		Vector2(0.f, 64.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	animator->CreateAnimation(L"LeftWalk", pacmanTextuer,
-		Vector2(0.f, 96.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	animator->CreateAnimation(L"SitDown", pacmanTextuer,
-		Vector2(0.f, 128.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	animator->CreateAnimation(L"Grooming", pacmanTextuer,
-		Vector2(0.f, 160.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	animator->CreateAnimation(L"LayDown", pacmanTextuer,
-		Vector2(0.f, 192.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	
-	animator->PlayAnimation(L"SitDown", false);
-	
-	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.f, 100.f));
-	mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.f, 2.f));
-	mPlayer->GetComponent<Transform>()->SetRotation(0.f);
+	playerAnimator->CreateAnimation(L"Idle", playerTex,
+		Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
+	playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
+		, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
+	playerAnimator->PlayAnimation(L"Idle", false);
 
-	/*GameObject* bg = object::Instantiate<GameObject>
-		(enums::eLayerType::Background);
-	SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-	bgsr->SetSize(Vector2(3.f, 3.f));
+	playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
-	graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Map");
-	bgsr->SetTexture(bgTexture);*/
+	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
+	mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
 
 	// Cat
 	Cat* cat = object::Instantiate<Cat>
@@ -93,7 +76,7 @@ void huru::PlayScene::Initialize()
 		Vector2(0.f, 128.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
 	catAnimator->CreateAnimation(L"Grooming", catTex,
 		Vector2(0.f, 160.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	catAnimator->CreateAnimation(L"LayDown", pacmanTextuer,
+	catAnimator->CreateAnimation(L"LayDown", catTex,
 		Vector2(0.f, 192.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
 
 	catAnimator->PlayAnimation(L"SitDown", false);

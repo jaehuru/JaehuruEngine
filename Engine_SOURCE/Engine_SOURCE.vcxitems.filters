@@ -19,13 +19,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)huruInput.cpp">
-      <Filter>High Level Interface</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)huruTime.cpp">
-      <Filter>Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)huruLayer.cpp">
@@ -61,6 +55,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimation.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruInput.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp">
+      <Filter>High Level Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h">
@@ -84,13 +84,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)huruInput.h">
-      <Filter>High Level Interface</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruTime.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h">
       <Filter>Helpers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruLayer.h">
@@ -131,6 +125,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimation.h">
       <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruInput.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h">
+      <Filter>High Level Interface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

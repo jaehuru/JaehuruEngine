@@ -105,16 +105,16 @@ namespace huru
 		switch (dir)
 		{
 		case huru::CatScript::eDirection::Left:
-			mAnimator->PlayAnimation(L"LeftWalk");
+			mAnimator->PlayAnimation(L"LeftWalk", true);
 			break;
 		case huru::CatScript::eDirection::Right:
-			mAnimator->PlayAnimation(L"RightWalk");
+			mAnimator->PlayAnimation(L"RightWalk", true);
 			break;
 		case huru::CatScript::eDirection::Down:
-			mAnimator->PlayAnimation(L"DownWalk");
+			mAnimator->PlayAnimation(L"DownWalk", true);
 			break;
 		case huru::CatScript::eDirection::Up:
-			mAnimator->PlayAnimation(L"UpWalk");
+			mAnimator->PlayAnimation(L"UpWalk", true);
 			break;
 		default:
 			assert(false);

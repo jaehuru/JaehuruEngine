@@ -1,8 +1,12 @@
 #include "huruInput.h"
+#include "huruApplication.h"
+
+extern huru::Application application;
 
 namespace huru
 {
-	std::vector<Input::Key> Input::Keys;
+	std::vector<Input::Key> Input::Keys = { };
+	math::Vector2 huru::Input::mMousePosition = math::Vector2::One;
 
 	int ASCII[(int)eKeyCode::End] =
 	{
@@ -10,7 +14,7 @@ namespace huru
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN,
-		MK_LBUTTON, MK_RBUTTON
+		VK_LBUTTON, VK_MBUTTON ,VK_RBUTTON
 	};
 
 	void Input::Initialize()
@@ -41,14 +45,22 @@ namespace huru
 			[](Key& key) -> void { updateKey(key); });		
 	}
 
-	static bool IsKeyDown(eKeyCode code)
-	{
-		return GetAsyncKeyState(ASCII[(UINT)code]) & 0x8000;
-	}
-
 	void Input::updateKey(Key& key)
 	{
-		IsKeyDown(key.keyCode) ? updateKeyDown(key) : updateKeyUp(key);
+		if (GetFocus())
+		{
+			isKeyDown(key.keyCode) ? updateKeyDown(key) : updateKeyUp(key);
+			getMousePositionByWindow();
+		}
+		else
+		{
+			clearKey();
+		}
+	}
+
+	bool Input::isKeyDown(eKeyCode code)
+	{
+		return GetAsyncKeyState(ASCII[(UINT)code]) & 0x8000;
 	}
 
 	void Input::updateKeyDown(Key& key)
@@ -71,5 +83,27 @@ namespace huru
 		key.bPressed = false;
 	}
 
+	void Input::getMousePositionByWindow()
+	{
+		POINT mousePos = {  };
+		GetCursorPos(&mousePos);
+		ScreenToClient(application.GetHwnd(), &mousePos);
 
+		mMousePosition.x = mousePos.x;
+		mMousePosition.y = mousePos.y;
+	}
+
+	void Input::clearKey()
+	{
+		for (Key& key : Keys)
+		{
+			if (key.state == eKeyState::Down ||
+				key.state == eKeyState::Pressed)
+				key.state = eKeyState::Up;
+			else if (key.state == eKeyState::Up)
+				key.state = eKeyState::None;
+
+			key.bPressed = false;
+		}
+	}
 }

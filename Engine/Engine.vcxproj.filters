@@ -10,6 +10,9 @@
     <Filter Include="Scripts">
       <UniqueIdentifier>{275d3bba-940d-45ab-9fd3-228dfb1cce0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{c7248021-4925-4d33-8a3a-607faa00f101}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="huruLoadScenes.h">
@@ -27,7 +30,6 @@
     <ClInclude Include="huruTitleScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="huruLoadResources.h" />
     <ClInclude Include="huruPlayerScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
@@ -36,6 +38,9 @@
     </ClInclude>
     <ClInclude Include="huruCatScript.h">
       <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="huruLoadResources.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 #include "huruInput.h"
 #include "huruTime.h"
 #include "huruSceneManager.h"
+#include "huruResources.h"
 
 namespace huru
 {
@@ -61,6 +62,12 @@ namespace huru
 		SceneManager::Render(mBackHdc);
 
 		copyRenderTarget(mBackHdc, mHdc);
+	}
+
+	void Application::Release()
+	{
+		SceneManager::Release();
+		Resources::Release();
 	}
 
 	void Application::clearRenderTarget()

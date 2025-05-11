@@ -9,10 +9,10 @@ namespace huru
 	public:
 		enum class eState
 		{
-			SitDown,
+			Idle,
 			Walk,
-			Sleep,
-			Attack,
+			FrontGiveWater,
+			End,
 		};
 
 		PlayerScript();
@@ -23,13 +23,17 @@ namespace huru
 		void		LateUpdate() override;
 		void		Render(HDC hdc) override;
 
+		void		AttackEffect();
+
 	private:
-		void sitDown();
-		void move();
+		void		idle();
+		void		move();
+		void		giveWater();
 
 	private:
 		eState mState;
 		class Animator* mAnimator;
+
 	};
 }
 

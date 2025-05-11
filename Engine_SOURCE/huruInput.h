@@ -18,7 +18,7 @@ namespace huru
 		A, S, D, F, G, H, J, K, L,
 		Z, X, C, V, B, N, M,
 		Left, Right, Up, Down,
-		LButton, RButton,
+		LButton, MButton ,RButton,
 		End,
 	};
 
@@ -47,16 +47,22 @@ namespace huru
 		{ 
 			return Keys[(UINT)code].state == eKeyState::Pressed;
 		}
+		static math::Vector2 GetMousePosition() { return mMousePosition; }
 
 	private:
 		static void createKeys();
 		static void updateKeys();
 		static void updateKey(Key& key);
+		static bool isKeyDown(eKeyCode code);
 		static void updateKeyDown(Key& key);
 		static void updateKeyUp(Key& key);
+		static void getMousePositionByWindow();
+		static void clearKey();
+
 
 	private:
 		static std::vector<Key> Keys;
+		static math::Vector2 mMousePosition;
 	};
 }
 

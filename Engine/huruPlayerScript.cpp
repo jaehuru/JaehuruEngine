@@ -8,7 +8,7 @@
 namespace huru
 {
 	PlayerScript::PlayerScript() :
-		mState(PlayerScript::eState::SitDown),
+		mState(PlayerScript::eState::Idle),
 		mAnimator(nullptr)
 	{
 
@@ -31,15 +31,14 @@ namespace huru
 
 		switch (mState)
 		{	
-		case huru::PlayerScript::eState::SitDown:
-			sitDown();
+		case huru::PlayerScript::eState::Idle:
+			idle();
 			break;
 		case huru::PlayerScript::eState::Walk:
 			move();
 			break;
-		case huru::PlayerScript::eState::Sleep:
-			break;
-		case huru::PlayerScript::eState::Attack:
+		case huru::PlayerScript::eState::FrontGiveWater:
+			giveWater();
 			break;
 		default:
 			break;
@@ -55,27 +54,20 @@ namespace huru
 	{
 
 	}
-	void PlayerScript::sitDown()
+
+	void PlayerScript::AttackEffect()
 	{
-		if (Input::GetKey(eKeyCode::D))
+
+	}
+
+	void PlayerScript::idle()
+	{
+		if (Input::GetKey(eKeyCode::LButton))
 		{
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"RightWalk");
-		}
-		if (Input::GetKey(eKeyCode::A))
-		{
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"LeftWalk");
-		}
-		if (Input::GetKey(eKeyCode::W))
-		{
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"UpWalk");
-		}
-		if (Input::GetKey(eKeyCode::S))
-		{
-			mState = PlayerScript::eState::Walk;
-			mAnimator->PlayAnimation(L"DownWalk");
+			mState = PlayerScript::eState::FrontGiveWater;
+			mAnimator->PlayAnimation(L"FrontGiveWater", false);
+
+			Vector2 mousePos = Input::GetMousePosition();
 		}
 	}
 
@@ -103,8 +95,17 @@ namespace huru
 
 		if (Input::GetKeyUp(eKeyCode::D) || Input::GetKeyUp(eKeyCode::A) || Input::GetKeyUp(eKeyCode::W) || Input::GetKeyUp(eKeyCode::S))
 		{
-			mState = PlayerScript::eState::SitDown;
-			mAnimator->PlayAnimation(L"SitDown", false);
+			mState = PlayerScript::eState::Idle;
+			mAnimator->PlayAnimation(L"Idle", false);
+		}
+	}
+
+	void PlayerScript::giveWater()
+	{
+		if (mAnimator->IsComplete())
+		{
+			mState = eState::Idle;
+			mAnimator->PlayAnimation(L"Idle", false);
 		}
 	}
 }
