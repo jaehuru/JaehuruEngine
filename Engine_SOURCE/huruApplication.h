@@ -18,6 +18,7 @@ namespace huru
 		void	Update();
 		void	LateUpdate();
 		void	Render();
+		void	Destroy();
 		void	Release();
 
 		HWND	GetHwnd()	{ return mHwnd; }

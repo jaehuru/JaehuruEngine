@@ -4,13 +4,15 @@
 #include "huruTime.h"
 #include "huruGameObject.h"
 #include "huruAnimator.h"
+#include "huruObject.h"
 
 namespace huru
 {
 	CatScript::CatScript() :
 		mState(CatScript::eState::SitDown),
 		mAnimator(nullptr),
-		mTime(0.f)
+		mTime(0.f),
+		mDeathTime(0.f)
 	{
 
 	}
@@ -27,6 +29,12 @@ namespace huru
 
 	void CatScript::Update()
 	{
+		mDeathTime += Time::DeltaTime();
+		if (mDeathTime > 6.f)
+		{
+			object::Destroy(GetOwner());
+		}
+
 		if (mAnimator == nullptr)
 			mAnimator = GetOwner()->GetComponent<Animator>();
 

@@ -64,6 +64,21 @@ namespace huru
 		}
 	}
 
+	void Layer::Destroy()
+	{
+		for (GameObjectIter iter = mGameObjects.begin(); 
+			iter != mGameObjects.end();)
+		{
+			GameObject::eState active = (*iter)->GetActive();
+			if (active == GameObject::eState::Dead)
+			{
+				mGameObjects.erase(iter);
+				continue;
+			}
+			++iter;
+		}
+	}
+
 	void Layer::AddGameObject(GameObject* gameObj)
 	{
 		if (gameObj == nullptr)

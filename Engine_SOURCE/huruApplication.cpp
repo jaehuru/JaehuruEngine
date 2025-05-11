@@ -37,13 +37,14 @@ namespace huru
 		Update();
 		LateUpdate();
 		Render();
+
+		Destroy();
 	}
 
 	void Application::Update()
 	{
 		Input::Update();
 		Time::Update();
-
 		SceneManager::Update();
 	}
 
@@ -62,6 +63,11 @@ namespace huru
 		SceneManager::Render(mBackHdc);
 
 		copyRenderTarget(mBackHdc, mHdc);
+	}
+
+	void Application::Destroy()
+	{
+		SceneManager::Destroy();
 	}
 
 	void Application::Release()
