@@ -7,6 +7,7 @@
 #include "..\\Engine_SOURCE\\huruApplication.h"
 #include "..\\Engine\\huruLoadScenes.h"
 #include "..\\Engine\\huruLoadResources.h"
+#include <time.h>
 
 huru::Application application;
 
@@ -157,6 +158,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    //Load Scene
    huru::LoadResources();
    huru::LoadScenes();
+
+   int a = 0;
+   srand(unsigned int(&a));
 
    return TRUE;
 }

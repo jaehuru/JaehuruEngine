@@ -5,7 +5,7 @@
 namespace huru
 {
 
-	class Player : public GameObject
+	class Cat : public GameObject
 	{
 	public:
 		void Initialize() override;

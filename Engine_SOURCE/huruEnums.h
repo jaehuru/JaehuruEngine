@@ -16,6 +16,7 @@ namespace huru::enums
 	{
 		None,
 		Background,
+		Animal,
 		Player,
 		Particle,
 		Max = 16,
