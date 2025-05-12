@@ -35,19 +35,25 @@ namespace huru
 		static void Initialize();
 		static void Update();
 
-		static bool GetKeyDown(eKeyCode code) 
-		{
-			return Keys[(UINT)code].state == eKeyState::Down;
-		}
-		static bool GetKeyUp(eKeyCode code)
-		{
-			return Keys[(UINT)code].state == eKeyState::Up;
-		}
-		static bool GetKey(eKeyCode code)
+		__forceinline static bool GetKeyDown(eKeyCode code) 
 		{ 
-			return Keys[(UINT)code].state == eKeyState::Pressed;
+			return Keys[(UINT)code].state == eKeyState::Down; 
 		}
-		static math::Vector2 GetMousePosition() { return mMousePosition; }
+
+		__forceinline static bool GetKeyUp(eKeyCode code) 
+		{
+			return Keys[(UINT)code].state == eKeyState::Up; 
+		}
+
+		__forceinline static bool GetKey(eKeyCode code) 
+		{
+			return Keys[(UINT)code].state == eKeyState::Pressed; 
+		}
+
+		__forceinline static math::Vector2 GetMousePosition() 
+		{ 
+			return mMousePosition; 
+		}
 
 	private:
 		static void createKeys();

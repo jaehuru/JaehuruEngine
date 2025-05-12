@@ -5,49 +5,54 @@
 
 namespace huru
 {
-	class CatScript : public Script
+class CatScript : public Script
+{
+public:
+	enum class eState
 	{
-	public:
-		enum class eState
-		{
-			SitDown,
-			Walk,
-			Sleep,
-			LayDown,
-			Attack,
-		};
-
-		enum class eDirection
-		{
-			Left,
-			Right,
-			Down,
-			Up,
-			End,
-		};
-
-		CatScript();
-		~CatScript();
-
-		void		Initialize() override;
-		void		Update() override;
-		void		LateUpdate() override;
-		void		Render(HDC hdc) override;
-
-	private:
-		void sitDown();
-		void move();
-		void layDown();
-
-		void playWalkAnimationByDirection(eDirection dir);
-		void translate(Transform* tr);
-
-	private:
-		eState mState;
-		class Animator* mAnimator;
-		float mTime;
-		eDirection mDirection;
-		float mDeathTime;
+		SitDown,
+		Walk,
+		Sleep,
+		LayDown,
+		Attack,
 	};
-}
 
+	enum class eDirection
+	{
+		Left,
+		Right,
+		Down,
+		Up,
+		End,
+	};
+
+	CatScript();
+	~CatScript();
+
+	void		Initialize() override;
+	void		Update() override;
+	void		LateUpdate() override;
+	void		Render(HDC hdc) override;
+
+	void SetPlayer(GameObject* player) { mPlayer = player; }
+	Vector2 mDest;
+
+private:
+	void sitDown();
+	void move();
+	void layDown();
+
+	void playWalkAnimationByDirection(eDirection dir);
+	void translate(Transform* tr);
+
+private:
+	eState mState;
+	class Animator* mAnimator;
+	float mTime;
+	eDirection mDirection;
+	float mDeathTime;
+
+	GameObject* mPlayer;
+	float mRadian;
+};
+}

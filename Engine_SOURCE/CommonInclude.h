@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <functional>
 #include <filesystem>
+#include <math.h>
 
 #include "huruMath.h"
 

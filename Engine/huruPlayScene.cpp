@@ -29,76 +29,71 @@ huru::PlayScene::~PlayScene()
 void huru::PlayScene::Initialize()
 {
 	// main camera
-	GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.f, 442.f));
+	GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::Particle, Vector2(344.0f, 442.0f));
 	Camera* cameraComp = camera->AddComponent<Camera>();
 	renderer::mainCamera = cameraComp;
 
-	// Player
-	mPlayer = object::Instantiate<Player>
-		(enums::eLayerType::Player);
+	mPlayer = object::Instantiate<Player>(enums::eLayerType::Particle);
 	PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
-	graphics::Texture* playerTex = 
-		Resources::Find<graphics::Texture>(L"Player");
 
+
+	graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
 	Animator* playerAnimator = mPlayer->AddComponent<Animator>();
-
-	playerAnimator->CreateAnimation(L"Idle", playerTex,
-		Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
+	playerAnimator->CreateAnimation(L"Idle", playerTex
+		, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
 	playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
 		, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
 	playerAnimator->PlayAnimation(L"Idle", false);
 
 	playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
-	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
-	mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
+	//playerAnimator->
 
-	// Cat
-	Cat* cat = object::Instantiate<Cat> (enums::eLayerType::Animal);
-	//cat->SetActive(true);
-	cat->AddComponent<CatScript>();
-	cameraComp->SetTarget(cat);
+	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 250.0f));
+	//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 
-	graphics::Texture* catTex =
-		Resources::Find<graphics::Texture>(L"Cat");
 
-	Animator* catAnimator = cat->AddComponent<Animator>();
+	///CAT
+	//Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
+	////cat->SetActive(true);
+	//cat->AddComponent<CatScript>();
+	////cameraComp->SetTarget(cat);
+	//graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
+	//Animator* catAnimator = cat->AddComponent<Animator>();
+	////catAnimator->CreateAnimation(L"DownWalk", catTex
+	////	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	////catAnimator->CreateAnimation(L"RightWalk", catTex
+	////	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	////catAnimator->CreateAnimation(L"UpWalk", catTex
+	////	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	////catAnimator->CreateAnimation(L"LeftWalk", catTex
+	////	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	////catAnimator->CreateAnimation(L"SitDown", catTex
+	////	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	////catAnimator->CreateAnimation(L"Grooming", catTex
+	////	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	////catAnimator->CreateAnimation(L"LayDown", catTex
+	////	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-	/*catAnimator->CreateAnimation(L"DownWalk", catTex,
-		Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	catAnimator->CreateAnimation(L"RightWalk", catTex,
-		Vector2(0.f, 32.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	catAnimator->CreateAnimation(L"UpWalk", catTex,
-		Vector2(0.f, 64.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	catAnimator->CreateAnimation(L"LeftWalk", catTex,
-		Vector2(0.f, 96.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	catAnimator->CreateAnimation(L"SitDown", catTex,
-		Vector2(0.f, 128.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	catAnimator->CreateAnimation(L"Grooming", catTex,
-		Vector2(0.f, 160.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-	catAnimator->CreateAnimation(L"LayDown", catTex,
-		Vector2(0.f, 192.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);*/
-	catAnimator->CreateAnimationByFolder(
-									L"MushrommIdle",
-									L"..\\Resources\\Mushroom",
-									Vector2::Zero,
-									0.2f);
-	catAnimator->PlayAnimation(L"MushrommIdle", true);
+	////catAnimator->PlayAnimation(L"SitDown", false);
+	//catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\Resources\\Mushroom", Vector2::Zero, 0.1f);
 
-	cat->GetComponent<Transform>()->SetPosition(Vector2(200.f, 200.f));
-	cat->GetComponent<Transform>()->SetScale(Vector2(2.f, 2.f));
-	cat->GetComponent<Transform>()->SetRotation(0.f);
+	//catAnimator->PlayAnimation(L"MushroomIdle", true);
 
-	//...
-	/*GameObject* sheet = object::Instantiate<GameObject>
-		(enums::eLayerType::Animal);
-	SpriteRenderer* sheetSR = sheet->AddComponent<SpriteRenderer>();
+	//cat->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
+	//cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 
-	graphics::Texture* mrIdle =
-		Resources::Find<graphics::Texture>(L"MushrommIdle");
-	sheetSR->SetTexture(mrIdle);*/
-	
+
+
+	//GameObject* sheet = object::Instantiate<GameObject>(enums::eLayerType::Particle);
+	//SpriteRenderer* sheetSR = sheet->AddComponent<SpriteRenderer>();
+
+
+	//graphics::Texture* mrIdle = Resources::Find<graphics::Texture>(L"MushroomIdle");
+	//sheetSR->SetTexture(mrIdle);
+	//Animator* playerAnimator = mPlayer->AddComponent<Animator>();
+
 	// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init함수를 호출
 	Scene::Initialize();
 }
