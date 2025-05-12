@@ -18,7 +18,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruCircleCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruCollider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruEnums.h" />
@@ -42,7 +46,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruCircleCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruCollider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruGameObject.cpp" />

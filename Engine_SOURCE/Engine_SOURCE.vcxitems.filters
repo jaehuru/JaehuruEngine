@@ -49,9 +49,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimator.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimation.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
@@ -61,6 +58,19 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp">
       <Filter>High Level Interface</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimator.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruCollider.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruCircleCollider2D.cpp">
+      <Filter>Component\Collider\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruBoxCollider2D.cpp">
+      <Filter>Component\Collider\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruCollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h">
@@ -120,9 +130,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimator.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimation.h">
       <Filter>Resource</Filter>
     </ClInclude>
@@ -132,6 +139,19 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h">
       <Filter>High Level Interface</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimator.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruCollider.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruCircleCollider2D.h">
+      <Filter>Component\Collider\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruBoxCollider2D.h">
+      <Filter>Component\Collider\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruCollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -175,6 +195,15 @@
     </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{539f0798-fdf0-4d24-8bbe-15992e479b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator">
+      <UniqueIdentifier>{5d652faa-d43a-4d44-8651-96858d191c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{74b035fe-bd14-499d-9c8e-876826b0244a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider\2D">
+      <UniqueIdentifier>{8b33008f-eb76-41af-8483-5ba9053a5870}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

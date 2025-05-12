@@ -15,6 +15,7 @@
 #include "huruAnimator.h"
 #include "huruCat.h"
 #include "huruCatScript.h"
+#include "huruBoxCollider2D.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -35,7 +36,8 @@ void huru::PlayScene::Initialize()
 
 	mPlayer = object::Instantiate<Player>(enums::eLayerType::Particle);
 	PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
-
+	BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+	collider->SetOffset(Vector2(-50.f, -50.f));
 
 
 	graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
@@ -54,46 +56,37 @@ void huru::PlayScene::Initialize()
 	//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 
 
-	///CAT
-	//Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
-	////cat->SetActive(true);
-	//cat->AddComponent<CatScript>();
-	////cameraComp->SetTarget(cat);
-	//graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
-	//Animator* catAnimator = cat->AddComponent<Animator>();
-	////catAnimator->CreateAnimation(L"DownWalk", catTex
-	////	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-	////catAnimator->CreateAnimation(L"RightWalk", catTex
-	////	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-	////catAnimator->CreateAnimation(L"UpWalk", catTex
-	////	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-	////catAnimator->CreateAnimation(L"LeftWalk", catTex
-	////	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-	////catAnimator->CreateAnimation(L"SitDown", catTex
-	////	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-	////catAnimator->CreateAnimation(L"Grooming", catTex
-	////	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-	////catAnimator->CreateAnimation(L"LayDown", catTex
-	////	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	//CAT
+	Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
+	//cat->SetActive(true);
+	cat->AddComponent<CatScript>();
+	//cameraComp->SetTarget(cat);
+	graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
+	Animator* catAnimator = cat->AddComponent<Animator>();
+	BoxCollider2D* catBoxCollider = cat->AddComponent<BoxCollider2D>();
+	catBoxCollider->SetOffset(Vector2(-50.f, -50.f));
+	//catAnimator->CreateAnimation(L"DownWalk", catTex
+	//	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	//catAnimator->CreateAnimation(L"RightWalk", catTex
+	//	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	//catAnimator->CreateAnimation(L"UpWalk", catTex
+	//	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	//catAnimator->CreateAnimation(L"LeftWalk", catTex
+	//	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	//catAnimator->CreateAnimation(L"SitDown", catTex
+	//	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	//catAnimator->CreateAnimation(L"Grooming", catTex
+	//	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	//catAnimator->CreateAnimation(L"LayDown", catTex
+	//	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-	////catAnimator->PlayAnimation(L"SitDown", false);
-	//catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\Resources\\Mushroom", Vector2::Zero, 0.1f);
+	//catAnimator->PlayAnimation(L"SitDown", false);
+	catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\Resources\\Mushroom", Vector2::Zero, 0.1f);
 
-	//catAnimator->PlayAnimation(L"MushroomIdle", true);
+	catAnimator->PlayAnimation(L"MushroomIdle", true);
 
-	//cat->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
-	//cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
-
-
-
-	//GameObject* sheet = object::Instantiate<GameObject>(enums::eLayerType::Particle);
-	//SpriteRenderer* sheetSR = sheet->AddComponent<SpriteRenderer>();
-
-
-	//graphics::Texture* mrIdle = Resources::Find<graphics::Texture>(L"MushroomIdle");
-	//sheetSR->SetTexture(mrIdle);
-	//Animator* playerAnimator = mPlayer->AddComponent<Animator>();
-
+	cat->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
+	cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 	// 게임 오브젝트 생성후에 레이어와 게임오브젝트들의 init함수를 호출
 	Scene::Initialize();
 }

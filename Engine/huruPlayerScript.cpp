@@ -138,6 +138,32 @@ namespace huru
 
 			Vector2 mousePos = Input::GetMousePosition();*/
 		}
+
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+		if (Input::GetKey(eKeyCode::D))
+		{
+			pos.x += 100.f * Time::DeltaTime();
+		}
+		if (Input::GetKey(eKeyCode::A))
+		{
+			pos.x -= 100.f * Time::DeltaTime();
+		}
+		if (Input::GetKey(eKeyCode::W))
+		{
+			pos.y -= 100.f * Time::DeltaTime();
+		}
+		if (Input::GetKey(eKeyCode::S))
+		{
+			pos.y += 100.f * Time::DeltaTime();
+		}
+		tr->SetPosition(pos);
+
+		if (Input::GetKeyUp(eKeyCode::D) || Input::GetKeyUp(eKeyCode::A) || Input::GetKeyUp(eKeyCode::W) || Input::GetKeyUp(eKeyCode::S))
+		{
+			mState = PlayerScript::eState::Idle;
+			mAnimator->PlayAnimation(L"Idle", false);
+		}
 	}
 
 	void PlayerScript::move()
