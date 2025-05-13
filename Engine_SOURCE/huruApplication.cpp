@@ -3,6 +3,7 @@
 #include "huruTime.h"
 #include "huruSceneManager.h"
 #include "huruResources.h"
+#include "huruCollisionManager.h"
 
 namespace huru
 {
@@ -29,6 +30,7 @@ namespace huru
 		createBuffer(width, height);
 		initializeEtc();
 
+		CollisionManager::Initialize();
 		SceneManager::Initialize();
 	}
 
@@ -45,12 +47,14 @@ namespace huru
 	{
 		Input::Update();
 		Time::Update();
+		CollisionManager::Update();
 		SceneManager::Update();
 	}
 
 	void Application::LateUpdate()
 	{
 		// 후처리 업데이트 코드
+		CollisionManager::LateUpdate();
 		SceneManager::LateUpdate();
 	}
 
@@ -59,7 +63,7 @@ namespace huru
 		clearRenderTarget();
 
 		Time::Render(mBackHdc);
-
+		CollisionManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 
 		copyRenderTarget(mBackHdc, mHdc);

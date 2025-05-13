@@ -7,12 +7,11 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <bitset>
 #include <algorithm>
 #include <functional>
 #include <filesystem>
 #include <math.h>
-
-#include "huruMath.h"
 
 #include <mmsystem.h>
 #include <dinput.h>
@@ -22,4 +21,5 @@
 #include <gdiplus.h>
 #pragma comment(lib, "gdiplus.lib")
 
+#include "huruMath.h"
 #include "huruEnums.h"

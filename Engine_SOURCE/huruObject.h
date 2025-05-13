@@ -33,9 +33,4 @@ namespace huru::object
 
 		return gameObj;
 	}
-
-	static void Destroy(GameObject* obj)
-	{
-		obj->Death();
-	}
 }

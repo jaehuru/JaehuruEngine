@@ -50,7 +50,7 @@ namespace huru
 			return component;
 		}
 
-		eState GetActive() { return mState; }
+		eState GetState() { return mState; }
 		void SetActive(bool power)
 		{
 			if (power == true)
@@ -58,10 +58,15 @@ namespace huru
 			if (power == false)
 				mState = eState::Paused;
 		}
-		void	Death() { mState = eState::Dead; }
+
+
+		bool IsActive() { return mState == eState::Active; }
+
+		bool IsDead() { return mState == eState::Dead; }
 
 	private:
 		void	initializeTransform();
+		void	Death() { mState = eState::Dead; }
 
 	private:
 		eState						mState;

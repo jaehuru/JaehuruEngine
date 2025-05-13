@@ -16,6 +16,7 @@
 #include "huruCat.h"
 #include "huruCatScript.h"
 #include "huruBoxCollider2D.h"
+#include "huruCollisionManager.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -29,6 +30,8 @@ huru::PlayScene::~PlayScene()
 
 void huru::PlayScene::Initialize()
 {
+	CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+
 	// main camera
 	GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::Particle, Vector2(344.0f, 442.0f));
 	Camera* cameraComp = camera->AddComponent<Camera>();
