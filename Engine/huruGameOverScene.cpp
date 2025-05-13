@@ -45,11 +45,11 @@ namespace huru
 
 	void GameOverScene::OnEnter()
 	{
-
+		Scene::OnEnter();
 	}
 
 	void GameOverScene::OnExit()
 	{
-
+		Scene::OnExit();
 	}
 }

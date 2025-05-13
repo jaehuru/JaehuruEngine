@@ -66,9 +66,9 @@ namespace huru::graphics
 			mHeight = info.bmHeight;
 
 			if (info.bmBitsPixel == 32)
-				mbAlpha == true;
+				mbAlpha = true;
 			else if (info.bmBitsPixel == 24)
-				mbAlpha == false;
+				mbAlpha = false;
 
 
 			HDC mainDC = application.GetHDC();

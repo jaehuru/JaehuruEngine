@@ -2,7 +2,7 @@
 
 namespace huru
 {
-	huru::Component::Component(enums::eComponentType type) :
+	huru::Component::Component(eComponentType type) :
 		mType(type)
 	{
 		

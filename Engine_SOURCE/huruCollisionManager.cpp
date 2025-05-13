@@ -160,11 +160,63 @@ namespace huru
 		Vector2 leftSize = left->GetSize() * 100.0f;
 		Vector2 rightSize = right->GetSize() * 100.0f;
 
-		//AABB 충돌 구현
-		if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f)
-			&& fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
+		eColliderType leftType = left->GetColliderType();
+		eColliderType rightType = right->GetColliderType();
+
+		// AABB(Axis-Aligned Bounding Box) rect - rect
+		if (leftType == eColliderType::Rect2D
+			&& rightType == eColliderType::Rect2D)
 		{
-			return true;
+			if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f)
+				&& fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
+			{
+				return true;
+			}
+		}
+
+		//circle -circle
+		if (leftType == eColliderType::Circle2D
+			&& rightType == eColliderType::Circle2D)
+		{
+			Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
+			Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
+			float distance = (leftCirclePos - rightCirclePos).length();
+			if (distance <= (leftSize.x / 2.0f + rightSize.x / 2.0f))
+			{
+				return true;
+			}
+		}
+
+		// circle - rect
+		if ((leftType == eColliderType::Circle2D && rightType == eColliderType::Rect2D)
+			|| (leftType == eColliderType::Rect2D && rightType == eColliderType::Circle2D))
+		{
+			// Circle이 왼쪽에 오도록 정렬
+			Collider* circle = (leftType == eColliderType::Circle2D) ? left : right;
+			Collider* rect = (leftType == eColliderType::Rect2D) ? left : right;
+
+			Vector2 circlePos = circle->GetOwner()->GetComponent<Transform>()->GetPosition() + circle->GetOffset();
+			Vector2 circleSize = circle->GetSize() * 100.0f;
+			Vector2 circleCenter = circlePos + (circleSize / 2.0f);
+			float circleRadius = circleSize.x / 2.0f;
+
+			Vector2 rectPos = rect->GetOwner()->GetComponent<Transform>()->GetPosition() + rect->GetOffset();
+			Vector2 rectSize = rect->GetSize() * 100.0f;
+			Vector2 rectHalf = rectSize / 2.0f;
+			Vector2 rectCenter = rectPos + rectHalf;
+
+			// 사각형 내부에서 가장 가까운 점 계산
+			Vector2 closestPoint;
+			closestPoint.x = max(rectCenter.x - rectHalf.x, min(circleCenter.x, rectCenter.x + rectHalf.x));
+			closestPoint.y = max(rectCenter.y - rectHalf.y, min(circleCenter.y, rectCenter.y + rectHalf.y));
+
+
+			// 거리 비교
+			float distance = (circleCenter - closestPoint).length();
+			if (distance <= circleRadius)
+			{
+				return true;
+			}
 		}
 
 		return false;

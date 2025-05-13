@@ -7,7 +7,7 @@ namespace huru
 	class Collider : public Component
 	{
 	public:
-		Collider();
+		Collider(eColliderType type);
 		~Collider();
 
 		void Initialize() override;
@@ -27,11 +27,15 @@ namespace huru
 		Vector2 GetSize() { return mSize; }
 		void SetSize(Vector2 size) { mSize = size; }
 
+		eColliderType GetColliderType() { return mType; }
+
 	private:
 		static UINT32 mCollisionID;
 		UINT mID;
 		Vector2 mOffset;
 		Vector2 mSize;
+
+		eColliderType mType;
 	};
 }
 

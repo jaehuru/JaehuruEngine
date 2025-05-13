@@ -6,11 +6,12 @@ namespace huru
 {
 	UINT32 Collider::mCollisionID = 1;
 
-	Collider::Collider() :
-		Component(enums::eComponentType::Collider),
+	Collider::Collider(eColliderType type) :
+		Component(eComponentType::Collider),
 		mID(mCollisionID++),
 		mOffset(Vector2::Zero),
-		mSize(Vector2::One)
+		mSize(Vector2::One),
+		mType(type)
 	{
 
 	}

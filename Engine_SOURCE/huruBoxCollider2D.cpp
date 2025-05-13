@@ -5,7 +5,7 @@
 namespace huru
 {
 	BoxCollider2D::BoxCollider2D() :
-		Collider()
+		Collider(eColliderType::Rect2D)
 	{
 
 	}

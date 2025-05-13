@@ -57,6 +57,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruResources.cpp" />

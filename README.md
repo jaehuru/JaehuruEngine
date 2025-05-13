@@ -38,4 +38,4 @@ Windows 기반에서의 기초적인 윈도우 창 생성과 메시지 루프 �
 33. Collider 컴포넌트 구현
 34. Collision Manager 충돌체 레이어 마스킹 체크 구조 및 로직
 35. OnCollision 함수 구현
-36, AABB 충돌 처리 구현
+36, AABB(rect - rect), circle-circle, rect-circle 충돌 구현

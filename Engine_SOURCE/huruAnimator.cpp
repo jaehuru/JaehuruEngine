@@ -4,7 +4,7 @@
 namespace huru
 {
 	Animator::Animator() :
-		Component(enums::eComponentType::Animator),
+		Component(eComponentType::Animator),
 		mAnimations{ },
 		mActiveAnimation(nullptr),
 		mbLoop(false),

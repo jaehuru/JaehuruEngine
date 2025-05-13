@@ -7,7 +7,7 @@
 namespace huru
 {
 	SpriteRenderer::SpriteRenderer() :
-		Component(enums::eComponentType::SpriteRenderer),
+		Component(eComponentType::SpriteRenderer),
 		mTexture(nullptr),
 		mSize(Vector2::One)
 

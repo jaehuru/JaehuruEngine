@@ -16,6 +16,7 @@
 #include "huruCat.h"
 #include "huruCatScript.h"
 #include "huruBoxCollider2D.h"
+#include "huruCircleCollider2D.h"
 #include "huruCollisionManager.h"
 
 huru::PlayScene::PlayScene()
@@ -39,7 +40,9 @@ void huru::PlayScene::Initialize()
 
 	mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
 	PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
-	BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+
+	//BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+	CircleCollider2D* collider = mPlayer->AddComponent<CircleCollider2D>();
 	collider->SetOffset(Vector2(-50.f, -50.f));
 
 
@@ -55,7 +58,7 @@ void huru::PlayScene::Initialize()
 
 	//playerAnimator->
 
-	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 250.0f));
+	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(400.0f, 250.0f));
 	//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 
 
@@ -66,8 +69,9 @@ void huru::PlayScene::Initialize()
 	//cameraComp->SetTarget(cat);
 	graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
 	Animator* catAnimator = cat->AddComponent<Animator>();
-	BoxCollider2D* catBoxCollider = cat->AddComponent<BoxCollider2D>();
-	catBoxCollider->SetOffset(Vector2(-50.f, -50.f));
+	BoxCollider2D* catCollider = cat->AddComponent<BoxCollider2D>();
+	//CircleCollider2D* catCollider = cat->AddComponent<CircleCollider2D>();
+	catCollider->SetOffset(Vector2(-50.f, -50.f));
 	//catAnimator->CreateAnimation(L"DownWalk", catTex
 	//	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 	//catAnimator->CreateAnimation(L"RightWalk", catTex
@@ -116,11 +120,10 @@ void huru::PlayScene::Render(HDC hdc)
 
 void huru::PlayScene::OnEnter()
 {
-
+	Scene::OnEnter();
 }
 
 void huru::PlayScene::OnExit()
 {
-	Transform* tr = mPlayer->GetComponent<Transform>();
-	tr->SetPosition(Vector2(0, 0));
+	Scene::OnExit();
 }

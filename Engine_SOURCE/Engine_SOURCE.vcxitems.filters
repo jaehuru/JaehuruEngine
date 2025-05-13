@@ -70,7 +70,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruBoxCollider2D.cpp">
       <Filter>Component\Collider\2D</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)huruCollisionManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruObject.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruCollisionManager.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h">
@@ -151,7 +156,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruBoxCollider2D.h">
       <Filter>Component\Collider\2D</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)huruCollisionManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruCollisionManager.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
