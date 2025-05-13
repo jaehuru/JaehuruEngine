@@ -3,10 +3,12 @@
 #include "huruSceneManager.h"
 #include "huruGameObject.h"
 #include "huruCollider.h"
+#include "huruTransform.h"
 
 namespace huru
 {
 	std::bitset<(UINT)eLayerType::Max>CollisionManager::mCollisionLayerMatrix[(UINT)eLayerType::Max] = { };
+	std::unordered_map<UINT64, bool> CollisionManager::mCollisionMap = { };
 
 	CollisionManager::CollisionManager()
 	{
@@ -104,6 +106,67 @@ namespace huru
 
 	void CollisionManager::ColliderCollision(Collider* left, Collider* right)
 	{
-		// TODO : 충돌 체크 로직 작성
+		// 두 충돌체 번호를 가져온 ID를 확인해서 CollisionID값을 세팅
+		CollisionID cID = {};
+		cID.left = left->GetID();
+		cID.right = right->GetID();
+
+		// 해당 id로 충돌체 정보를 검색
+		// 만약 충돌체 정보가 없다면 충돌정보를 생성
+		auto iter = mCollisionMap.find(cID.ID);
+		if (iter == mCollisionMap.end())
+		{
+			mCollisionMap.insert(std::make_pair(cID.ID, false));
+			iter = mCollisionMap.find(cID.ID);
+		}
+
+		// 충돌 체크
+		if (Intersect(left, right))
+		{
+			// 최초 충돌
+			if (iter->second == false)
+			{
+				left->OnCollisionEnter(right);
+				right->OnCollisionEnter(left);
+				iter->second = true;
+			}
+			// 이미 충돌 중
+			else
+			{
+				left->OnCollisionStay(right);
+				right->OnCollisionStay(left);
+			}
+		}
+		else
+		{
+			// 충돌 후 벗어났을때
+			if (iter->second == true)
+			{
+				left->OnCollisionExit(right);
+				right->OnCollisionExit(left);
+				iter->second = false;
+			}
+		}
+	}
+
+	bool CollisionManager::Intersect(Collider* left, Collider* right)
+	{
+		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
+		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
+
+		Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
+		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
+
+		Vector2 leftSize = left->GetSize() * 100.0f;
+		Vector2 rightSize = right->GetSize() * 100.0f;
+
+		//AABB 충돌 구현
+		if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f)
+			&& fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
+		{
+			return true;
+		}
+
+		return false;
 	}
 }

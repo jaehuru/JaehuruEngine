@@ -9,6 +9,18 @@ namespace huru
 	class Scene;
 	
 	using namespace enums;
+
+	union CollisionID
+	{
+		struct
+		{
+			UINT32 left;
+			UINT32 right;
+		};
+
+		UINT64 ID;
+	};
+
 	class CollisionManager
 	{
 	public:
@@ -25,10 +37,12 @@ namespace huru
 										bool enable);
 		static void LayerCollsion(Scene* scene, eLayerType left, eLayerType right);
 		static void ColliderCollision(Collider* left, Collider* right);
+		static bool Intersect(Collider* left, Collider* right);
 
 	private:
 		static std::bitset<(UINT)eLayerType::Max> 
 			mCollisionLayerMatrix[(UINT)eLayerType::Max];
+		static std::unordered_map<UINT64, bool> mCollisionMap;
 	};
 }
 

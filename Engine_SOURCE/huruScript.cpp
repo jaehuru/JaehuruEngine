@@ -1,4 +1,5 @@
 #include "huruScript.h"
+#include "huruCollider.h"
 
 namespace huru
 {
@@ -29,6 +30,21 @@ namespace huru
 	}
 
 	void Script::Render(HDC hdc)
+	{
+
+	}
+
+	void Script::OnCollisionEnter(Collider* other)
+	{
+
+	}
+
+	void Script::OnCollisionStay(Collider* other)
+	{
+
+	}
+
+	void Script::OnCollisionExit(Collider* other)
 	{
 
 	}
