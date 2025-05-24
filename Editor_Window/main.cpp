@@ -22,9 +22,11 @@ WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달
-ATOM                MyRegisterClass(HINSTANCE hInstance);
+ATOM                MyRegisterClass(HINSTANCE hInstance, 
+                                    const wchar_t* name, WNDPROC proc);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK    WndTileProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인스턴스 핸들
@@ -43,7 +45,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
     // 전역 문자열을 초기화
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_EDITORWINDOW, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+    MyRegisterClass(hInstance, szWindowClass, WndProc);
+    MyRegisterClass(hInstance, L"TILEWINDOW", WndTileProc);
 
     // 애플리케이션 초기화를 수행
     if (!InitInstance (hInstance, nCmdShow))
@@ -78,16 +81,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
         }
     }
 
-    // 기본 메시지 루프
-    /*while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-    }*/
-
     Gdiplus::GdiplusShutdown(gpToken);
     application.Release();
 
@@ -101,14 +94,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 //
 //  용도: 창 클래스를 등록합니다.
 //
-ATOM MyRegisterClass(HINSTANCE hInstance)
+ATOM MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc)
 {
     WNDCLASSEXW wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
     wcex.style          = CS_HREDRAW | CS_VREDRAW;  
-    wcex.lpfnWndProc    = WndProc;                  // 윈도우 프로시저 함수, 윈도우의 메시지 처리 함수를 지정함
+    wcex.lpfnWndProc    = proc;                 
     wcex.cbClsExtra     = 0;    
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
@@ -116,7 +109,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_EDITORWINDOW);
-    wcex.lpszClassName  = szWindowClass;            
+    wcex.lpszClassName  = name;            
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
@@ -140,7 +133,17 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    const UINT height = 846;
    HWND hWnd = CreateWindowW(
        szWindowClass,
-       szTitle,
+       L"Client",
+       WS_OVERLAPPEDWINDOW,
+       CW_USEDEFAULT, CW_USEDEFAULT,       // 윈도우 위치 (x, y)
+       width, height,                           // 윈도우 너비와 높이
+       nullptr, nullptr,
+       hInstance,
+       nullptr);
+
+   HWND ToolhWnd = CreateWindowW(
+       L"TILEWINDOW",
+       L"TileWindow",
        WS_OVERLAPPEDWINDOW,
        CW_USEDEFAULT, CW_USEDEFAULT,       // 윈도우 위치 (x, y)
        width, height,                           // 윈도우 너비와 높이
@@ -157,6 +160,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   ShowWindow(ToolhWnd, nCmdShow);
+   UpdateWindow(ToolhWnd);
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
@@ -206,33 +212,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가
-
-            // DC(Device Context)란 출력에 필요한 모든 정보를 가지는 데이터 구조체이며 GDI모듈에 의해 관리됨
-
-			//HBRUSH pinkBrush = CreateSolidBrush(RGB(255, 0, 255));      // 분홍색 브러시 생성
-			//HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, pinkBrush);     // SelectObject함수는 이전에 사용하던 브러쉬를 반환
-
-			//Rectangle(hdc, 10, 10, 100, 100);       // 사각형 그리기 예시
-
-			//(HBRUSH)SelectObject(hdc, oldBrush);    
-			//DeleteObject(pinkBrush);                    
-
-			//HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));   
-		    //HPEN oldPen = (HPEN)SelectObject(hdc, redPen);          
-
-			//Ellipse(hdc, 120, 10, 200, 100);        // 타원 그리기 예시
-
-            //(HPEN)SelectObject(hdc, oldPen);
-			//DeleteObject(redPen);    
-
-            // 기본으로 자주 사용 되는 GDI오브젝트는 미리 DC안에 만들어져 있음
-            // 스톡 오브젝트라고 한다
-			//HBRUSH grayBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
-			//oldBrush = (HBRUSH)SelectObject(hdc, grayBrush);
-
-			//Rectangle(hdc, 10, 120, 100, 220);
-			//SelectObject(hdc, oldBrush);
 
             EndPaint(hWnd, &ps);
         }
@@ -245,6 +224,46 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
     return 0;
 }
+
+LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    switch (message)
+    {
+    case WM_COMMAND:
+    {
+        int wmId = LOWORD(wParam);
+        // 메뉴 선택을 구문 분석합니다:
+        switch (wmId)
+        {
+        case IDM_ABOUT:
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+            break;
+        case IDM_EXIT:
+            DestroyWindow(hWnd);
+            break;
+        default:
+            return DefWindowProc(hWnd, message, wParam, lParam);
+        }
+    }
+    break;
+
+    case WM_PAINT:
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+
+        EndPaint(hWnd, &ps);
+    }
+    break;
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        break;
+    default:
+        return DefWindowProc(hWnd, message, wParam, lParam);
+    }
+    return 0;
+}
+
 
 // 정보 대화 상자의 메시지 처리기입니다.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)

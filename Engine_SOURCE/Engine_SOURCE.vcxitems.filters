@@ -79,6 +79,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruDontDestroyOnLoad.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruTileMapRenderer.cpp">
+      <Filter>Component\TileMapRenderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h">
@@ -165,6 +168,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruDontDestroyOnLoad.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruTileMapRenderer.h">
+      <Filter>Component\TileMapRenderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -217,6 +223,9 @@
     </Filter>
     <Filter Include="Component\Collider\2D">
       <UniqueIdentifier>{8b33008f-eb76-41af-8483-5ba9053a5870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\TileMapRenderer">
+      <UniqueIdentifier>{011edff6-f0ef-44e9-992d-652200d9fded}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

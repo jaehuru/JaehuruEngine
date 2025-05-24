@@ -5,6 +5,7 @@ namespace huru::enums
 	enum class eComponentType
 	{
 		Transform,
+		TileMapRenderer,
 		Collider,
 		Script,
 		SpriteRenderer,
@@ -17,6 +18,7 @@ namespace huru::enums
 	{
 		None,
 		Background,
+		Tile,
 		Animal,
 		Player,
 		Particle,

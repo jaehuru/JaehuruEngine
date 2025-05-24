@@ -42,6 +42,12 @@
     <ClInclude Include="huruLoadResources.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="huruToolScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="huruTile.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruPlayScene.cpp">
@@ -64,6 +70,12 @@
     </ClCompile>
     <ClCompile Include="huruCatScript.cpp">
       <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="huruToolScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="huruTile.cpp">
+      <Filter>Contents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

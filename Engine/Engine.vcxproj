@@ -143,8 +143,10 @@
     <ClInclude Include="huruPlayer.h" />
     <ClInclude Include="huruPlayerScript.h" />
     <ClInclude Include="huruPlayScene.h" />
+    <ClInclude Include="huruTile.h" />
     <ClInclude Include="huruTitleScene.h" />
     <ClInclude Include="huruLoadResources.h" />
+    <ClInclude Include="huruToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruCat.cpp" />
@@ -153,7 +155,9 @@
     <ClCompile Include="huruPlayer.cpp" />
     <ClCompile Include="huruPlayerScript.cpp" />
     <ClCompile Include="huruPlayScene.cpp" />
+    <ClCompile Include="huruTile.cpp" />
     <ClCompile Include="huruTitleScene.cpp" />
+    <ClCompile Include="huruToolScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
