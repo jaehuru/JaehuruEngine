@@ -1,6 +1,5 @@
 #include "huruScene.h"
 
-
 namespace huru
 {
 	Scene::Scene() :
@@ -85,6 +84,12 @@ namespace huru
 	void Scene::AddGameObject(GameObject* gameObj, const enums::eLayerType type)
 	{
 		mLayers[(UINT)type]->AddGameObject(gameObj);
+	}
+
+	void Scene::EraseGameObject(GameObject* gameObj)
+	{
+		eLayerType layerType = gameObj->GetLayerType();
+		mLayers[(UINT)layerType]->EraseGameObject(gameObj);
 	}
 
 	void Scene::createLayers()

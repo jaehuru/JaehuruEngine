@@ -76,6 +76,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruCollisionManager.cpp">
       <Filter>Component\Collider</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruDontDestroyOnLoad.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h">
@@ -158,6 +161,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruCollisionManager.h">
       <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruDontDestroyOnLoad.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

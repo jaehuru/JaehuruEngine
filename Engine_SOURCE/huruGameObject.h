@@ -2,12 +2,19 @@
 
 #include "CommonInclude.h"
 #include "huruComponent.h"
+#include "huruCollider.h"
+
+namespace huru::object
+{
+	void Destroy(GameObject* gameObject);
+}
 
 namespace huru
 {
 	class GameObject
 	{
 	public:
+		friend void object::Destroy(GameObject* obj);
 
 		enum class eState
 		{
@@ -58,19 +65,22 @@ namespace huru
 			if (power == false)
 				mState = eState::Paused;
 		}
-
-
 		bool IsActive() { return mState == eState::Active; }
-
 		bool IsDead() { return mState == eState::Dead; }
+		void SetLayerType(eLayerType layerType) 
+		{ 
+			mLayerType = layerType; 
+		}
+		eLayerType GetLayerType() { return mLayerType; }
 
 	private:
 		void	initializeTransform();
-		void	Death() { mState = eState::Dead; }
+		void	death() { mState = eState::Dead; }
 
 	private:
 		eState						mState;
 		std::vector<Component*>		mComponents;
+		eLayerType					mLayerType;
 	};
 }
 

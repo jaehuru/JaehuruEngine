@@ -24,6 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruCollider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h" />
@@ -52,6 +53,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruCollider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruInput.cpp" />

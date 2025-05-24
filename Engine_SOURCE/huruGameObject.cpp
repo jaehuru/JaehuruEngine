@@ -3,10 +3,20 @@
 #include "huruTime.h"
 #include "huruTransform.h"
 
+namespace huru::object
+{
+	void Destroy(GameObject* gameObject)
+	{
+		if (gameObject != nullptr)
+			gameObject->death();
+	}
+}
+
 namespace huru
 {
 	GameObject::GameObject() :
-		mState(eState::Active)
+		mState(eState::Active),
+		mLayerType(eLayerType::None)
 	{
 		mComponents.resize((UINT)enums::eComponentType::End);
 		initializeTransform();

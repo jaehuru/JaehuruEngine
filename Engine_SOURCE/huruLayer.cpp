@@ -83,7 +83,7 @@ namespace huru
 	{
 		std::vector<GameObject*> deleteObjects = {};
 		findDeadGameObjects(deleteObjects);
-		eraseGameObject();
+		eraseDeadGameObject();
 		deleteGameObjects(deleteObjects);
 	}
 
@@ -93,6 +93,15 @@ namespace huru
 			return;
 
 		mGameObjects.push_back(gameObj);
+	}
+
+	void Layer::EraseGameObject(GameObject* eraseGameObj)
+	{
+		std::erase_if(mGameObjects,
+			[=](GameObject* gameObj)
+			{
+				return gameObj == eraseGameObj;
+			});
 	}
 
 	void Layer::findDeadGameObjects(OUT std::vector<GameObject*>& gameObjs)
@@ -114,7 +123,7 @@ namespace huru
 		}
 	}
 
-	void Layer::eraseGameObject()
+	void Layer::eraseDeadGameObject()
 	{
 		std::erase_if(mGameObjects,
 			[](GameObject* gameObj)

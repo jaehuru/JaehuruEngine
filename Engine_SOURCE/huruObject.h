@@ -13,6 +13,7 @@ namespace huru::object
 	static T* Instantiate(huru::enums::eLayerType type)
 	{
 		T* gameObj = new T();
+		gameObj->SetLayerType(type);
 		Scene* activeScene = SceneManager::GetActiveScene();
 		Layer* layer = activeScene->GetLayer(type);
 		layer->AddGameObject(gameObj);
@@ -24,6 +25,7 @@ namespace huru::object
 	static T* Instantiate(huru::enums::eLayerType type, math::Vector2 position)
 	{
 		T* gameObj = new T();
+		gameObj->SetLayerType(type);
 		Scene* activeScene = SceneManager::GetActiveScene();
 		Layer* layer = activeScene->GetLayer(type);
 		layer->AddGameObject(gameObj);
@@ -32,5 +34,18 @@ namespace huru::object
 		tr->SetPosition(position);
 
 		return gameObj;
+	}
+
+	static void DonDestroyOnLoad(GameObject* gameObject)
+	{
+		Scene* activeScene = SceneManager::GetActiveScene();
+		// 현재씬에서 게임 오브젝트를 삭제
+		activeScene->EraseGameObject(gameObject);
+
+		// 해당 게임 오브젝트를 -> DonDestroy씬으로 넣음
+		Scene* dontDestroyOnLoad = 
+			SceneManager::GetDontDestroyOnLoad();
+		dontDestroyOnLoad->
+			AddGameObject(gameObject, gameObject->GetLayerType());
 	}
 }

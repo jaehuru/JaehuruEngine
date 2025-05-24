@@ -1,9 +1,11 @@
 #include "huruSceneManager.h"
+#include "huruDontDestroyOnLoad.h"
 
 namespace huru
 {
 	std::map<std::wstring, Scene*> SceneManager::mScene = {};
 	Scene* SceneManager::mActiveScene = nullptr;
+	Scene* SceneManager::mDontDestroyOnLoad = nullptr;
 
 	Scene* SceneManager::LoadScene(const std::wstring& name)
 	{
@@ -25,27 +27,32 @@ namespace huru
 
 	void SceneManager::Initialize()
 	{
-
+		mDontDestroyOnLoad =
+			CreateScene<DontDestroyOnLoad>(L"DontDestroyOnLoad");
 	}
 
 	void SceneManager::Update()
 	{
 		mActiveScene->Update();
+		mDontDestroyOnLoad->Update();
 	}
 
 	void SceneManager::LateUpdate()
 	{
 		mActiveScene->LateUpdate();
+		mDontDestroyOnLoad->LateUpdate();
 	}
 
 	void SceneManager::Render(HDC hdc)
 	{
 		mActiveScene->Render(hdc);
+		mDontDestroyOnLoad->Render(hdc);
 	}
 
 	void SceneManager::Destroy()
 	{
 		mActiveScene->Destroy();
+		mDontDestroyOnLoad->Destroy();
 	}
 
 	void SceneManager::Release()
