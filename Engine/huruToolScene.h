@@ -20,5 +20,9 @@ namespace huru
 		void	OnEnter() override;
 		void	OnExit() override;
 
+	private:
+
 	};
 }
+
+LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

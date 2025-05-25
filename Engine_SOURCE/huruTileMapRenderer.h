@@ -19,6 +19,10 @@ namespace huru
 
 		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
 		void SetSize(Vector2 size) { mSize = size; }
+
+	public:
+		static Vector2 TileSize;
+
 	private:
 		graphics::Texture* mTexture;
 

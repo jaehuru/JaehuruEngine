@@ -6,14 +6,16 @@
 
 namespace huru
 {
+	Vector2 TileMapRenderer::TileSize = Vector2::One;
+
 	TileMapRenderer::TileMapRenderer() :
 		Component(eComponentType::TileMapRenderer),
 		mTexture(nullptr),
 		mTileSize(16.f, 16.f),
 		mSize(3.f, 3.f),
-		mIndex(8, 7)
+		mIndex(0, 0)
 	{
-
+		TileSize = mTileSize * mSize;
 	}
 
 	TileMapRenderer::~TileMapRenderer()

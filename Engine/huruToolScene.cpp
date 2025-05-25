@@ -6,12 +6,13 @@
 #include "huruTexture.h"
 #include "huruCamera.h"
 #include "huruRenderer.h"
+#include "huruInput.h"
 
 namespace huru
 {
 	ToolScene::ToolScene()
 	{
-
+		 
 	}
 
 	ToolScene::~ToolScene()
@@ -27,7 +28,6 @@ namespace huru
 
 		Tile* tile = object::Instantiate<Tile>(eLayerType::Tile);
 		TileMapRenderer* tmr = tile->AddComponent<TileMapRenderer>();
-
 		tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
 
 		Scene::Initialize();
@@ -41,6 +41,20 @@ namespace huru
 	void ToolScene::LateUpdate()
 	{
 		Scene::LateUpdate();
+
+		if (Input::GetKeyDown(eKeyCode::LButton))
+		{
+			Vector2 pos = Input::GetMousePosition();
+
+			int idxX = pos.x / TileMapRenderer::TileSize.x;
+			int idxY = pos.y / TileMapRenderer::TileSize.y;	
+
+			Tile* tile = object::Instantiate<Tile>(eLayerType::Tile);
+			TileMapRenderer* tmr = tile->AddComponent<TileMapRenderer>();
+			tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
+
+			tile->SetPosition(idxX, idxY);
+		}
 	}
 
 	void ToolScene::Render(HDC hdc)
@@ -49,24 +63,79 @@ namespace huru
 
 		for (size_t i = 0; i < 50; i++)
 		{
-			MoveToEx(hdc, (16 * 3) * i, 0, NULL);
-			LineTo(hdc, (16 * 3) * i, 1000);
+			MoveToEx(hdc, TileMapRenderer::TileSize.x * i, 0, NULL);
+			LineTo(hdc, TileMapRenderer::TileSize.x * i, 1000);
 		}
 
 		for (size_t i = 0; i < 50; i++)
 		{
-			MoveToEx(hdc, 0, (16 * 3) * i, NULL);
-			LineTo(hdc, 1000, (16 * 3) * i);
+			MoveToEx(hdc, 0, TileMapRenderer::TileSize.y * i, NULL);
+			LineTo(hdc, 1000, TileMapRenderer::TileSize.y * i);
 		}
 	}
 
 	void ToolScene::OnEnter()
 	{
-		Scene::OnEnter();
+
 	}
 
 	void ToolScene::OnExit()
 	{
-		Scene::OnExit();
+
 	}
+
+}
+
+LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	case WM_LBUTTONDOWN:
+	{
+		//int wmId = LOWORD(wParam);
+		//// 메뉴 선택을 구문 분석합니다:
+		//switch (wmId)
+		//{
+		//case IDM_ABOUT:
+		//	DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+		//	break;
+		//case IDM_EXIT:
+		//	DestroyWindow(hWnd);
+		//	break;
+		//default:
+		//	return DefWindowProc(hWnd, message, wParam, lParam);
+		//}
+	}
+	break;
+
+	case WM_PAINT:
+	{
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint(hWnd, &ps);
+
+		huru::graphics::Texture* texture = huru::Resources::Find<huru::graphics::Texture>(L"SpringFloor");
+
+		TransparentBlt(
+			hdc,
+			0,
+			0,
+			texture->GetWidth(),
+			texture->GetHeight(),
+			texture->GetHdc(),
+			0,
+			0,
+			texture->GetWidth(),
+			texture->GetHeight(),
+			RGB(255, 0, 255));
+
+		EndPaint(hWnd, &ps);
+	}
+	break;
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	default:
+		return DefWindowProc(hWnd, message, wParam, lParam);
+	}
+	return 0;
 }
