@@ -7,6 +7,7 @@
 #include "..\\Engine_SOURCE\\huruApplication.h"
 #include "..\\Engine_SOURCE\\huruResources.h"
 #include "..\\Engine_SOURCE\\huruTexture.h"
+#include "..\\Engine_SOURCE\\huruSceneManager.h"
 
 #include "..\\Engine\\huruLoadScenes.h"
 #include "..\\Engine\\huruLoadResources.h"
@@ -144,16 +145,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
        hInstance,
        nullptr);
 
-   HWND ToolhWnd = CreateWindowW(
-       L"TILEWINDOW",
-       L"TileWindow",
-       WS_OVERLAPPEDWINDOW,
-       CW_USEDEFAULT, CW_USEDEFAULT,       // 윈도우 위치 (x, y)
-       width, height,                           // 윈도우 너비와 높이
-       nullptr, nullptr,
-       hInstance,
-       nullptr);
-
    application.Initialize(hWnd, width, height); // 애플리케이션 초기화
 
    if (!hWnd)
@@ -164,9 +155,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
-   //ShowWindow(ToolhWnd, nCmdShow);
-
-
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
    //Load Scene
@@ -176,21 +164,36 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    int a = 0;
    srand(unsigned int(&a));
 
-   //Tile 윈도우 크기 조정
-   huru::graphics::Texture* texture = huru::Resources::Find<huru::graphics::Texture>(L"SpringFloor");
-
-   RECT rect =
+   huru::Scene* activeScene = huru::SceneManager::GetActiveScene();
+   std::wstring name = activeScene->GetName();
+   if (name == L"ToolScene")
    {
-       0, 0, texture->GetWidth(), texture->GetHeight()
-   };
-   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+       HWND ToolhWnd = CreateWindowW(
+           L"TILEWINDOW",
+           L"TileWindow",
+           WS_OVERLAPPEDWINDOW,
+           CW_USEDEFAULT, CW_USEDEFAULT,       // 윈도우 위치 (x, y)
+           width, height,                      // 윈도우 너비와 높이
+           nullptr, nullptr,
+           hInstance,
+           nullptr);
 
-   UINT toolWidth = rect.right - rect.left;
-   UINT toolHeight = rect.bottom - rect.top;
+       //Tile 윈도우 크기 조정 -- TOOL
+       huru::graphics::Texture* texture = huru::Resources::Find<huru::graphics::Texture>(L"SpringFloor");
 
-   SetWindowPos(ToolhWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
-   ShowWindow(ToolhWnd, true);
-   UpdateWindow(ToolhWnd);
+       RECT rect =
+       {
+           0, 0, texture->GetWidth(), texture->GetHeight()
+       };
+       AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+       UINT toolWidth = rect.right - rect.left;
+       UINT toolHeight = rect.bottom - rect.top;
+
+       SetWindowPos(ToolhWnd, nullptr, width, 0, toolWidth, toolHeight, 0);
+       ShowWindow(ToolhWnd, true);
+       UpdateWindow(ToolhWnd);
+   }
 
    return TRUE;
 }

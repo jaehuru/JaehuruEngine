@@ -20,6 +20,7 @@
 #include "huruCollisionManager.h"
 #include "huruTile.h"
 #include "huruTilemapRenderer.h"
+#include "huruRigidbody.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -60,6 +61,7 @@ void huru::PlayScene::Initialize()
 	//playerAnimator->
 	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(400.0f, 250.0f));
 	//mPlayer->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+	mPlayer->AddComponent<Rigidbody>();
 
 
 	//CAT

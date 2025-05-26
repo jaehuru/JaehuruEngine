@@ -9,6 +9,7 @@
 #include "huruObject.h"
 #include "huruResources.h"
 #include "huruCollider.h"
+#include "huruRigidbody.h"
 
 namespace huru
 {
@@ -155,54 +156,52 @@ namespace huru
 			Vector2 mousePos = Input::GetMousePosition();*/
 		}
 
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
+		Transform* transform = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = transform->GetPosition();
+		Rigidbody* rigidbody = GetOwner()->GetComponent<Rigidbody>();
+
+
 		if (Input::GetKey(eKeyCode::D))
 		{
-			pos.x += 100.f * Time::DeltaTime();
+			rigidbody->AddForce(Vector2(200.f, 0.f));
 		}
 		if (Input::GetKey(eKeyCode::A))
 		{
-			pos.x -= 100.f * Time::DeltaTime();
+			rigidbody->AddForce(Vector2(-200.f, 0.f));
 		}
 		if (Input::GetKey(eKeyCode::W))
 		{
-			pos.y -= 100.f * Time::DeltaTime();
+			rigidbody->AddForce(Vector2(0.f, -200.f));
 		}
 		if (Input::GetKey(eKeyCode::S))
 		{
-			pos.y += 100.f * Time::DeltaTime();
-		}
-		tr->SetPosition(pos);
-
-		if (Input::GetKeyUp(eKeyCode::D) || Input::GetKeyUp(eKeyCode::A) || Input::GetKeyUp(eKeyCode::W) || Input::GetKeyUp(eKeyCode::S))
-		{
-			mState = PlayerScript::eState::Idle;
-			mAnimator->PlayAnimation(L"Idle", false);
+			rigidbody->AddForce(Vector2(0.f, 200.f));
 		}
 	}
 
 	void PlayerScript::move()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
+		Transform* transform = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = transform->GetPosition();
+		Rigidbody* rigidbody = GetOwner()->GetComponent<Rigidbody>();
+
+
 		if (Input::GetKey(eKeyCode::D))
 		{
-			pos.x += 100.f * Time::DeltaTime();
+			rigidbody->AddForce(Vector2(200.f, 0.f));
 		}
 		if (Input::GetKey(eKeyCode::A))
 		{
-			pos.x -= 100.f * Time::DeltaTime();
+			rigidbody->AddForce(Vector2(-200.f, 0.f));
 		}
 		if (Input::GetKey(eKeyCode::W))
 		{
-			pos.y -= 100.f * Time::DeltaTime();
+			rigidbody->AddForce(Vector2(0.f, 200.f));
 		}
 		if (Input::GetKey(eKeyCode::S))
 		{
-			pos.y += 100.f * Time::DeltaTime();
+			rigidbody->AddForce(Vector2(0.f, -200.f));
 		}
-		tr->SetPosition(pos);
 
 		if (Input::GetKeyUp(eKeyCode::D) || Input::GetKeyUp(eKeyCode::A) || Input::GetKeyUp(eKeyCode::W) || Input::GetKeyUp(eKeyCode::S))
 		{

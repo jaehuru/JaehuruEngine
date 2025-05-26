@@ -7,6 +7,7 @@ namespace huru::enums
 		Transform,
 		TileMapRenderer,
 		Collider,
+		Rigidbody,
 		Script,
 		SpriteRenderer,
 		Animator,
