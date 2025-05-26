@@ -17,7 +17,10 @@ namespace huru
 		void LateUpdate()  override;
 		void Render(HDC hdc)  override;
 
-		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
+		void SetTexture(graphics::Texture* texture) 
+		{
+			mTexture = texture; 
+		}
 		void SetSize(Vector2 size) { mSize = size; }
 
 		Vector2 GetIndex() { return mIndex; }

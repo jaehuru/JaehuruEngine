@@ -1,4 +1,5 @@
 #include "huruScene.h"
+#include "huruCollisionManager.h"
 
 namespace huru
 {
@@ -78,7 +79,7 @@ namespace huru
 
 	void Scene::OnExit()
 	{
-		
+		CollisionManager::Clear();
 	}
 
 	void Scene::AddGameObject(GameObject* gameObj, const enums::eLayerType type)
