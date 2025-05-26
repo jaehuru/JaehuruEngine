@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="huruCameraScript.h" />
     <ClInclude Include="huruCat.h" />
     <ClInclude Include="huruCatScript.h" />
     <ClInclude Include="huruGameOverScene.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="huruToolScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="huruCameraScript.cpp" />
     <ClCompile Include="huruCat.cpp" />
     <ClCompile Include="huruCatScript.cpp" />
     <ClCompile Include="huruGameOverScene.cpp" />

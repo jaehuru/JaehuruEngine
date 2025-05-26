@@ -7,6 +7,8 @@
 namespace huru
 {
 	Vector2 TileMapRenderer::TileSize = Vector2::One;
+	Vector2 TileMapRenderer::OriginTileSize = Vector2::One;
+	Vector2 TileMapRenderer::SelectedIndex = Vector2::One;
 
 	TileMapRenderer::TileMapRenderer() :
 		Component(eComponentType::TileMapRenderer),
@@ -16,6 +18,7 @@ namespace huru
 		mIndex(0, 0)
 	{
 		TileSize = mTileSize * mSize;
+		OriginTileSize = mTileSize;
 	}
 
 	TileMapRenderer::~TileMapRenderer()

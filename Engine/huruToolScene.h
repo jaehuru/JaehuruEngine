@@ -1,11 +1,12 @@
 #pragma once
 
 #include "..//Engine_SOURCE/huruScene.h"
+//#include "huruTile.h"
 
 namespace huru
 {
-	class Player;
-
+	class Tile;
+	
 	class ToolScene : public Scene
 	{
 	public:
@@ -20,8 +21,11 @@ namespace huru
 		void	OnEnter() override;
 		void	OnExit() override;
 
-	private:
+		void	Save();
+		void	Load();
 
+	private:
+		std::vector<Tile*> mTiles;
 	};
 }
 

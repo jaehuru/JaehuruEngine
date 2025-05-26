@@ -20,8 +20,13 @@ namespace huru
 		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
 		void SetSize(Vector2 size) { mSize = size; }
 
+		Vector2 GetIndex() { return mIndex; }
+		void SetIndex(Vector2 index) { mIndex = index; }
+
 	public:
 		static Vector2 TileSize;
+		static Vector2 OriginTileSize;
+		static Vector2 SelectedIndex;
 
 	private:
 		graphics::Texture* mTexture;

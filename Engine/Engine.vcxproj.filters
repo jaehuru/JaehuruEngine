@@ -48,6 +48,9 @@
     <ClInclude Include="huruTile.h">
       <Filter>Contents</Filter>
     </ClInclude>
+    <ClInclude Include="huruCameraScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruPlayScene.cpp">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="huruTile.cpp">
       <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="huruCameraScript.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

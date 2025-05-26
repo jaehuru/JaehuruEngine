@@ -26,7 +26,7 @@ namespace huru
 		GameObject::Render(hdc);
 	}
 
-	void Tile::SetPosition(int x, int y)
+	void Tile::SetIndexPosition(int x, int y)
 	{
 		Transform* tr = GetComponent<Transform>();
 		Vector2 pos;
