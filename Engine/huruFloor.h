@@ -1,14 +1,15 @@
 #pragma once
 
-#include "huruCollider.h"
+#include "..\\Engine_SOURCE\\huruGameObject.h"
 
 namespace huru
 {
-	class BoxCollider2D : public Collider
+
+	class Floor : public GameObject
 	{
 	public:
-		BoxCollider2D();
-		~BoxCollider2D();
+		Floor();
+		~Floor();
 
 		void Initialize() override;
 		void Update() override;
@@ -16,6 +17,6 @@ namespace huru
 		void Render(HDC hdc) override;
 
 	private:
+
 	};
 }
-

@@ -44,6 +44,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruTileMapRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruUIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimation.cpp" />
@@ -74,5 +76,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruTileMapRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruUIManager.cpp" />
   </ItemGroup>
 </Project>

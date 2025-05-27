@@ -11,7 +11,7 @@ namespace huru::object
 
 namespace huru
 {
-	class GameObject
+	class GameObject : public Entity
 	{
 	public:
 		friend void object::Destroy(GameObject* obj);

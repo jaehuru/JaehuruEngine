@@ -6,6 +6,7 @@ namespace huru
 {
 	class Collider : public Component
 	{
+
 	public:
 		Collider(eColliderType type);
 		~Collider();

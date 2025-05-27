@@ -51,6 +51,12 @@
     <ClInclude Include="huruCameraScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="huruFloor.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="huruFloorScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruPlayScene.cpp">
@@ -81,6 +87,12 @@
       <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="huruCameraScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="huruFloor.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="huruFloorScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,12 +7,14 @@ namespace huru
 {
 	Rigidbody::Rigidbody() :
 		Component(eComponentType::Rigidbody),
+		mbGround(false),
 		mMass(1.f),
-		mFriction(100.f),
+		mFriction(10.f),
 		mForce(Vector2::Zero),
 		mAccelation(Vector2::Zero),
 		mVelocity(Vector2::Zero),
-		mGravity(Vector2::Zero)
+		mLimitedVelocity(Vector2(200.f, 1000.f)),
+		mGravity(Vector2(0.f, 800.f))
 	{
 
 	}
@@ -34,6 +36,42 @@ namespace huru
 		mAccelation = mForce / mMass;
 
 		mVelocity += mAccelation * Time::DeltaTime();
+
+		if (mbGround) // 땅
+		{
+			Vector2 gravity = mGravity;
+			gravity.normalize();
+
+			float dot = Vector2::Dot(mVelocity, gravity);
+			mVelocity -= gravity * dot;
+		}
+		else // 공중
+		{
+			mVelocity += mGravity * Time::DeltaTime();
+		}
+
+		// 최대 속도 제한
+		Vector2 gravity = mGravity;
+		gravity.normalize();
+		float dot = Vector2::Dot(mVelocity, gravity);
+		gravity = gravity * dot;
+
+		Vector2 sideVelocity = mVelocity - gravity;
+		if (mLimitedVelocity.y < gravity.length())
+		{
+			gravity.normalize();
+			gravity *= mLimitedVelocity.y;
+		}
+		
+		if (mLimitedVelocity.x < sideVelocity.length())
+		{
+			sideVelocity.normalize();
+			sideVelocity *= mLimitedVelocity.x;
+		}
+
+		mVelocity = gravity + sideVelocity;
+
+
 
 		if (!(mVelocity == Vector2::Zero))
 		{

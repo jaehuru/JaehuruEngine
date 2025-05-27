@@ -85,6 +85,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruRigidbody.cpp">
       <Filter>Component\Rigidbody</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruUIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruUIBase.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h">
@@ -177,6 +183,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruRigidbody.h">
       <Filter>Component\Rigidbody</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruUIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruUIBase.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -244,6 +256,9 @@
     </Filter>
     <Filter Include="Component\Rigidbody">
       <UniqueIdentifier>{830eb4b7-3d37-42ed-b788-701bdfaca5ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{3dbbbafd-a943-411b-b66a-1f0c41e17325}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

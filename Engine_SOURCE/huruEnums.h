@@ -22,6 +22,7 @@ namespace huru::enums
 		Tile,
 		Animal,
 		Player,
+		Floor,
 		Particle,
 		Max = 16,
 	};
@@ -39,6 +40,7 @@ namespace huru::enums
 	{
 		Circle2D,
 		Rect2D,
+		Ground,
 		End,
 	};
 }

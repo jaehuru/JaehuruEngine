@@ -70,6 +70,30 @@ namespace huru::math
 			y += other.y;
 		}
 
+		void operator-=(Vector2 other)
+		{
+			x -= other.x;
+			y -= other.y;
+		}
+
+		void operator*=(Vector2 other)
+		{
+			x *= other.x;
+			y *= other.y;
+		}
+
+		void operator*=(float value)
+		{
+			x *= value;
+			y *= value;
+		}
+
+		void operator/=(Vector2 other)
+		{
+			x /= other.x;
+			y /= other.y;
+		}
+
 		Vector2 operator-(Vector2 other)
 		{
 			return Vector2(x - other.x, y - other.y);

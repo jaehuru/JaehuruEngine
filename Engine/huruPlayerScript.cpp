@@ -99,7 +99,7 @@ namespace huru
 
 	void PlayerScript::OnCollisionEnter(Collider* other)
 	{
-		other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(400.0f, 500.0f));
+
 	}
 
 	void PlayerScript::OnCollisionStay(Collider* other)
@@ -109,7 +109,7 @@ namespace huru
 
 	void PlayerScript::OnCollisionExit(Collider* other)
 	{
-
+	
 	}
 
 	void PlayerScript::idle()
@@ -171,11 +171,10 @@ namespace huru
 		}
 		if (Input::GetKey(eKeyCode::W))
 		{
-			rigidbody->AddForce(Vector2(0.f, -200.f));
-		}
-		if (Input::GetKey(eKeyCode::S))
-		{
-			rigidbody->AddForce(Vector2(0.f, 200.f));
+			Vector2 velocity = rigidbody->GetVelocity();
+			velocity.y = -500.0f;
+			rigidbody->SetVelocity(velocity);
+			rigidbody->SetGround(false);
 		}
 	}
 

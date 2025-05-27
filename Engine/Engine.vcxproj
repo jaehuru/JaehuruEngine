@@ -139,6 +139,8 @@
     <ClInclude Include="huruCameraScript.h" />
     <ClInclude Include="huruCat.h" />
     <ClInclude Include="huruCatScript.h" />
+    <ClInclude Include="huruFloor.h" />
+    <ClInclude Include="huruFloorScript.h" />
     <ClInclude Include="huruGameOverScene.h" />
     <ClInclude Include="huruLoadScenes.h" />
     <ClInclude Include="huruPlayer.h" />
@@ -153,6 +155,8 @@
     <ClCompile Include="huruCameraScript.cpp" />
     <ClCompile Include="huruCat.cpp" />
     <ClCompile Include="huruCatScript.cpp" />
+    <ClCompile Include="huruFloor.cpp" />
+    <ClCompile Include="huruFloorScript.cpp" />
     <ClCompile Include="huruGameOverScene.cpp" />
     <ClCompile Include="huruPlayer.cpp" />
     <ClCompile Include="huruPlayerScript.cpp" />
