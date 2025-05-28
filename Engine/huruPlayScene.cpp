@@ -1,6 +1,7 @@
 #include "huruPlayScene.h"
 #include "huruGameObject.h"
 #include "huruPlayer.h"
+#include "huruUIManager.h"
 #include "huruTransform.h"
 #include "huruSpriteRenderer.h"
 #include "huruInput.h"
@@ -105,9 +106,13 @@ void huru::PlayScene::OnEnter()
 	Scene::OnEnter();
 
 	CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
+
+	UIManager::Push(eUIType::Button);
 }
 
 void huru::PlayScene::OnExit()
 {
+	UIManager::Pop(eUIType::Button);
+
 	Scene::OnExit();
 }

@@ -91,6 +91,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruUIBase.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruUIHUD.cpp">
+      <Filter>UI\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruUIButton.cpp">
+      <Filter>UI\Button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h">
@@ -189,6 +195,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruUIBase.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruUIHUD.h">
+      <Filter>UI\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruUIButton.h">
+      <Filter>UI\Button</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -259,6 +271,12 @@
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{3dbbbafd-a943-411b-b66a-1f0c41e17325}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Button">
+      <UniqueIdentifier>{834eb8a2-362e-4409-b1bf-cab46cc0d6e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\HUD">
+      <UniqueIdentifier>{de6959fd-93fd-40ec-806e-a38c4e3bef4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

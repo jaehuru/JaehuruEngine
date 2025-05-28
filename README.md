@@ -44,3 +44,4 @@ Windows 기반에서의 기초적인 윈도우 창 생성과 메시지 루프 �
 39. 타일맵 윈도우 생성과 배치
 40. 타일맵 저장 불러오기 기능
 41. Rigidbody 가속도, 이동, 힘, 중력작용 구현
+42. UIManager, UIBase, UIButton, UIHUD 구현

@@ -10,6 +10,7 @@
 #include "huruResources.h"
 #include "huruCollider.h"
 #include "huruRigidbody.h"
+#include "huruUIManager.h"
 
 namespace huru
 {
@@ -142,18 +143,13 @@ namespace huru
 
 			Transform* tr = GetOwner()->GetComponent<Transform>();
 
-			cat->GetComponent<Transform>()->SetPosition(tr->GetPosition() /*+ Vector2(100.0f, 0.0f)*/);
+			cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
 			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 
 
 			Vector2 mousePos = Input::GetMousePosition();
 			catSrc->mDest = mousePos;
 
-
-			/*mState = PlayerScript::eState::GiveWater;
-			mAnimator->PlayAnimation(L"FrontGiveWater", false);
-
-			Vector2 mousePos = Input::GetMousePosition();*/
 		}
 
 		Transform* transform = GetOwner()->GetComponent<Transform>();
@@ -175,6 +171,19 @@ namespace huru
 			velocity.y = -500.0f;
 			rigidbody->SetVelocity(velocity);
 			rigidbody->SetGround(false);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::I))
+		{
+			UIManager::Push(eUIType::HpBar);
+			UIManager::Push(eUIType::Button);
+
+		}
+
+		if (Input::GetKeyDown(eKeyCode::O))
+		{
+			UIManager::Pop(eUIType::HpBar);
+
 		}
 	}
 

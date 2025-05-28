@@ -14,6 +14,7 @@ namespace huru
 			(L"Cat", L"..\\Resources\\Cat.bmp");
 		Resources::Load<graphics::Texture>
 			(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
+		Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
 			
 	}
 }

@@ -8,6 +8,8 @@
 #include <string>
 #include <map>
 #include <bitset>
+#include <stack>
+#include <queue>
 #include <algorithm>
 #include <functional>
 #include <filesystem>
@@ -23,3 +25,6 @@
 
 #include "huruMath.h"
 #include "huruEnums.h"
+
+// Removed 'using namespace std;' to avoid namespace conflicts
+// Explicitly qualify standard library types with 'std::'

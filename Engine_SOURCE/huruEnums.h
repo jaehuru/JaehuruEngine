@@ -40,7 +40,13 @@ namespace huru::enums
 	{
 		Circle2D,
 		Rect2D,
-		Ground,
+		End,
+	};
+
+	enum class eUIType
+	{
+		HpBar,
+		Button,
 		End,
 	};
 }
