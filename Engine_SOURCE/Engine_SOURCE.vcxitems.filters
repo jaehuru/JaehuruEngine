@@ -97,6 +97,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruUIButton.cpp">
       <Filter>UI\Button</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruFmod.cpp">
+      <Filter>FMOD</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAudioClip.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAudioListener.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAudioSource.cpp">
+      <Filter>Resource\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h">
@@ -201,6 +213,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruUIButton.h">
       <Filter>UI\Button</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruFmod.h">
+      <Filter>FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAudioListener.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAudioClip.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAudioSource.h">
+      <Filter>Resource\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -277,6 +301,15 @@
     </Filter>
     <Filter Include="UI\HUD">
       <UniqueIdentifier>{de6959fd-93fd-40ec-806e-a38c4e3bef4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FMOD">
+      <UniqueIdentifier>{c1cfad91-7e55-48a9-b656-8c7a3b7333a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Audio">
+      <UniqueIdentifier>{a3a7679d-780c-4ddb-b45c-1a1ffddfd811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Audio">
+      <UniqueIdentifier>{f6c2721d-1264-470e-b386-74f15b5fef0a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

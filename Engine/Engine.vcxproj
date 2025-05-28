@@ -84,6 +84,10 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
+xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -102,6 +106,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
+xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -116,6 +124,10 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
+xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -134,6 +146,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
+xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="huruCameraScript.h" />

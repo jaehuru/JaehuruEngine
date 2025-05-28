@@ -18,6 +18,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruCircleCollider2D.h" />
@@ -27,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)huruDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)huruFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)huruLayer.h" />
@@ -53,6 +57,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruCircleCollider2D.cpp" />
@@ -61,6 +68,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)huruComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)huruFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)huruLayer.cpp" />

@@ -5,6 +5,7 @@
 #include "huruResources.h"
 #include "huruCollisionManager.h"
 #include "huruUIManager.h"
+#include "huruFmod.h"
 
 namespace huru
 {
@@ -31,6 +32,7 @@ namespace huru
 		createBuffer(width, height);
 		initializeEtc();
 
+		Fmod::Initialize();
 		CollisionManager::Initialize();
 		UIManager::Initialize();
 		SceneManager::Initialize();
