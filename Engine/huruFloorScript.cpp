@@ -6,6 +6,7 @@
 #include "huruAnimator.h"
 #include "huruObject.h"
 #include "huruRigidbody.h"
+#include "huruAudioSource.h"
 
 namespace huru
 {
@@ -60,6 +61,11 @@ namespace huru
 
 			playerTr->SetPosition(playerPos);
 		}
+
+		AudioSource* as = GetOwner()->GetComponent<AudioSource>();
+		//as->SetClip();
+		as->SetLoop(true);
+		as->Play();
 
 
 		playerRb->SetGround(true);

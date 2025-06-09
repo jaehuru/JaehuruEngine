@@ -63,4 +63,5 @@ Win32 API 기반의 기초적인 윈도우 창 생성과 메시지 루프 처리
 
 ### 오디오 관련 기능
 - FMOD Studio API를 통해 사운드 로드 및 재생 기능 구현
+- AudioListener, AudioSource, AudioClip 클래스 구현
 

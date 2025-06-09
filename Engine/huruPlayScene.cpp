@@ -24,6 +24,9 @@
 #include "huruRigidbody.h"
 #include "huruFloor.h"
 #include "huruFloorScript.h"
+#include "huruAudioClip.h"
+#include "huruAudioListener.h"
+#include "huruAudioSource.h"
 
 huru::PlayScene::PlayScene()
 {
@@ -48,6 +51,7 @@ void huru::PlayScene::Initialize()
 	mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
 	cameraComp->SetTarget(mPlayer);
 	object::DonDestroyOnLoad(mPlayer);
+
 	PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
 	BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
@@ -64,8 +68,7 @@ void huru::PlayScene::Initialize()
 
 	mPlayer->GetComponent<Transform>()->SetPosition(Vector2(300.f, 250.0f));
 	mPlayer->AddComponent<Rigidbody>();
-
-
+	mPlayer->AddComponent<AudioListener>();
 
 
 	// Floor
@@ -74,8 +77,13 @@ void huru::PlayScene::Initialize()
 	BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
 	floorCol->SetSize(Vector2(10.0f, 1.0f));
 	floor->AddComponent<FloorScript>();
+	AudioSource* as = floor->AddComponent<AudioSource>();
 
 
+	// Sound
+	AudioClip* ac = Resources::Load<AudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");
+	as->SetClip(ac);
+	//as->Play();
 
 
 	Scene::Initialize();

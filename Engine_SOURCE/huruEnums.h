@@ -12,6 +12,8 @@ namespace huru::enums
 		SpriteRenderer,
 		Animator,
 		Camera,
+		AudioListener,
+		AudioSource,
 		End,
 	};
 
