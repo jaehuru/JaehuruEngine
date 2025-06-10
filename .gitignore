@@ -401,6 +401,8 @@ FodyWeavers.xsd
 
 # External
 !External/
+!External/**/
+!External/**/*
 
 #resource
 /x64￦Shaders_SOURCE￦
