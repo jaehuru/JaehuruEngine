@@ -399,8 +399,8 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Library Folder
-!External/Fmod/lib/
+# External
+!External/
 
 #resource
 /x64￦Shaders_SOURCE￦
