@@ -7,14 +7,6 @@
 #include "..\\External\\FMOD\\inc\fmod_common.h"
 #include "..\\External\\FMOD\\inc\fmod_codec.h"
 
-#ifdef _DEBUG
-#pragma comment(lib, "..\\External\\FMOD\\lib\\x64\\fmodL_vc.lib")
-#pragma comment(lib, "..\\External\\FMOD\\lib\\x64\\fmodstudioL_vc.lib")
-#else
-#pragma comment(lib, "..\\External\\FMOD\\lib\\x64\\fmod_vc.lib")
-#pragma comment(lib, "..\\External\\FMOD\\lib\\x64\\fmodstudio_vc.lib")
-#endif
-
 namespace huru
 {
 	using namespace math;

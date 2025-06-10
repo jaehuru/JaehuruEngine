@@ -88,6 +88,15 @@
       <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
 xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>IF "$(Configuration)"=="Debug" (
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodL.dll" "$(OutDir)"
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudioL.dll" "$(OutDir)"
+) ELSE (
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmod.dll" "$(OutDir)"
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
+)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -110,6 +119,15 @@ xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Comman
       <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
 xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>IF "$(Configuration)"=="Debug" (
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodL.dll" "$(OutDir)"
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudioL.dll" "$(OutDir)"
+) ELSE (
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmod.dll" "$(OutDir)"
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
+)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -128,6 +146,15 @@ xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Comman
       <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
 xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>IF "$(Configuration)"=="Debug" (
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodL.dll" "$(OutDir)"
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudioL.dll" "$(OutDir)"
+) ELSE (
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmod.dll" "$(OutDir)"
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
+)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -150,6 +177,15 @@ xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Comman
       <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
 xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>IF "$(Configuration)"=="Debug" (
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodL.dll" "$(OutDir)"
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudioL.dll" "$(OutDir)"
+) ELSE (
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmod.dll" "$(OutDir)"
+    xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
+)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="huruCameraScript.h" />
