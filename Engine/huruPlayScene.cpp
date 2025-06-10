@@ -41,16 +41,16 @@ huru::PlayScene::~PlayScene()
 void huru::PlayScene::Initialize()
 {
 	// Camera
-	GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::Particle, Vector2(344.0f, 442.0f));
+	GameObject* camera = Instantiate<GameObject>(eLayerType::Particle, Vector2(344.0f, 442.0f));
 	Camera* cameraComp = camera->AddComponent<Camera>();
 	renderer::mainCamera = cameraComp;
 
 
 
 	// Player
-	mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
+	mPlayer = Instantiate<Player>(eLayerType::Player);
 	cameraComp->SetTarget(mPlayer);
-	object::DonDestroyOnLoad(mPlayer);
+	DonDestroyOnLoad(mPlayer);
 
 	PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
@@ -72,13 +72,15 @@ void huru::PlayScene::Initialize()
 
 
 	// Floor
-	Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
+	Floor* floor = Instantiate<Floor>(eLayerType::Floor, Vector2(0.0f, 0.0f));
 	floor->SetName(L"Floor");
-	BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
-	floorCol->SetSize(Vector2(10.0f, 1.0f));
-	floor->AddComponent<FloorScript>();
-	AudioSource* as = floor->AddComponent<AudioSource>();
 
+	SpriteRenderer* floorSR = floor->AddComponent<SpriteRenderer>();
+	floorSR->SetTexture(Resources::Find<graphics::Texture>(L"PixelMap"));
+
+	AudioSource* as = floor->AddComponent<AudioSource>();
+	
+	plScript->SetPixelMapTexture(Resources::Find<graphics::Texture>(L"PixelMap"));
 
 	// Sound
 	AudioClip* ac = Resources::Load<AudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");

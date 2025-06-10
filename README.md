@@ -53,6 +53,7 @@ Win32 API 기반의 기초적인 윈도우 창 생성과 메시지 루프 처리
 - OnCollision 함수 구현  
 - 충돌체 종류별 구현: AABB(rect-rect), circle-circle, rect-circle  
 - Rigidbody : 가속도, 이동, 힘, 중력 작용 구현  
+- 픽셀 기반 충돌 판정 시스템
 
 ### UI 시스템  
 - UIManager, UIBase, UIButton, UIHUD 구현  
@@ -64,4 +65,6 @@ Win32 API 기반의 기초적인 윈도우 창 생성과 메시지 루프 처리
 ### 오디오 관련 기능
 - FMOD Studio API를 통해 사운드 로드 및 재생 기능 구현
 - AudioListener, AudioSource, AudioClip 클래스 구현
+
+
 

@@ -1,10 +1,12 @@
 #pragma once
 
 #include "..\\Engine_SOURCE\\huruScript.h"
+#include "..\\Engine_SOURCE\\huruTexture.h"
 
 namespace huru
 {
 	class Collider;
+	class Animator;
 
 	class PlayerScript : public Script
 	{
@@ -31,6 +33,11 @@ namespace huru
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;
 
+		void SetPixelMapTexture(graphics::Texture* texture) 
+		{
+			mPixelMap = texture;
+		}
+
 	private:
 		void		idle();
 		void		move();
@@ -38,7 +45,8 @@ namespace huru
 
 	private:
 		eState mState;
-		class Animator* mAnimator;
+		Animator* mAnimator;
+		graphics::Texture* mPixelMap;
 
 	};
 }

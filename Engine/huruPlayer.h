@@ -14,6 +14,6 @@ namespace huru
 		void Render(HDC hdc) override;
 
 	private:
-
+		int mHp;
 	};
 }

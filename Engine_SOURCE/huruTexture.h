@@ -23,6 +23,7 @@ namespace huru::graphics
 		~Texture();
 
 		virtual HRESULT Load(const std::wstring& path) override;
+		COLORREF GetPixel(int x, int y);
 
 		UINT			GetWidth()				{ return mWidth; }
 		void			SetWidth(UINT width)	{ mWidth = width; }
