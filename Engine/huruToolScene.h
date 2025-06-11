@@ -1,11 +1,12 @@
 #pragma once
 
 #include "..//Engine_SOURCE/huruScene.h"
-//#include "huruTile.h"
+
 
 namespace huru
 {
 	class Tile;
+	namespace graphics { class Texture; }
 	
 	class ToolScene : public Scene
 	{
@@ -24,9 +25,13 @@ namespace huru
 		void	Save();
 		void	Load();
 
+		void	LoadMapFile(const std::wstring& filePath);
+
 	private:
 		std::vector<Tile*> mTiles;
+		graphics::Texture* mTexture;
 	};
 }
 
 LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+

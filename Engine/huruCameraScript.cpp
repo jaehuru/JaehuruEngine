@@ -4,8 +4,6 @@
 #include "huruTime.h"
 #include "huruGameObject.h"
 #include "huruAnimator.h"
-#include "huruCat.h"
-#include "huruCatScript.h"
 #include "huruObject.h"
 #include "huruResources.h"
 

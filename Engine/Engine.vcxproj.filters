@@ -21,23 +21,11 @@
     <ClInclude Include="huruPlayScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="huruPlayer.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
     <ClInclude Include="huruGameOverScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="huruTitleScene.h">
       <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="huruPlayerScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="huruCat.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="huruCatScript.h">
-      <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="huruLoadResources.h">
       <Filter>Resources</Filter>
@@ -51,34 +39,16 @@
     <ClInclude Include="huruCameraScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="huruFloor.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="huruFloorScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruPlayScene.cpp">
       <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="huruPlayer.cpp">
-      <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="huruGameOverScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="huruTitleScene.cpp">
       <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="huruPlayerScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="huruCat.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="huruCatScript.cpp">
-      <Filter>Scripts</Filter>
     </ClCompile>
     <ClCompile Include="huruToolScene.cpp">
       <Filter>Scenes</Filter>
@@ -87,12 +57,6 @@
       <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="huruCameraScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="huruFloor.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="huruFloorScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>

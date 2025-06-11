@@ -189,14 +189,8 @@ xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Comman
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="huruCameraScript.h" />
-    <ClInclude Include="huruCat.h" />
-    <ClInclude Include="huruCatScript.h" />
-    <ClInclude Include="huruFloor.h" />
-    <ClInclude Include="huruFloorScript.h" />
     <ClInclude Include="huruGameOverScene.h" />
     <ClInclude Include="huruLoadScenes.h" />
-    <ClInclude Include="huruPlayer.h" />
-    <ClInclude Include="huruPlayerScript.h" />
     <ClInclude Include="huruPlayScene.h" />
     <ClInclude Include="huruTile.h" />
     <ClInclude Include="huruTitleScene.h" />
@@ -205,13 +199,7 @@ xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Comman
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="huruCameraScript.cpp" />
-    <ClCompile Include="huruCat.cpp" />
-    <ClCompile Include="huruCatScript.cpp" />
-    <ClCompile Include="huruFloor.cpp" />
-    <ClCompile Include="huruFloorScript.cpp" />
     <ClCompile Include="huruGameOverScene.cpp" />
-    <ClCompile Include="huruPlayer.cpp" />
-    <ClCompile Include="huruPlayerScript.cpp" />
     <ClCompile Include="huruPlayScene.cpp" />
     <ClCompile Include="huruTile.cpp" />
     <ClCompile Include="huruTitleScene.cpp" />

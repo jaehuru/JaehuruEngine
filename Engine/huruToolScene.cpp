@@ -11,9 +11,10 @@
 
 namespace huru
 {
-	ToolScene::ToolScene()
+	ToolScene::ToolScene() :
+		mTexture(nullptr)
 	{
-		 
+		mTexture = Resources::Find<graphics::Texture>(L"SpringFloor");
 	}
 
 	ToolScene::~ToolScene()
@@ -47,7 +48,7 @@ namespace huru
 		if (Input::GetKeyDown(eKeyCode::LButton))
 		{
 			Vector2 pos = Input::GetMousePosition();
-			pos = renderer::mainCamera->CaluateTilePosition(pos);
+			pos = renderer::mainCamera->CalcuateTilePosition(pos);
 
 			if (pos.x >= 0.0f && pos.y >= 0.0f)
 			{
@@ -56,7 +57,7 @@ namespace huru
 
 				Tile* tile = object::Instantiate<Tile>(eLayerType::Tile);
 				TileMapRenderer* tmr = tile->AddComponent<TileMapRenderer>();
-				tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
+				tmr->SetTexture(mTexture);
 				tmr->SetIndex(TileMapRenderer::SelectedIndex);
 
 				tile->SetIndexPosition(idxX, idxY);
@@ -189,6 +190,14 @@ namespace huru
 		FILE* pFile = nullptr;
 		_wfopen_s(&pFile, szFilePath, L"rb");
 
+		if (!pFile)
+			return;
+
+		// 기존 타일 초기화
+		for (Tile* tile : mTiles)
+			delete tile; // 메모리 해제 필요하다면 (메모리 관리 정책에 맞게)
+		mTiles.clear();
+
 		while (true)
 		{
 			int idxX = 0;
@@ -197,24 +206,59 @@ namespace huru
 			int posX = 0;
 			int posY = 0;
 
+			if (fread(&idxX, sizeof(int), 1, pFile) != 1)
+				break;
+			if (fread(&idxY, sizeof(int), 1, pFile) != 1)
+				break;
+			if (fread(&posX, sizeof(int), 1, pFile) != 1)
+				break;
+			if (fread(&posY, sizeof(int), 1, pFile) != 1)
+				break;
 
-			if (fread(&idxX, sizeof(int), 1, pFile) == NULL)
-				break;
-			if (fread(&idxY, sizeof(int), 1, pFile) == NULL)
-				break;
-			if (fread(&posX, sizeof(int), 1, pFile) == NULL)
-				break;
-			if (fread(&posY, sizeof(int), 1, pFile) == NULL)
-				break;
-
-			Tile* tile = 
+			Tile* tile =
 				object::Instantiate<Tile>(eLayerType::Tile, Vector2(posX, posY));
 			TileMapRenderer* tmr = tile->AddComponent<TileMapRenderer>();
-			tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
+			tmr->SetTexture(mTexture);
 			tmr->SetIndex(Vector2(idxX, idxY));
 
 			mTiles.push_back(tile);
 		}
+		fclose(pFile);
+	}
+
+	void ToolScene::LoadMapFile(const std::wstring& filePath)
+	{
+		FILE* pFile = nullptr;
+		_wfopen_s(&pFile, filePath.c_str(), L"rb");
+
+		if (!pFile)
+		{
+			MessageBox(nullptr, L"Failed to open map file!", L"Error", MB_OK | MB_ICONERROR);
+			return;
+		}
+
+		for (Tile* tile : mTiles)
+			delete tile;
+		mTiles.clear();
+
+		while (true)
+		{
+			int idxX = 0, idxY = 0;
+			int posX = 0, posY = 0;
+
+			if (fread(&idxX, sizeof(int), 1, pFile) != 1) break;
+			if (fread(&idxY, sizeof(int), 1, pFile) != 1) break;
+			if (fread(&posX, sizeof(int), 1, pFile) != 1) break;
+			if (fread(&posY, sizeof(int), 1, pFile) != 1) break;
+
+			Tile* tile = object::Instantiate<Tile>(eLayerType::Tile, Vector2(posX, posY));
+			TileMapRenderer* tmr = tile->AddComponent<TileMapRenderer>();
+			tmr->SetTexture(mTexture);
+			tmr->SetIndex(Vector2(idxX, idxY));
+
+			mTiles.push_back(tile);
+		}
+
 		fclose(pFile);
 	}
 }
