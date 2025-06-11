@@ -85,8 +85,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
-xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>IF "$(Configuration)"=="Debug" (
@@ -116,8 +116,8 @@ xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Comman
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
-xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>IF "$(Configuration)"=="Debug" (
@@ -143,8 +143,8 @@ xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Comman
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
-xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>IF "$(Configuration)"=="Debug" (
@@ -174,8 +174,8 @@ xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Comman
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmod*.dll" "$(OutDir)"
-xcopy /Y /D "$(SolutionDir)external\FMOD\lib\x64\fmodL*.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>IF "$(Configuration)"=="Debug" (
