@@ -16,22 +16,14 @@ namespace huru
 		void LateUpdate()  override;
 		void Render(HDC hdc)  override;
 
-
+		void UpdateTileSize();
 
 		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
 		math::Vector2 GetIndex() { return mIndex; }
 		void SetIndex(math::Vector2 index) { mIndex = index; }
+		void SetSize(const math::Vector2& size) { mSize = size; }
+		void SetScale(const math::Vector2& scale) { mScale = scale; }
 
-		void SetSize(const math::Vector2& size)
-		{
-			mSize = size;
-		}
-		void SetScale(const math::Vector2& scale)
-		{
-			mScale = scale;
-		}
-
-		void UpdateTileSize();
 
 	public:
 		static math::Vector2 TileSize;
