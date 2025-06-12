@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Window", "Editor_Window\Editor_Window.vcxproj", "{281EDE8D-A601-4435-AD77-67470848FA34}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{D8CF4219-3DFE-4AC0-8254-6144E85D0FEF}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_SOURCE", "Engine_SOURCE\Engine_SOURCE.vcxitems", "{353285CA-F0FB-4E4E-B67F-58EACCEBD253}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +13,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{281EDE8D-A601-4435-AD77-67470848FA34}.Debug|x64.ActiveCfg = Debug|x64
-		{281EDE8D-A601-4435-AD77-67470848FA34}.Debug|x64.Build.0 = Debug|x64
-		{281EDE8D-A601-4435-AD77-67470848FA34}.Debug|x86.ActiveCfg = Debug|Win32
-		{281EDE8D-A601-4435-AD77-67470848FA34}.Debug|x86.Build.0 = Debug|Win32
-		{281EDE8D-A601-4435-AD77-67470848FA34}.Release|x64.ActiveCfg = Release|x64
-		{281EDE8D-A601-4435-AD77-67470848FA34}.Release|x64.Build.0 = Release|x64
-		{281EDE8D-A601-4435-AD77-67470848FA34}.Release|x86.ActiveCfg = Release|Win32
-		{281EDE8D-A601-4435-AD77-67470848FA34}.Release|x86.Build.0 = Release|Win32
 		{D8CF4219-3DFE-4AC0-8254-6144E85D0FEF}.Debug|x64.ActiveCfg = Debug|x64
 		{D8CF4219-3DFE-4AC0-8254-6144E85D0FEF}.Debug|x64.Build.0 = Debug|x64
 		{D8CF4219-3DFE-4AC0-8254-6144E85D0FEF}.Debug|x86.ActiveCfg = Debug|Win32
@@ -39,9 +27,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EAADEBD7-C033-4DDF-8425-652B072FEEBF}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Engine_SOURCE\Engine_SOURCE.vcxitems*{353285ca-f0fb-4e4e-b67f-58eaccebd253}*SharedItemsImports = 9
-		Engine_SOURCE\Engine_SOURCE.vcxitems*{d8cf4219-3dfe-4ac0-8254-6144e85d0fef}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

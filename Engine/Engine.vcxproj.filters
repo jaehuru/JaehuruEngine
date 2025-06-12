@@ -1,63 +1,369 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{f9cafd38-ad0b-43cd-948a-be4ade971ee6}</UniqueIdentifier>
+    <ClInclude Include="public\Collision\huruCollisionManager.h">
+      <Filter>public\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Common\CommonInclude.h">
+      <Filter>public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Common\huruEntity.h">
+      <Filter>public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Common\huruEnums.h">
+      <Filter>public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Common\huruMath.h">
+      <Filter>public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Animator\huruAnimator.h">
+      <Filter>public\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Audio\huruAudioListener.h">
+      <Filter>public\Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Camera\huruCamera.h">
+      <Filter>public\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Collider\huruBoxCollider2D.h">
+      <Filter>public\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Collider\huruCircleCollider2D.h">
+      <Filter>public\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Collider\huruCollider.h">
+      <Filter>public\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Rigidbody\huruRigidbody.h">
+      <Filter>public\Component\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Script\huruScript.h">
+      <Filter>public\Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\SpriteRenderer\huruSpriteRenderer.h">
+      <Filter>public\Component\SpriteRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\TileMapRenderer\huruTileMapRenderer.h">
+      <Filter>public\Component\TileMapRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Transform\huruTransform.h">
+      <Filter>public\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\huruComponent.h">
+      <Filter>public\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="public\FMOD\huruFmod.h">
+      <Filter>public\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="public\GameObject\huruGameObject.h">
+      <Filter>public\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Helpers\huruInput.h">
+      <Filter>public\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Helpers\huruTime.h">
+      <Filter>public\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Layer\huruLayer.h">
+      <Filter>public\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Object\huruObject.h">
+      <Filter>public\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Renderer\huruRenderer.h">
+      <Filter>public\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Resource\huruAnimation.h">
+      <Filter>public\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Resource\huruResource.h">
+      <Filter>public\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Resource\huruResources.h">
+      <Filter>public\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Resource\huruTexture.h">
+      <Filter>public\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Scene\huruDontDestroyOnLoad.h">
+      <Filter>public\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Scene\huruScene.h">
+      <Filter>public\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Scene\huruSceneManager.h">
+      <Filter>public\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="public\UI\huruUIBase.h">
+      <Filter>public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="public\UI\huruUIButton.h">
+      <Filter>public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="public\UI\huruUIHUD.h">
+      <Filter>public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="public\UI\huruUIManager.h">
+      <Filter>public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Component\Audio\huruAudioClip.h">
+      <Filter>public\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Resource\huruAudioSource.h">
+      <Filter>public\Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="public\HighLevelInterface\huruApplication.h">
+      <Filter>public\High Level Interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="public">
+      <UniqueIdentifier>{8f8b0bd4-d086-4b36-99cc-d4f7046a6ca9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents">
-      <UniqueIdentifier>{a456dad2-24d0-4da9-bfc3-b3483cbe8996}</UniqueIdentifier>
+    <Filter Include="public\Collision">
+      <UniqueIdentifier>{176fe01d-67d1-4efc-bacb-f9c013019f33}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts">
-      <UniqueIdentifier>{275d3bba-940d-45ab-9fd3-228dfb1cce0d}</UniqueIdentifier>
+    <Filter Include="public\Common">
+      <UniqueIdentifier>{d524e99f-f4a4-4bde-b0c7-2d612caca32b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{c7248021-4925-4d33-8a3a-607faa00f101}</UniqueIdentifier>
+    <Filter Include="private">
+      <UniqueIdentifier>{bf1cc1a5-93b0-48e0-abe8-ee3f883cf2bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\FMOD">
+      <UniqueIdentifier>{db57a0b9-ef3a-4979-9c19-38039e387f75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\GameObject">
+      <UniqueIdentifier>{43ec8ab2-c649-4d26-a443-a67cfee88d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Helpers">
+      <UniqueIdentifier>{e82e24cc-22b1-40a6-b5e0-7d0988115d94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Layer">
+      <UniqueIdentifier>{e208e813-16cf-4a65-9f18-f047fda3b8dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Object">
+      <UniqueIdentifier>{3d96df0b-38a9-4496-a04d-1158d61f49c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Renderer">
+      <UniqueIdentifier>{8e6dfc08-66e3-4686-9342-b10c90e15b5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Resource">
+      <UniqueIdentifier>{c60f273e-b3e3-49e7-8e96-453678218a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Scene">
+      <UniqueIdentifier>{9e06376f-287a-4dff-b802-ab248c2fb331}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\UI">
+      <UniqueIdentifier>{5d465437-af7d-4482-af8e-ef1819e3ed63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Collision">
+      <UniqueIdentifier>{852aba44-5904-4fa1-ae50-6a02856dba40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Common">
+      <UniqueIdentifier>{aee65e3b-6d41-429a-9df8-065540fc7eb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\FMOD">
+      <UniqueIdentifier>{8ca130f1-a0b4-4c7b-bffb-9849a5ffa7ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\GameObject">
+      <UniqueIdentifier>{12ec4236-3e82-443c-8313-c672def504a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Helpers">
+      <UniqueIdentifier>{452e13bc-8d7b-4019-8e33-8e9c5a9c7c9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\High Level Interface">
+      <UniqueIdentifier>{d93e8b6a-8778-4663-b360-3c8faebb6f31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Layer">
+      <UniqueIdentifier>{7564d97e-36bb-4f80-88d2-03a7c64b8af3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Object">
+      <UniqueIdentifier>{8d585bd0-0f16-4548-80c6-2739cb64a31b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Renderer">
+      <UniqueIdentifier>{65152231-a752-4c3d-8804-84bfab518fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Resource">
+      <UniqueIdentifier>{9535b3a6-2c66-4323-9fd2-4efb33f88bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Scene">
+      <UniqueIdentifier>{18f10654-7f1b-455a-9687-c86c07c78cf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\UI">
+      <UniqueIdentifier>{c67d60f7-21ae-417e-8106-eae96195a460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component">
+      <UniqueIdentifier>{c21e2f49-c039-4e41-ba97-7cb0edf930a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component">
+      <UniqueIdentifier>{67dcfda1-5a84-4e3b-9789-17438ca70167}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\Animator">
+      <UniqueIdentifier>{512d9024-38b1-4806-917d-66026753e281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\Audio">
+      <UniqueIdentifier>{e4cdaa0e-7dca-4fab-8aec-6b1c60ef9f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\Camera">
+      <UniqueIdentifier>{b05099f8-f6b6-492e-a75c-1c71c7266f7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\Collider">
+      <UniqueIdentifier>{f92b1f32-526c-4ba8-88d6-656669e91ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\Rigidbody">
+      <UniqueIdentifier>{2aa46952-fa3e-45f3-ae0c-f4b6b6fa1e17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\Script">
+      <UniqueIdentifier>{54efec2d-f43a-4cf6-b196-38fc045b9bc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\SpriteRenderer">
+      <UniqueIdentifier>{a225e784-5fd6-4681-aac1-c8b823817c7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\TileMapRenderer">
+      <UniqueIdentifier>{1638c286-93fe-4546-ade8-352edc4c3049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Component\Transform">
+      <UniqueIdentifier>{ead61654-0fb6-4ec6-a20c-5048668f1e2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\Animator">
+      <UniqueIdentifier>{d4863fae-7fb1-46b5-8387-b3b5f1f8abc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\Audio">
+      <UniqueIdentifier>{003bf3e1-cba3-4241-9999-8e336392a8aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\Camera">
+      <UniqueIdentifier>{c492c47a-2631-489e-b37d-c887a859de78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\Collider">
+      <UniqueIdentifier>{56704511-e564-4a2e-83a7-983089fd9f7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\Rigidbody">
+      <UniqueIdentifier>{8d1aaddc-e3c9-44b0-bf07-fe65e84f0fd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\Script">
+      <UniqueIdentifier>{8d204114-fb2a-4553-b8af-b2c3c31ae1b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\SpriteRenderer">
+      <UniqueIdentifier>{7318cfee-ab46-4ec4-8a0b-a99e4b5ea7d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\TileMapRenderer">
+      <UniqueIdentifier>{7b46373a-d3e7-487c-9507-f2dccc763743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\Component\Transform">
+      <UniqueIdentifier>{533606bd-fa2c-453b-9fb9-f0fe1436ddab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="public\High Level Interface">
+      <UniqueIdentifier>{d56f4d9b-952a-4c00-8941-071baec9db30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="huruLoadScenes.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="huruPlayScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="huruGameOverScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="huruTitleScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="huruLoadResources.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="huruToolScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="huruTile.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="huruCameraScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="huruPlayScene.cpp">
-      <Filter>Scenes</Filter>
+    <ClCompile Include="private\Collision\huruCollisionManager.cpp">
+      <Filter>private\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="huruGameOverScene.cpp">
-      <Filter>Scenes</Filter>
+    <ClCompile Include="private\Common\huruEntity.cpp">
+      <Filter>private\Common</Filter>
     </ClCompile>
-    <ClCompile Include="huruTitleScene.cpp">
-      <Filter>Scenes</Filter>
+    <ClCompile Include="private\Common\huruMath.cpp">
+      <Filter>private\Common</Filter>
     </ClCompile>
-    <ClCompile Include="huruToolScene.cpp">
-      <Filter>Scenes</Filter>
+    <ClCompile Include="private\FMOD\huruFmod.cpp">
+      <Filter>private\FMOD</Filter>
     </ClCompile>
-    <ClCompile Include="huruTile.cpp">
-      <Filter>Contents</Filter>
+    <ClCompile Include="private\GameObject\huruGameObject.cpp">
+      <Filter>private\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="huruCameraScript.cpp">
-      <Filter>Scripts</Filter>
+    <ClCompile Include="private\Helpers\huruInput.cpp">
+      <Filter>private\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Helpers\huruTime.cpp">
+      <Filter>private\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Layer\huruLayer.cpp">
+      <Filter>private\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Object\huruObject.cpp">
+      <Filter>private\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Renderer\huruRenderer.cpp">
+      <Filter>private\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Resource\huruAnimation.cpp">
+      <Filter>private\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Resource\huruResource.cpp">
+      <Filter>private\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Resource\huruResources.cpp">
+      <Filter>private\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Resource\huruTexture.cpp">
+      <Filter>private\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Scene\huruDontDestroyOnLoad.cpp">
+      <Filter>private\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Scene\huruScene.cpp">
+      <Filter>private\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Scene\huruSceneManager.cpp">
+      <Filter>private\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="private\UI\huruUIBase.cpp">
+      <Filter>private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="private\UI\huruUIButton.cpp">
+      <Filter>private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="private\UI\huruUIHUD.cpp">
+      <Filter>private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="private\UI\huruUIManager.cpp">
+      <Filter>private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\huruComponent.cpp">
+      <Filter>private\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Animator\huruAnimator.cpp">
+      <Filter>private\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Audio\huruAudioListener.cpp">
+      <Filter>private\Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Camera\huruCamera.cpp">
+      <Filter>private\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Collider\huruBoxCollider2D.cpp">
+      <Filter>private\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Collider\huruCircleCollider2D.cpp">
+      <Filter>private\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Collider\huruCollider.cpp">
+      <Filter>private\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Rigidbody\huruRigidbody.cpp">
+      <Filter>private\Component\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Script\huruScript.cpp">
+      <Filter>private\Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\SpriteRenderer\huruSpriteRenderer.cpp">
+      <Filter>private\Component\SpriteRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\TileMapRenderer\huruTileMapRenderer.cpp">
+      <Filter>private\Component\TileMapRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Transform\huruTransform.cpp">
+      <Filter>private\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Resource\huruAudioClip.cpp">
+      <Filter>private\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Component\Audio\huruAudioSource.cpp">
+      <Filter>private\Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="private\HighLevelInterface\huruApplication.cpp">
+      <Filter>private\High Level Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
