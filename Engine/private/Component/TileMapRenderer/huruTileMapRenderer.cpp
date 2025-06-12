@@ -14,7 +14,7 @@ namespace huru
 	TileMapRenderer::TileMapRenderer() :
 		Component(enums::eComponentType::TileMapRenderer),
 		mTexture(nullptr),
-		mTileSize(16.f, 16.f),
+		mTileSize(12.f, 12.f),
 		mSize(3.f, 3.f),
 		mIndex(0, 0)
 	{
