@@ -16,25 +16,19 @@ namespace huru
 		void LateUpdate()  override;
 		void Render(HDC hdc)  override;
 
-		void SetTexture(graphics::Texture* texture) 
-		{
-			mTexture = texture; 
-		}
-		void SetTileSize(const math::Vector2& tileSize) { mTileSize = tileSize; }
-		void SetSize(math::Vector2 size) { mSize = size; }
 
+
+		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
 		math::Vector2 GetIndex() { return mIndex; }
 		void SetIndex(math::Vector2 index) { mIndex = index; }
 
-		void SetTileSizeUpdate(const math::Vector2& tileSize)
-		{
-			mTileSize = tileSize;
-			UpdateTileSize();
-		}
-		void SetSizeUpdate(const math::Vector2& size)
+		void SetSize(const math::Vector2& size)
 		{
 			mSize = size;
-			UpdateTileSize();
+		}
+		void SetScale(const math::Vector2& scale)
+		{
+			mScale = scale;
 		}
 
 		void UpdateTileSize();
@@ -47,8 +41,8 @@ namespace huru
 	private:
 		graphics::Texture* mTexture;
 
-		math::Vector2 mTileSize;
 		math::Vector2 mSize;
+		math::Vector2 mScale;
 		math::Vector2 mIndex;
 	};
 }

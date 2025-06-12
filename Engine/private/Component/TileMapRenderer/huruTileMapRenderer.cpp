@@ -14,8 +14,8 @@ namespace huru
 	TileMapRenderer::TileMapRenderer() :
 		Component(enums::eComponentType::TileMapRenderer),
 		mTexture(nullptr),
-		mTileSize(0.f, 0.f),
 		mSize(0.f, 0.f),
+		mScale(0.f, 0.f),
 		mIndex(0, 0)
 	{
 
@@ -67,13 +67,13 @@ namespace huru
 					hdc,
 					pos.x,
 					pos.y,
-					mTileSize.x * mSize.x * scale.x,
-					mTileSize.y * mSize.y * scale.y,
+					mSize.x * mScale.x * scale.x,
+					mSize.y * mScale.y * scale.y,
 					mTexture->GetHdc(),
-					mIndex.x * mTileSize.x,
-					mIndex.y * mTileSize.y,
-					mTileSize.x,
-					mTileSize.y,
+					mIndex.x * mSize.x,
+					mIndex.y * mSize.y,
+					mSize.x,
+					mSize.y,
 					func);
 			}
 			else
@@ -82,13 +82,13 @@ namespace huru
 					hdc,
 					pos.x,
 					pos.y,
-					mTileSize.x * mSize.x * scale.x,
-					mTileSize.y * mSize.y * scale.y,
+					mSize.x * mScale.x * scale.x,
+					mSize.y * mScale.y * scale.y,
 					mTexture->GetHdc(),
-					mIndex.x * mTileSize.x,
-					mIndex.y * mTileSize.y,
-					mTileSize.x,
-					mTileSize.y,
+					mIndex.x * mSize.x,
+					mIndex.y * mSize.y,
+					mSize.x,
+					mSize.y,
 					RGB(255, 0, 255));
 			}
 		}
@@ -96,7 +96,7 @@ namespace huru
 
 	void TileMapRenderer::UpdateTileSize()
 	{
-		TileSize = mTileSize * mSize;
-		OriginTileSize = mTileSize;
+		TileSize = mSize * mScale;
+		OriginTileSize = mSize;
 	}
 }
