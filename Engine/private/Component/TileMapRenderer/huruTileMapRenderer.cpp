@@ -14,8 +14,8 @@ namespace huru
 	TileMapRenderer::TileMapRenderer() :
 		Component(enums::eComponentType::TileMapRenderer),
 		mTexture(nullptr),
-		mTileSize(12.f, 12.f),
-		mSize(3.f, 3.f),
+		mTileSize(0.f, 0.f),
+		mSize(0.f, 0.f),
 		mIndex(0, 0)
 	{
 		TileSize = mTileSize * mSize;
@@ -93,5 +93,11 @@ namespace huru
 					RGB(255, 0, 255));
 			}
 		}
+	}
+
+	void TileMapRenderer::UpdateTileSize()
+	{
+		TileSize = mTileSize * mSize;
+		OriginTileSize = mTileSize;
 	}
 }

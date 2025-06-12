@@ -25,10 +25,24 @@ namespace huru
 		math::Vector2 GetIndex() { return mIndex; }
 		void SetIndex(math::Vector2 index) { mIndex = index; }
 
+		void SetTileSizeUpdate(const math::Vector2& tileSize)
+		{
+			mTileSize = tileSize;
+			UpdateTileSize();
+		}
+		void SetSizeUpdate(const math::Vector2& size)
+		{
+			mSize = size;
+			UpdateTileSize();
+		}
+
 	public:
 		static math::Vector2 TileSize;
 		static math::Vector2 OriginTileSize;
 		static math::Vector2 SelectedIndex;
+
+	private:
+		void UpdateTileSize();
 
 	private:
 		graphics::Texture* mTexture;
