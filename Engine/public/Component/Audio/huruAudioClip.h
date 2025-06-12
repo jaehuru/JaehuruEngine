@@ -1,7 +1,7 @@
 #pragma once
 
-#include "FMOD/huruFmod.h"
 #include "Resource/huruResource.h"
+#include "FMOD/huruFmod.h"
 
 namespace huru
 {

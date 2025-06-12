@@ -1,7 +1,7 @@
 #pragma once
 
-#include "huruResource.h"
-#include "huruTexture.h"
+#include "Resource/huruResource.h"
+#include "Resource/huruTexture.h"
 
 namespace huru
 {
