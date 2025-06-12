@@ -10,7 +10,7 @@
 namespace huru::object
 {
 	template<typename T>
-	static T* Instantiate(eLayerType type)
+	static T* Instantiate(enums::eLayerType type)
 	{
 		T* gameObj = new T();
 		gameObj->SetLayerType(type);
@@ -22,7 +22,7 @@ namespace huru::object
 	}
 
 	template<typename T>
-	static T* Instantiate(eLayerType type, Vector2 position)
+	static T* Instantiate(enums::eLayerType type, math::Vector2 position)
 	{
 		T* gameObj = new T();
 		gameObj->SetLayerType(type);

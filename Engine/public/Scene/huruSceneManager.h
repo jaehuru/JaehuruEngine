@@ -28,7 +28,7 @@ namespace huru
 		{ 
 			return mDontDestroyOnLoad; 
 		}
-		static std::vector<GameObject*> GetGameObjects(eLayerType layer);
+		static std::vector<GameObject*> GetGameObjects(enums::eLayerType layer);
 
 		static void	Initialize();
 		static void	Update();

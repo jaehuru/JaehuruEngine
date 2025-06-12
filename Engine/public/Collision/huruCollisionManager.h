@@ -7,8 +7,6 @@
 namespace huru
 {
 	class Scene;
-	
-	using namespace enums;
 
 	union CollisionID
 	{
@@ -33,16 +31,16 @@ namespace huru
 		static void Render(HDC hdc);
 		static void Clear();
 
-		static void CollisionLayerCheck(eLayerType left,
-										eLayerType right,
+		static void CollisionLayerCheck(enums::eLayerType left,
+										enums::eLayerType right,
 										bool enable);
-		static void LayerCollsion(Scene* scene, eLayerType left, eLayerType right);
+		static void LayerCollsion(Scene* scene, enums::eLayerType left, enums::eLayerType right);
 		static void ColliderCollision(Collider* left, Collider* right);
 		static bool Intersect(Collider* left, Collider* right);
 
 	private:
-		static std::bitset<(UINT)eLayerType::Max> 
-			mCollisionLayerMatrix[(UINT)eLayerType::Max];
+		static std::bitset<(UINT)enums::eLayerType::Max>
+			mCollisionLayerMatrix[(UINT)enums::eLayerType::Max];
 		static std::unordered_map<UINT64, bool> mCollisionMap;
 	};
 }

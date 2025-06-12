@@ -6,9 +6,6 @@
 
 namespace huru
 {
-	using namespace object;
-	using namespace enums;
-
 	class Scene : public Entity
 	{
 	public:
@@ -25,9 +22,9 @@ namespace huru
 		virtual void	OnExit();
 
 		void			AddGameObject(GameObject* gameObj,
-										const eLayerType type);
+										const enums::eLayerType type);
 		void			EraseGameObject(GameObject* gameObj);
-		Layer*			GetLayer(const eLayerType type) 
+		Layer*			GetLayer(const enums::eLayerType type)
 		{
 			return mLayers[(UINT)type]; 
 		}

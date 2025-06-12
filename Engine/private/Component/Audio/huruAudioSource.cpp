@@ -8,7 +8,7 @@
 namespace huru
 {
 	AudioSource::AudioSource()
-		: Component(eComponentType::AudioSource)
+		: Component(enums::eComponentType::AudioSource)
 	{
 	}
 
@@ -27,7 +27,7 @@ namespace huru
 	void AudioSource::LateUpdate()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
+		math::Vector2 pos = tr->GetPosition();
 
 		mAudioClip->Set2DAttributes(pos);
 	}

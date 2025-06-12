@@ -20,21 +20,21 @@ namespace huru
 		{
 			mTexture = texture; 
 		}
-		void SetSize(Vector2 size) { mSize = size; }
+		void SetSize(math::Vector2 size) { mSize = size; }
 
-		Vector2 GetIndex() { return mIndex; }
-		void SetIndex(Vector2 index) { mIndex = index; }
+		math::Vector2 GetIndex() { return mIndex; }
+		void SetIndex(math::Vector2 index) { mIndex = index; }
 
 	public:
-		static Vector2 TileSize;
-		static Vector2 OriginTileSize;
-		static Vector2 SelectedIndex;
+		static math::Vector2 TileSize;
+		static math::Vector2 OriginTileSize;
+		static math::Vector2 SelectedIndex;
 
 	private:
 		graphics::Texture* mTexture;
 
-		Vector2 mTileSize;
-		Vector2 mSize;
-		Vector2 mIndex;
+		math::Vector2 mTileSize;
+		math::Vector2 mSize;
+		math::Vector2 mIndex;
 	};
 }

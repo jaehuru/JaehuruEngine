@@ -45,7 +45,7 @@ namespace huru
 		mChannel->stop();
 	}
 
-	void AudioClip::Set2DAttributes(const Vector2 pos)
+	void AudioClip::Set2DAttributes(const math::Vector2 pos)
 	{
 		FMOD_VECTOR fmodPos(0.0f, 0.0f, 0.0f);
 		FMOD_VECTOR fmodVel(0.0f, 0.0f, 0.0f);

@@ -5,7 +5,7 @@
 namespace huru
 {
 	UIHUD::UIHUD()
-		: UIBase(eUIType::HpBar)
+		: UIBase(enums::eUIType::HpBar)
 	{
 	}
 

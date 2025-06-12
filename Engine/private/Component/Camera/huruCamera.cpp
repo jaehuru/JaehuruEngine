@@ -8,10 +8,10 @@ extern huru::Application application;
 namespace huru
 {
 	Camera::Camera() :
-		Component(eComponentType::Camera),
-		mDistance(Vector2::Zero),
-		mResolution(Vector2::Zero),
-		mLookPosition(Vector2::Zero),
+		Component(enums::eComponentType::Camera),
+		mDistance(math::Vector2::Zero),
+		mResolution(math::Vector2::Zero),
+		mLookPosition(math::Vector2::Zero),
 		mTarget(nullptr)
 	{
 

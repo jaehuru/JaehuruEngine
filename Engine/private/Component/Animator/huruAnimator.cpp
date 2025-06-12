@@ -4,7 +4,7 @@
 namespace huru
 {
 	Animator::Animator() :
-		Component(eComponentType::Animator),
+		Component(enums::eComponentType::Animator),
 		mAnimations{ },
 		mActiveAnimation(nullptr),
 		mbLoop(false),
@@ -65,8 +65,8 @@ namespace huru
 
 	void Animator::CreateAnimation(const std::wstring& name,
 									graphics::Texture* spriteSheet,
-									Vector2 leftTop, Vector2 size,
-									Vector2 offset, UINT spriteLength, 
+									math::Vector2 leftTop, math::Vector2 size,
+									math::Vector2 offset, UINT spriteLength,
 									float duration)
 	{
 		Animation* animation = nullptr;
@@ -89,7 +89,7 @@ namespace huru
 
 	void Animator::CreateAnimationByFolder(const std::wstring& name, 
 											const std::wstring& path,
-											Vector2 offset,
+											math::Vector2 offset,
 											float duration)
 	{
 		Animation* animation = nullptr;
@@ -132,9 +132,9 @@ namespace huru
 				SRCCOPY);
 		}
 
-		CreateAnimation(name, spriteSheet, Vector2(Vector2::Zero),
-							Vector2(imageWidth, imageHeight),
-							offset, fileCount, duration);
+		CreateAnimation(name, spriteSheet, math::Vector2(math::Vector2::Zero),
+						math::Vector2(imageWidth, imageHeight),
+						offset, fileCount, duration);
 	}
 
 	Animation* Animator::FindAnimation(const std::wstring& name)

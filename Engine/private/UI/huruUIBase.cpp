@@ -2,7 +2,7 @@
 
 namespace huru
 {
-	UIBase::UIBase(eUIType type) : 
+	UIBase::UIBase(enums::eUIType type) :
 		mType(type),
 		mbMouseOn(false)
 	{

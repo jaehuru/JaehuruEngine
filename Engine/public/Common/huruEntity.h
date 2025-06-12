@@ -2,8 +2,6 @@
 
 #include "CommonInclude.h"
 
-using namespace huru::math;
-
 namespace huru
 {
 	class Entity

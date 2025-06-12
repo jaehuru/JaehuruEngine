@@ -7,9 +7,9 @@
 namespace huru
 {
 	SpriteRenderer::SpriteRenderer() :
-		Component(eComponentType::SpriteRenderer),
+		Component(enums::eComponentType::SpriteRenderer),
 		mTexture(nullptr),
-		mSize(Vector2::One)
+		mSize(math::Vector2::One)
 
 	{
 
@@ -41,8 +41,8 @@ namespace huru
 			assert(false);
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
-		Vector2 scale = tr->GetScale();
+		math::Vector2 pos = tr->GetPosition();
+		math::Vector2 scale = tr->GetScale();
 		float rot = tr->GetRotation();
 
 		pos = renderer::mainCamera-> CalculatePosition(pos);

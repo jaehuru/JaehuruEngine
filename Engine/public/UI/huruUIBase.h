@@ -4,7 +4,6 @@
 
 namespace huru
 {
-	using namespace enums;
 	class UIBase : public Entity
 	{
 	public:
@@ -22,7 +21,7 @@ namespace huru
 			std::function<void()> mEvent;
 		};
 
-		UIBase(eUIType type);
+		UIBase(enums::eUIType type);
 		virtual ~UIBase();
 
 		/// <summary>
@@ -53,22 +52,22 @@ namespace huru
 		virtual void OnRender(HDC hdc);
 		virtual void OnClear();
 
-		eUIType GetType() { return mType; }
-		void SetType(eUIType type) { mType = type; }
+		enums::eUIType GetType() { return mType; }
+		void SetType(enums::eUIType type) { mType = type; }
 		void SetFullScreen(bool enable) { mbFullScreen = enable; }
 		bool IsFullScreen() { return mbFullScreen; }
-		Vector2 GetPos() { return mPosition; }
-		void SetPos(Vector2 position) { mPosition = position; }
-		Vector2 GetSize() { return mSize; }
-		void SetSize(Vector2 size) { mSize = size; }
+		math::Vector2 GetPos() { return mPosition; }
+		void SetPos(math::Vector2 position) { mPosition = position; }
+		math::Vector2 GetSize() { return mSize; }
+		void SetSize(math::Vector2 size) { mSize = size; }
 
 	protected:
-		Vector2 mPosition;
-		Vector2 mSize;
+		math::Vector2 mPosition;
+		math::Vector2 mSize;
 		bool mbMouseOn;
 
 	private:
-		eUIType mType;
+		enums::eUIType mType;
 		bool mbFullScreen;
 		bool mbEnabled;
 		UIBase* mParent;

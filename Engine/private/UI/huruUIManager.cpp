@@ -5,24 +5,24 @@
 
 namespace huru
 {
-	std::unordered_map<eUIType, UIBase*> UIManager::mUIs = { };
+	std::unordered_map<enums::eUIType, UIBase*> UIManager::mUIs = { };
 	std::stack<UIBase*> UIManager::mUIBases = { };
-	std::queue<eUIType> UIManager::mRequestUIQueue = { };
+	std::queue<enums::eUIType> UIManager::mRequestUIQueue = { };
 	UIBase* UIManager::mActiveUI = nullptr;
 
 	void UIManager::Initialize()
 	{
 		// UI 객체 생성해주기
 		UIHUD* hud = new UIHUD();
-		mUIs.insert(std::make_pair(eUIType::HpBar, hud));
+		mUIs.insert(std::make_pair(enums::eUIType::HpBar, hud));
 
 		UIButton* button = new UIButton();
-		mUIs.insert(std::make_pair(eUIType::Button, button));
+		mUIs.insert(std::make_pair(enums::eUIType::Button, button));
 	}
 
-	void UIManager::OnLoad(eUIType type)
+	void UIManager::OnLoad(enums::eUIType type)
 	{
-		std::unordered_map<eUIType, UIBase*>::iterator iter
+		std::unordered_map<enums::eUIType, UIBase*>::iterator iter
 			= mUIs.find(type);
 
 		if (iter == mUIs.end())
@@ -49,7 +49,7 @@ namespace huru
 
 		if (mRequestUIQueue.size() > 0)
 		{
-			eUIType requestUI = mRequestUIQueue.front();
+			enums::eUIType requestUI = mRequestUIQueue.front();
 			mRequestUIQueue.pop();
 			OnLoad(requestUI);
 		}
@@ -70,7 +70,7 @@ namespace huru
 
 		if (mRequestUIQueue.size() > 0)
 		{
-			eUIType requestUI = mRequestUIQueue.front();
+			enums::eUIType requestUI = mRequestUIQueue.front();
 			mRequestUIQueue.pop();
 			OnLoad(requestUI);
 		}
@@ -91,7 +91,7 @@ namespace huru
 
 		if (mRequestUIQueue.size() > 0)
 		{
-			eUIType requestUI = mRequestUIQueue.front();
+			enums::eUIType requestUI = mRequestUIQueue.front();
 			mRequestUIQueue.pop();
 			OnLoad(requestUI);
 		}
@@ -141,12 +141,12 @@ namespace huru
 		}
 	}
 
-	void UIManager::Push(eUIType type)
+	void UIManager::Push(enums::eUIType type)
 	{
 		mRequestUIQueue.push(type);
 	}
 
-	void UIManager::Pop(eUIType type)
+	void UIManager::Pop(enums::eUIType type)
 	{
 		if (mUIBases.size() <= 0)
 			return;

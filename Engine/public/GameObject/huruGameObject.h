@@ -67,11 +67,11 @@ namespace huru
 		}
 		bool IsActive() { return mState == eState::Active; }
 		bool IsDead() { return mState == eState::Dead; }
-		void SetLayerType(eLayerType layerType) 
+		void SetLayerType(enums::eLayerType layerType) 
 		{ 
 			mLayerType = layerType; 
 		}
-		eLayerType GetLayerType() { return mLayerType; }
+		enums::eLayerType GetLayerType() { return mLayerType; }
 
 	private:
 		void	initializeTransform();
@@ -80,7 +80,7 @@ namespace huru
 	private:
 		eState						mState;
 		std::vector<Component*>		mComponents;
-		eLayerType					mLayerType;
+		enums::eLayerType					mLayerType;
 	};
 }
 

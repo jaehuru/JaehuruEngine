@@ -6,12 +6,13 @@
 
 namespace huru
 {
-	Vector2 TileMapRenderer::TileSize = Vector2::One;
-	Vector2 TileMapRenderer::OriginTileSize = Vector2::One;
-	Vector2 TileMapRenderer::SelectedIndex = Vector2::One;
+
+	math::Vector2 TileMapRenderer::TileSize = math::Vector2::One;
+	math::Vector2 TileMapRenderer::OriginTileSize = math::Vector2::One;
+	math::Vector2 TileMapRenderer::SelectedIndex = math::Vector2::One;
 
 	TileMapRenderer::TileMapRenderer() :
-		Component(eComponentType::TileMapRenderer),
+		Component(enums::eComponentType::TileMapRenderer),
 		mTexture(nullptr),
 		mTileSize(16.f, 16.f),
 		mSize(3.f, 3.f),
@@ -47,8 +48,8 @@ namespace huru
 			assert(false);
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
-		Vector2 scale = tr->GetScale();
+		math::Vector2 pos = tr->GetPosition();
+		math::Vector2 scale = tr->GetScale();
 		float rot = tr->GetRotation();
 
 		pos = renderer::mainCamera->CalculatePosition(pos);

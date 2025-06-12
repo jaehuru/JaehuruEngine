@@ -4,15 +4,13 @@
 
 namespace huru
 {
-	using namespace enums;
-
 	class UIBase;
 
 	class UIManager
 	{
 	public:
 		static void Initialize();
-		static void OnLoad(eUIType type);
+		static void OnLoad(enums::eUIType type);
 		static void Update();
 		static void LateUpdate();
 		static void Render(HDC hdc);
@@ -20,13 +18,13 @@ namespace huru
 		static void OnFail();
 		static void Release();
 
-		static void Push(eUIType type);
-		static void Pop(eUIType type);
+		static void Push(enums::eUIType type);
+		static void Pop(enums::eUIType type);
 
 	private:
-		static std::unordered_map<eUIType, UIBase*> mUIs;
+		static std::unordered_map<enums::eUIType, UIBase*> mUIs;
 		static std::stack<UIBase*> mUIBases;
-		static std::queue<eUIType> mRequestUIQueue;
+		static std::queue<enums::eUIType> mRequestUIQueue;
 		static UIBase* mActiveUI;
 	};
 }

@@ -89,7 +89,7 @@ namespace huru
 
 	void Scene::EraseGameObject(GameObject* gameObj)
 	{
-		eLayerType layerType = gameObj->GetLayerType();
+		enums::eLayerType layerType = gameObj->GetLayerType();
 		mLayers[(UINT)layerType]->EraseGameObject(gameObj);
 	}
 

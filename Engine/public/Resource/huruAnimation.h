@@ -10,15 +10,15 @@ namespace huru
 	public:
 		struct Sprite
 		{
-			Vector2 leftTop;
-			Vector2 size;
-			Vector2 offset;
+			math::Vector2 leftTop;
+			math::Vector2 size;
+			math::Vector2 offset;
 			float duration;
 
 			Sprite() :
-				leftTop(Vector2::Zero),
-				size(Vector2::Zero),
-				offset(Vector2::Zero),
+				leftTop(math::Vector2::Zero),
+				size(math::Vector2::Zero),
+				offset(math::Vector2::Zero),
 				duration(0.f)
 			{
 
@@ -35,9 +35,9 @@ namespace huru
 
 		void		CreateAnimation(const std::wstring& name,
 									graphics::Texture* spriteSheet,
-									Vector2 leftTop,
-									Vector2 size,
-									Vector2 offset,
+									math::Vector2 leftTop,
+									math::Vector2 size,
+									math::Vector2 offset,
 									UINT spriteLength,
 									float duration);
 

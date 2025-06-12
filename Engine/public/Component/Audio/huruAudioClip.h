@@ -1,7 +1,7 @@
 #pragma once
 
 #include "FMOD/huruFmod.h"
-#include "huruResource.h"
+#include "Resource/huruResource.h"
 
 namespace huru
 {
@@ -15,7 +15,7 @@ namespace huru
 
 		void			Play();
 		void			Stop();
-		void			Set2DAttributes(const Vector2 pos);
+		void			Set2DAttributes(const math::Vector2 pos);
 		void			SetLoop(bool loop) { mbLoop = loop; }
 
 	private:

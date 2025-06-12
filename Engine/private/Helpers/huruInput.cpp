@@ -5,6 +5,7 @@ extern huru::Application application;
 
 namespace huru
 {
+
 	std::vector<Input::Key> Input::Keys = { };
 	math::Vector2 huru::Input::mMousePosition = math::Vector2::One;
 

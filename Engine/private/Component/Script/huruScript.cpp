@@ -4,7 +4,7 @@
 namespace huru
 {
 	Script::Script() :
-		Component(eComponentType::Script)
+		Component(enums::eComponentType::Script)
 	{
 
 	}

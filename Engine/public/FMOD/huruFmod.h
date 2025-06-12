@@ -9,14 +9,13 @@
 
 namespace huru
 {
-	using namespace math;
 	class Fmod
 	{
 	public:
 		static void Initialize();
 		static bool CreateSound(const std::string& path, FMOD::Sound** sound);
 		static void SoundPlay(FMOD::Sound* sound, FMOD::Channel** channel);
-		static void Set2DListenerAttributes(const Vector2* pos);
+		static void Set2DListenerAttributes(const math::Vector2* pos);
 		static void Release();
 
 	private:

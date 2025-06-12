@@ -25,7 +25,7 @@ namespace huru
 		return iter->second;
 	}
 
-	std::vector<GameObject*> SceneManager::GetGameObjects(eLayerType layer)
+	std::vector<GameObject*> SceneManager::GetGameObjects(enums::eLayerType layer)
 	{
 		std::vector<GameObject*> gameObjects = mActiveScene->GetLayer(layer)->GetGameObjects();
 		std::vector<GameObject*> dontDestroyOnLoad = mDontDestroyOnLoad->GetLayer(layer)->GetGameObjects();
