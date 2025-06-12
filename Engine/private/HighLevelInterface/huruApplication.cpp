@@ -69,7 +69,7 @@ namespace huru
 	{
 		clearRenderTarget();
 
-		Time::Render(mBackHdc);
+		//Time::Render(mBackHdc);
 		CollisionManager::Render(mBackHdc);
 		UIManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
