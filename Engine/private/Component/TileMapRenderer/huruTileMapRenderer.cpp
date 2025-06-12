@@ -18,8 +18,7 @@ namespace huru
 		mSize(0.f, 0.f),
 		mIndex(0, 0)
 	{
-		TileSize = mTileSize * mSize;
-		OriginTileSize = mTileSize;
+
 	}
 
 	TileMapRenderer::~TileMapRenderer()

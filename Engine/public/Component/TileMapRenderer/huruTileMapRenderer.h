@@ -20,6 +20,7 @@ namespace huru
 		{
 			mTexture = texture; 
 		}
+		void SetTileSize(const math::Vector2& tileSize) { mTileSize = tileSize; }
 		void SetSize(math::Vector2 size) { mSize = size; }
 
 		math::Vector2 GetIndex() { return mIndex; }
@@ -36,13 +37,12 @@ namespace huru
 			UpdateTileSize();
 		}
 
+		void UpdateTileSize();
+
 	public:
 		static math::Vector2 TileSize;
 		static math::Vector2 OriginTileSize;
 		static math::Vector2 SelectedIndex;
-
-	private:
-		void UpdateTileSize();
 
 	private:
 		graphics::Texture* mTexture;
