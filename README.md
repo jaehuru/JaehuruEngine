@@ -29,7 +29,7 @@ fmodstudio_vc.lib
 fmodL_vc.lib
 fmodstudioL_vc.lib
 ```
-5. **빌드 이벤트 → 빌드 후 이벤트**에 아래 스크립트를 추가하세요:
+5. **빌드 이벤트 → 빌드 후 이벤트**
 ```
 IF "$(Configuration)"=="Debug" (
     xcopy /Y /D "$(SolutionDir)..\JaehuruEngine\External\FMOD\lib\x64\fmodL.dll" "$(OutDir)"
@@ -39,7 +39,7 @@ IF "$(Configuration)"=="Debug" (
     xcopy /Y /D "$(SolutionDir)..\JaehuruEngine\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
 )
 ```
-
+---
 ## 엔진 구조 모듈화 및 게임 프로젝트 분리
 
 ### 서브모듈 기반 엔진 구조 개편
