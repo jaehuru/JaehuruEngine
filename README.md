@@ -6,7 +6,7 @@ Win32 API 기반의 기초적인 윈도우 창 생성과 메시지 루프 처리
 - ' Window OS '
 - ' Visual Studio 2022 '
 
-## ⚠️ FMOD 서브모듈 사용 시 주의 사항
+## ⚠️ 서브모듈 사용 시 주의 사항
 
 `Application::Initialize()` 함수에서 `Fmod::Initialize()`가 호출되는 순간부터 빌드가 안 되는 경우가 생깁니다.
 
