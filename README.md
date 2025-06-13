@@ -2,6 +2,44 @@
 이 프로젝트는 자체 게임 엔진을 개발하며 3D 그래픽스 렌더링과 게임 엔진 아키텍처의 근본 원리를 학습하기 위한 목적으로 시작되었습니다.
 Win32 API 기반의 기초적인 윈도우 창 생성과 메시지 루프 처리부터 시작하여, DirectX 11 기반의 렌더링 파이프라인을 직접 구현하고, 이후 실제 게임 제작까지 확장해 나갈 예정입니다.
 
+## 개발 환경
+- ' Window OS '
+- ' Visual Studio 2022 '
+
+## ⚠️ FMOD 서브모듈 사용 시 주의 사항
+
+`Application::Initialize()` 함수에서 `Fmod::Initialize()`가 호출되는 순간부터 빌드가 안 되는 경우가 생깁니다.
+
+아래 **클라이언트 프로젝트 설정**을 반드시 확인하세요.
+
+### 프로젝트 설정 필수 항목
+
+1. **C/C++ → 일반 → 추가 포함 디렉터리**
+```
+$(SolutionDir)..\JaehuruEngine\External\FMOD\lib\x64
+```
+3. **링커 → 일반 → 추가 라이브러리 디렉터리**
+```
+$(SolutionDir)..\JaehuruEngine\External\FMOD\lib\x64
+```
+4. **링커 → 입력 → 추가 종속성**
+```
+fmod_vc.lib
+fmodstudio_vc.lib
+fmodL_vc.lib
+fmodstudioL_vc.lib
+```
+5. **빌드 이벤트 → 빌드 후 이벤트**에 아래 스크립트를 추가하세요:
+```
+IF "$(Configuration)"=="Debug" (
+    xcopy /Y /D "$(SolutionDir)..\JaehuruEngine\External\FMOD\lib\x64\fmodL.dll" "$(OutDir)"
+    xcopy /Y /D "$(SolutionDir)..\JaehuruEngine\External\FMOD\lib\x64\fmodstudioL.dll" "$(OutDir)"
+) ELSE (
+    xcopy /Y /D "$(SolutionDir)..\JaehuruEngine\External\FMOD\lib\x64\fmod.dll" "$(OutDir)"
+    xcopy /Y /D "$(SolutionDir)..\JaehuruEngine\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
+)
+```
+
 ## 엔진 구조 모듈화 및 게임 프로젝트 분리
 
 ### 서브모듈 기반 엔진 구조 개편
