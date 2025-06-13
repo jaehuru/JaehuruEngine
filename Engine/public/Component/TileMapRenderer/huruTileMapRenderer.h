@@ -16,8 +16,6 @@ namespace huru
 		void LateUpdate()  override;
 		void Render(HDC hdc)  override;
 
-		void UpdateTileSize();
-
 		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
 		math::Vector2 GetIndex() { return mIndex; }
 		void SetIndex(math::Vector2 index) { mIndex = index; }
@@ -26,8 +24,6 @@ namespace huru
 
 
 	public:
-		static math::Vector2 TileSize;
-		static math::Vector2 OriginTileSize;
 		static math::Vector2 SelectedIndex;
 
 	private:

@@ -6,9 +6,6 @@
 
 namespace huru
 {
-
-	math::Vector2 TileMapRenderer::TileSize = math::Vector2::One;
-	math::Vector2 TileMapRenderer::OriginTileSize = math::Vector2::One;
 	math::Vector2 TileMapRenderer::SelectedIndex = math::Vector2::One;
 
 	TileMapRenderer::TileMapRenderer() :
@@ -92,11 +89,5 @@ namespace huru
 					RGB(255, 0, 255));
 			}
 		}
-	}
-
-	void TileMapRenderer::UpdateTileSize()
-	{
-		TileSize = mSize * mScale;
-		OriginTileSize = mSize;
 	}
 }
