@@ -14,7 +14,7 @@ namespace huru
 	{
 		// UI 객체 생성해주기
 		UIHUD* hud = new UIHUD();
-		mUIs.insert(std::make_pair(enums::eUIType::HpBar, hud));
+		mUIs.insert(std::make_pair(enums::eUIType::HUD, hud));
 
 		UIButton* button = new UIButton();
 		mUIs.insert(std::make_pair(enums::eUIType::Button, button));

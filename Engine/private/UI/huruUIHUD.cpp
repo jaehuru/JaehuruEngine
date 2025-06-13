@@ -5,7 +5,7 @@
 namespace huru
 {
 	UIHUD::UIHUD()
-		: UIBase(enums::eUIType::HpBar)
+		: UIBase(enums::eUIType::HUD)
 	{
 	}
 
@@ -15,7 +15,7 @@ namespace huru
 
 	void UIHUD::OnInit()
 	{
-		mTexture = Resources::Find<graphics::Texture>(L"HPBAR");
+		mTexture = Resources::Find<graphics::Texture>(L"HUD");
 	}
 
 	void UIHUD::OnActive()

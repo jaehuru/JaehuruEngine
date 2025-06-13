@@ -20,12 +20,6 @@ namespace huru::enums
 	enum class eLayerType
 	{
 		None,
-		Background,
-		Tile,
-		Animal,
-		Player,
-		Floor,
-		Particle,
 		Max = 16,
 	};
 
@@ -47,8 +41,8 @@ namespace huru::enums
 
 	enum class eUIType
 	{
-		HpBar,
 		Button,
+		HUD,
 		End,
 	};
 }

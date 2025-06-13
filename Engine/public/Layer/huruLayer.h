@@ -27,7 +27,6 @@ namespace huru
 		void eraseDeadGameObject();
 
 	private:
-		//eLayerType mType;
 		std::vector<GameObject*> mGameObjects;
 	};
 
