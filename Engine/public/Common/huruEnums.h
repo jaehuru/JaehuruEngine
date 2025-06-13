@@ -1,7 +1,5 @@
 #pragma once
 
-#include <type_traits>
-
 namespace huru::enums
 {
 	enum class eComponentType
@@ -54,7 +52,6 @@ namespace huru::utils
 	template<typename T>
 	constexpr huru::enums::eLayerType ToEngineLayerType(T layerEnum)
 	{
-		static_assert(std::is_enum_v<T>, "Must be enum type.");
 		return static_cast<huru::enums::eLayerType>(layerEnum);
 	}
 }
