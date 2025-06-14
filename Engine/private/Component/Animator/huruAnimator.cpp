@@ -64,7 +64,7 @@ namespace huru
 	}
 
 	void Animator::CreateAnimation(const wstring& name,
-									Texture* spriteSheet,
+									graphics::Texture* spriteSheet,
 									Vector2 leftTop, Vector2 size,
 									Vector2 offset, UINT spriteLength,
 									float duration)
