@@ -136,8 +136,7 @@ namespace huru
 				right->OnCollisionEnter(left);
 				iter->second = true;
 			}
-			// 이미 충돌 중
-			else
+			else // 충돌 지속 중
 			{
 				left->OnCollisionStay(right);
 				right->OnCollisionStay(left);
@@ -145,7 +144,6 @@ namespace huru
 		}
 		else
 		{
-			// 충돌 후 벗어났을때
 			if (iter->second == true)
 			{
 				left->OnCollisionExit(right);
@@ -157,6 +155,33 @@ namespace huru
 
 	bool CollisionManager::Intersect(Collider* left, Collider* right)
 	{
+		enums::eColliderType leftType = left->GetColliderType();
+		enums::eColliderType rightType = right->GetColliderType();
+
+		// Rect - Rect
+		if (leftType == enums::eColliderType::Rect2D && rightType == enums::eColliderType::Rect2D)
+		{
+			return IntersectRectRect(left, right);
+		}
+		// Circle - Circle
+		else if (leftType == enums::eColliderType::Circle2D && rightType == enums::eColliderType::Circle2D)
+		{
+			return IntersectCircleCircle(left, right);
+		}
+		// Circle - Rect or Rect - Circle
+		else if ((leftType == enums::eColliderType::Circle2D && rightType == enums::eColliderType::Rect2D) ||
+			(leftType == enums::eColliderType::Rect2D && rightType == enums::eColliderType::Circle2D))
+		{
+			Collider* circle = (leftType == enums::eColliderType::Circle2D) ? left : right;
+			Collider* rect = (leftType == enums::eColliderType::Rect2D) ? left : right;
+			return IntersectCircleRect(circle, rect);
+		}
+
+		return false;
+	}
+
+	math::Vector2 CollisionManager::CalculateCollisionDepth(Collider* left, Collider* right)
+	{
 		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
 
@@ -166,65 +191,98 @@ namespace huru
 		math::Vector2 leftSize = left->GetSize() * 100.0f;
 		math::Vector2 rightSize = right->GetSize() * 100.0f;
 
-		enums::eColliderType leftType = left->GetColliderType();
-		enums::eColliderType rightType = right->GetColliderType();
+		// 각 축의 거리 차이
+		float deltaX = rightPos.x - leftPos.x;
+		float deltaY = rightPos.y - leftPos.y;
 
-		// AABB(Axis-Aligned Bounding Box) rect - rect
-		if (leftType == enums::eColliderType::Rect2D
-			&& rightType == enums::eColliderType::Rect2D)
+		// 겹친 깊이 계산 (절대값)
+		float intersectX = (leftSize.x / 2.0f + rightSize.x / 2.0f) - fabs(deltaX);
+		float intersectY = (leftSize.y / 2.0f + rightSize.y / 2.0f) - fabs(deltaY);
+
+		// 겹치지 않으면 (음수) 0 반환
+		if (intersectX < 0 || intersectY < 0)
+			return math::Vector2(0.0f, 0.0f);
+
+		// 깊이 벡터: x, y 각각 어느 방향으로 밀어야 하는지 방향 포함
+		float depthX = (deltaX > 0) ? -intersectX : intersectX;
+		float depthY = (deltaY > 0) ? -intersectY : intersectY;
+
+		return math::Vector2(depthX, depthY);
+	}
+
+	bool CollisionManager::CheckCollisionWithDepth(Collider* left, Collider* right, math::Vector2& outDepth)
+	{
+		if (Intersect(left, right))
 		{
-			if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f)
-				&& fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
+			outDepth = math::Vector2(0.0f, 0.0f);
+			if (left->GetColliderType() == enums::eColliderType::Rect2D
+				&& right->GetColliderType() == enums::eColliderType::Rect2D)
 			{
-				return true;
+				outDepth = CalculateCollisionDepth(left, right);
 			}
+			return true;
 		}
-
-		//circle -circle
-		if (leftType == enums::eColliderType::Circle2D
-			&& rightType == enums::eColliderType::Circle2D)
-		{
-			math::Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
-			math::Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
-			float distance = (leftCirclePos - rightCirclePos).length();
-			if (distance <= (leftSize.x / 2.0f + rightSize.x / 2.0f))
-			{
-				return true;
-			}
-		}
-
-		// circle - rect
-		if ((leftType == enums::eColliderType::Circle2D && rightType == enums::eColliderType::Rect2D)
-			|| (leftType == enums::eColliderType::Rect2D && rightType == enums::eColliderType::Circle2D))
-		{
-			// Circle이 왼쪽에 오도록 정렬
-			Collider* circle = (leftType == enums::eColliderType::Circle2D) ? left : right;
-			Collider* rect = (leftType == enums::eColliderType::Rect2D) ? left : right;
-
-			math::Vector2 circlePos = circle->GetOwner()->GetComponent<Transform>()->GetPosition() + circle->GetOffset();
-			math::Vector2 circleSize = circle->GetSize() * 100.0f;
-			math::Vector2 circleCenter = circlePos + (circleSize / 2.0f);
-			float circleRadius = circleSize.x / 2.0f;
-
-			math::Vector2 rectPos = rect->GetOwner()->GetComponent<Transform>()->GetPosition() + rect->GetOffset();
-			math::Vector2 rectSize = rect->GetSize() * 100.0f;
-			math::Vector2 rectHalf = rectSize / 2.0f;
-			math::Vector2 rectCenter = rectPos + rectHalf;
-
-			// 사각형 내부에서 가장 가까운 점 계산
-			math::Vector2 closestPoint;
-			closestPoint.x = max(rectCenter.x - rectHalf.x, min(circleCenter.x, rectCenter.x + rectHalf.x));
-			closestPoint.y = max(rectCenter.y - rectHalf.y, min(circleCenter.y, rectCenter.y + rectHalf.y));
-
-
-			// 거리 비교
-			float distance = (circleCenter - closestPoint).length();
-			if (distance <= circleRadius)
-			{
-				return true;
-			}
-		}
-
+		outDepth = math::Vector2(0.0f, 0.0f);
 		return false;
+	}
+
+	bool CollisionManager::IntersectRectRect(Collider* left, Collider* right)
+	{
+		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
+		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
+
+		math::Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
+		math::Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
+
+		math::Vector2 leftSize = left->GetSize() * 100.0f;
+		math::Vector2 rightSize = right->GetSize() * 100.0f;
+
+		return (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f) &&
+			fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f));
+	}
+
+	bool CollisionManager::IntersectCircleCircle(Collider* left, Collider* right)
+	{
+		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
+		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
+
+		math::Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
+		math::Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
+
+		math::Vector2 leftSize = left->GetSize() * 100.0f;
+		math::Vector2 rightSize = right->GetSize() * 100.0f;
+
+		math::Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
+		math::Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
+
+		float distance = (leftCirclePos - rightCirclePos).length();
+
+		return (distance <= (leftSize.x / 2.0f + rightSize.x / 2.0f));
+	}
+
+	bool CollisionManager::IntersectCircleRect(Collider* circle, Collider* rect)
+	{
+		Transform* circleTr = circle->GetOwner()->GetComponent<Transform>();
+		Transform* rectTr = rect->GetOwner()->GetComponent<Transform>();
+
+		math::Vector2 circlePos = circleTr->GetPosition() + circle->GetOffset();
+		math::Vector2 circleSize = circle->GetSize() * 100.0f;
+		math::Vector2 circleCenter = circlePos + (circleSize / 2.0f);
+		float circleRadius = circleSize.x / 2.0f;
+
+		math::Vector2 rectPos = rectTr->GetPosition() + rect->GetOffset();
+		math::Vector2 rectSize = rect->GetSize() * 100.0f;
+		math::Vector2 rectHalf = rectSize / 2.0f;
+		math::Vector2 rectCenter = rectPos + rectHalf;
+
+		// 사각형 내부에서 가장 가까운 점 계산
+		math::Vector2 closestPoint;
+		closestPoint.x = max(rectCenter.x - rectHalf.x, min(circleCenter.x, rectCenter.x + rectHalf.x));
+		closestPoint.y = max(rectCenter.y - rectHalf.y, min(circleCenter.y, rectCenter.y + rectHalf.y));
+
+		// 거리 비교
+		float distance = (circleCenter - closestPoint).length();
+
+		return (distance <= circleRadius);
 	}
 }
