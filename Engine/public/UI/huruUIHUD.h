@@ -4,10 +4,7 @@
 
 namespace huru
 {
-	namespace graphics
-	{
-		class Texture;
-	}
+	namespace graphics { class Texture; }
 
 	class UIHUD : public UIBase
 	{

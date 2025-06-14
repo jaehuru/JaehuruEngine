@@ -8,7 +8,7 @@ namespace huru
 	{
 
 	public:
-		Collider(enums::eColliderType type);
+		Collider(eColliderType type);
 		~Collider();
 
 		void Initialize() override;
@@ -20,23 +20,23 @@ namespace huru
 		virtual void OnCollisionStay(Collider* other);
 		virtual void OnCollisionExit(Collider* other);
 
-		math::Vector2 GetOffset() { return mOffset; }
-		void SetOffset(math::Vector2 offset) { mOffset = offset; }
+		Vector2 GetOffset() { return mOffset; }
+		void SetOffset(Vector2 offset) { mOffset = offset; }
 
 		UINT32 GetID() { return mID; }
 
-		math::Vector2 GetSize() { return mSize; }
-		void SetSize(math::Vector2 size) { mSize = size; }
+		Vector2 GetSize() { return mSize; }
+		void SetSize(Vector2 size) { mSize = size; }
 
-		enums::eColliderType GetColliderType() { return mType; }
+		eColliderType GetColliderType() { return mType; }
 
 	private:
 		static UINT32 mCollisionID;
 		UINT mID;
-		math::Vector2 mOffset;
-		math::Vector2 mSize;
+		Vector2 mOffset;
+		Vector2 mSize;
 
-		enums::eColliderType mType;
+		eColliderType mType;
 	};
 }
 

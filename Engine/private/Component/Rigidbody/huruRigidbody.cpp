@@ -6,15 +6,15 @@
 namespace huru
 {
 	Rigidbody::Rigidbody() :
-		Component(enums::eComponentType::Rigidbody),
+		Component(eComponentType::Rigidbody),
 		mbGround(false),
 		mMass(1.f),
 		mFriction(10.f),
-		mForce(math::Vector2::Zero),
-		mAccelation(math::Vector2::Zero),
-		mVelocity(math::Vector2::Zero),
-		mLimitedVelocity(math::Vector2(200.f, 1000.f)),
-		mGravity(math::Vector2(0.f, 800.f))
+		mForce(Vector2::Zero),
+		mAccelation(Vector2::Zero),
+		mVelocity(Vector2::Zero),
+		mLimitedVelocity(Vector2(200.f, 1000.f)),
+		mGravity(Vector2(0.f, 800.f))
 	{
 
 	}
@@ -39,10 +39,10 @@ namespace huru
 
 		if (mbGround) // 땅
 		{
-			math::Vector2 gravity = mGravity;
+			Vector2 gravity = mGravity;
 			gravity.normalize();
 
-			float dot = math::Vector2::Dot(mVelocity, gravity);
+			float dot = Vector2::Dot(mVelocity, gravity);
 			mVelocity -= gravity * dot;
 		}
 		else // 공중
@@ -51,12 +51,12 @@ namespace huru
 		}
 
 		// 최대 속도 제한
-		math::Vector2 gravity = mGravity;
+		Vector2 gravity = mGravity;
 		gravity.normalize();
-		float dot = math::Vector2::Dot(mVelocity, gravity);
+		float dot = Vector2::Dot(mVelocity, gravity);
 		gravity = gravity * dot;
 
-		math::Vector2 sideVelocity = mVelocity - gravity;
+		Vector2 sideVelocity = mVelocity - gravity;
 		if (mLimitedVelocity.y < gravity.length())
 		{
 			gravity.normalize();
@@ -73,16 +73,16 @@ namespace huru
 
 
 
-		if (!(mVelocity == math::Vector2::Zero))
+		if (!(mVelocity == Vector2::Zero))
 		{
 			// 속도 반대방향으로 마찰력 작용
-			math::Vector2 friction = -mVelocity;
+			Vector2 friction = -mVelocity;
 			friction = friction.normalize() * mFriction * mMass * Time::DeltaTime();
 
 			// 마찰력으로 인한 속도 감소량이 현재 속도보다 큰 경우
 			if (mVelocity.length() <= friction.length())
 			{
-				mVelocity = math::Vector2::Zero;
+				mVelocity = Vector2::Zero;
 			}
 			else
 			{
@@ -91,7 +91,7 @@ namespace huru
 		}
 
 		Transform* transform = GetOwner()->GetComponent<Transform>();
-		math::Vector2 pos = transform->GetPosition();
+		Vector2 pos = transform->GetPosition();
 		pos = pos + mVelocity * Time::DeltaTime();
 		transform->SetPosition(pos);
 

@@ -7,8 +7,8 @@ namespace huru
 	class Camera : public Component
 	{
 	public:
-		math::Vector2 CalculatePosition(math::Vector2 pos) { return pos - mDistance; }
-		math::Vector2 CalcuateTilePosition(math::Vector2 pos) { return pos + mDistance; };
+		Vector2 CalculatePosition(Vector2 pos) { return pos - mDistance; }
+		Vector2 CalcuateTilePosition(Vector2 pos) { return pos + mDistance; };
 
 		Camera();
 		~Camera();
@@ -23,9 +23,9 @@ namespace huru
 	private:
 		class GameObject* mTarget;
 
-		math::Vector2 mDistance;
-		math::Vector2 mResolution;
-		math::Vector2 mLookPosition;
+		Vector2 mDistance;
+		Vector2 mResolution;
+		Vector2 mLookPosition;
 	};
 }
 

@@ -17,9 +17,9 @@ namespace huru
 		void Render(HDC hdc)  override;
 
 		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
-		void SetSize(math::Vector2 size) { mSize = size; }
+		void SetSize(Vector2 size) { mSize = size; }
 	private:
 		graphics::Texture* mTexture;
-		math::Vector2 mSize;
+		Vector2 mSize;
 	};
 }

@@ -5,7 +5,7 @@ namespace huru
 {
 
 	UIButton::UIButton()
-		: UIBase(enums::eUIType::Button)
+		: UIBase(eUIType::Button)
 	{
 
 	}
@@ -16,10 +16,10 @@ namespace huru
 
 	void UIButton::OnInit()
 	{
-		SetPos(math::Vector2(200.0f, 200.0f));
-		SetSize(math::Vector2(200.0f, 200.0f));
+		SetPos(Vector2(200.0f, 200.0f));
+		SetSize(Vector2(200.0f, 200.0f));
 
-		mOnClick = std::bind(&UIButton::ButtonClick, this);
+		mOnClick = bind(&UIButton::ButtonClick, this);
 	}
 
 	void UIButton::OnActive()
@@ -32,7 +32,7 @@ namespace huru
 
 	void UIButton::OnUpdate()
 	{
-		math::Vector2 mousePos = Input::GetMousePosition();
+		Vector2 mousePos = Input::GetMousePosition();
 
 		if (mPosition.x <= mousePos.x && mousePos.x <= mPosition.x + mSize.x
 			&& mPosition.y <= mousePos.y && mousePos.y <= mPosition.y + mSize.y)

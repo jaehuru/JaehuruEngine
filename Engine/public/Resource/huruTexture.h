@@ -15,14 +15,14 @@ namespace huru::graphics
 		};
 
 		static Texture* Create(
-								const std::wstring& name,
+								const wstring& name,
 								UINT width,
 								UINT height);
 
 		Texture();
 		~Texture();
 
-		virtual HRESULT Load(const std::wstring& path) override;
+		virtual HRESULT Load(const wstring& path) override;
 		COLORREF GetPixel(int x, int y);
 
 		UINT			GetWidth()				{ return mWidth; }

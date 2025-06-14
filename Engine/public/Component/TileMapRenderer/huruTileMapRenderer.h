@@ -17,20 +17,20 @@ namespace huru
 		void Render(HDC hdc)  override;
 
 		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
-		math::Vector2 GetIndex() { return mIndex; }
-		void SetIndex(math::Vector2 index) { mIndex = index; }
-		void SetSize(const math::Vector2& size) { mSize = size; }
-		void SetScale(const math::Vector2& scale) { mScale = scale; }
+		Vector2 GetIndex() { return mIndex; }
+		void SetIndex(Vector2 index) { mIndex = index; }
+		void SetSize(const Vector2& size) { mSize = size; }
+		void SetScale(const Vector2& scale) { mScale = scale; }
 
 
 	public:
-		static math::Vector2 SelectedIndex;
+		static Vector2 SelectedIndex;
 
 	private:
 		graphics::Texture* mTexture;
 
-		math::Vector2 mSize;
-		math::Vector2 mScale;
-		math::Vector2 mIndex;
+		Vector2 mSize;
+		Vector2 mScale;
+		Vector2 mIndex;
 	};
 }

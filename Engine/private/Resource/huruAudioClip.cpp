@@ -3,7 +3,7 @@
 namespace huru
 {
 	AudioClip::AudioClip() :
-		Resource(enums::eResourceType::AudioClip),
+		Resource(eResourceType::AudioClip),
 		mSound(nullptr),
 		mChannel(nullptr), 
 		mMinDistance(1.0f), 
@@ -19,9 +19,9 @@ namespace huru
 		mSound = nullptr;
 	}
 
-	HRESULT AudioClip::Load(const std::wstring& path)
+	HRESULT AudioClip::Load(const wstring& path)
 	{
-		std::string cPath(path.begin(), path.end());
+		string cPath(path.begin(), path.end());
 		if (!Fmod::CreateSound(cPath, &mSound))
 			return S_FALSE;
 
@@ -45,7 +45,7 @@ namespace huru
 		mChannel->stop();
 	}
 
-	void AudioClip::Set2DAttributes(const math::Vector2 pos)
+	void AudioClip::Set2DAttributes(const Vector2 pos)
 	{
 		FMOD_VECTOR fmodPos(0.0f, 0.0f, 0.0f);
 		FMOD_VECTOR fmodVel(0.0f, 0.0f, 0.0f);

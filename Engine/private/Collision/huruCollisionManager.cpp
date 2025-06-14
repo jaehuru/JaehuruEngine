@@ -9,8 +9,8 @@ namespace huru
 {
 
 	
-	std::bitset<(UINT)enums::eLayerType::Max>CollisionManager::mCollisionLayerMatrix[(UINT)enums::eLayerType::Max] = { };
-	std::unordered_map<UINT64, bool> CollisionManager::mCollisionMap = { };
+	bitset<(UINT)eLayerType::Max>CollisionManager::mCollisionLayerMatrix[(UINT)eLayerType::Max] = { };
+	unordered_map<UINT64, bool> CollisionManager::mCollisionMap = { };
 
 	CollisionManager::CollisionManager()
 	{
@@ -30,13 +30,13 @@ namespace huru
 	void CollisionManager::Update()
 	{
 		Scene* scene = SceneManager::GetActiveScene();
-		for (UINT row = 0; row < (UINT)enums::eLayerType::Max; row++)
+		for (UINT row = 0; row < (UINT)eLayerType::Max; row++)
 		{
-			for (UINT col = 0; col < (UINT)enums::eLayerType::Max; col++)
+			for (UINT col = 0; col < (UINT)eLayerType::Max; col++)
 			{
 				if (mCollisionLayerMatrix[row][col] == true)
 				{
-					LayerCollsion(scene, (enums::eLayerType)row, (enums::eLayerType)col);
+					LayerCollsion(scene, (eLayerType)row, (eLayerType)col);
 				}
 			}
 		}
@@ -58,8 +58,8 @@ namespace huru
 		mCollisionLayerMatrix->reset();
 	}
 
-	void CollisionManager::CollisionLayerCheck(enums::eLayerType left,
-												enums::eLayerType right,
+	void CollisionManager::CollisionLayerCheck(eLayerType left,
+												eLayerType right,
 												bool enable)
 	{
 		int row = 0;
@@ -79,10 +79,10 @@ namespace huru
 		mCollisionLayerMatrix[row][col] = enable;
 	}
 
-	void CollisionManager::LayerCollsion(Scene* scene, enums::eLayerType left, enums::eLayerType right)
+	void CollisionManager::LayerCollsion(Scene* scene, eLayerType left, eLayerType right)
 	{
-		const std::vector<GameObject*>& lefts = SceneManager::GetGameObjects(left);
-		const std::vector<GameObject*>& rights = SceneManager::GetGameObjects(right);
+		const vector<GameObject*>& lefts = SceneManager::GetGameObjects(left);
+		const vector<GameObject*>& rights = SceneManager::GetGameObjects(right);
 
 		for (GameObject* left : lefts)
 		{
@@ -122,7 +122,7 @@ namespace huru
 		auto iter = mCollisionMap.find(cID.ID);
 		if (iter == mCollisionMap.end())
 		{
-			mCollisionMap.insert(std::make_pair(cID.ID, false));
+			mCollisionMap.insert(make_pair(cID.ID, false));
 			iter = mCollisionMap.find(cID.ID);
 		}
 
@@ -155,41 +155,41 @@ namespace huru
 
 	bool CollisionManager::Intersect(Collider* left, Collider* right)
 	{
-		enums::eColliderType leftType = left->GetColliderType();
-		enums::eColliderType rightType = right->GetColliderType();
+		eColliderType leftType = left->GetColliderType();
+		eColliderType rightType = right->GetColliderType();
 
 		// Rect - Rect
-		if (leftType == enums::eColliderType::Rect2D && rightType == enums::eColliderType::Rect2D)
+		if (leftType == eColliderType::Rect2D && rightType == eColliderType::Rect2D)
 		{
 			return IntersectRectRect(left, right);
 		}
 		// Circle - Circle
-		else if (leftType == enums::eColliderType::Circle2D && rightType == enums::eColliderType::Circle2D)
+		else if (leftType == eColliderType::Circle2D && rightType == eColliderType::Circle2D)
 		{
 			return IntersectCircleCircle(left, right);
 		}
 		// Circle - Rect or Rect - Circle
-		else if ((leftType == enums::eColliderType::Circle2D && rightType == enums::eColliderType::Rect2D) ||
-			(leftType == enums::eColliderType::Rect2D && rightType == enums::eColliderType::Circle2D))
+		else if ((leftType == eColliderType::Circle2D && rightType == eColliderType::Rect2D) ||
+			(leftType == eColliderType::Rect2D && rightType == eColliderType::Circle2D))
 		{
-			Collider* circle = (leftType == enums::eColliderType::Circle2D) ? left : right;
-			Collider* rect = (leftType == enums::eColliderType::Rect2D) ? left : right;
+			Collider* circle = (leftType == eColliderType::Circle2D) ? left : right;
+			Collider* rect = (leftType == eColliderType::Rect2D) ? left : right;
 			return IntersectCircleRect(circle, rect);
 		}
 
 		return false;
 	}
 
-	math::Vector2 CollisionManager::CalculateCollisionDepth(Collider* left, Collider* right)
+	Vector2 CollisionManager::CalculateCollisionDepth(Collider* left, Collider* right)
 	{
 		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
 
-		math::Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
-		math::Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
+		Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
+		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
 
-		math::Vector2 leftSize = left->GetSize() * 100.0f;
-		math::Vector2 rightSize = right->GetSize() * 100.0f;
+		Vector2 leftSize = left->GetSize() * 100.0f;
+		Vector2 rightSize = right->GetSize() * 100.0f;
 
 		// 각 축의 거리 차이
 		float deltaX = rightPos.x - leftPos.x;
@@ -201,28 +201,28 @@ namespace huru
 
 		// 겹치지 않으면 (음수) 0 반환
 		if (intersectX < 0 || intersectY < 0)
-			return math::Vector2(0.0f, 0.0f);
+			return Vector2(0.0f, 0.0f);
 
 		// 깊이 벡터: x, y 각각 어느 방향으로 밀어야 하는지 방향 포함
 		float depthX = (deltaX > 0) ? -intersectX : intersectX;
 		float depthY = (deltaY > 0) ? -intersectY : intersectY;
 
-		return math::Vector2(depthX, depthY);
+		return Vector2(depthX, depthY);
 	}
 
-	bool CollisionManager::CheckCollisionWithDepth(Collider* left, Collider* right, math::Vector2& outDepth)
+	bool CollisionManager::CheckCollisionWithDepth(Collider* left, Collider* right, Vector2& outDepth)
 	{
 		if (Intersect(left, right))
 		{
-			outDepth = math::Vector2(0.0f, 0.0f);
-			if (left->GetColliderType() == enums::eColliderType::Rect2D
-				&& right->GetColliderType() == enums::eColliderType::Rect2D)
+			outDepth = Vector2(0.0f, 0.0f);
+			if (left->GetColliderType() == eColliderType::Rect2D
+				&& right->GetColliderType() == eColliderType::Rect2D)
 			{
 				outDepth = CalculateCollisionDepth(left, right);
 			}
 			return true;
 		}
-		outDepth = math::Vector2(0.0f, 0.0f);
+		outDepth = Vector2(0.0f, 0.0f);
 		return false;
 	}
 
@@ -231,11 +231,11 @@ namespace huru
 		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
 
-		math::Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
-		math::Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
+		Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
+		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
 
-		math::Vector2 leftSize = left->GetSize() * 100.0f;
-		math::Vector2 rightSize = right->GetSize() * 100.0f;
+		Vector2 leftSize = left->GetSize() * 100.0f;
+		Vector2 rightSize = right->GetSize() * 100.0f;
 
 		return (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f) &&
 			fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f));
@@ -246,14 +246,14 @@ namespace huru
 		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
 
-		math::Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
-		math::Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
+		Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
+		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
 
-		math::Vector2 leftSize = left->GetSize() * 100.0f;
-		math::Vector2 rightSize = right->GetSize() * 100.0f;
+		Vector2 leftSize = left->GetSize() * 100.0f;
+		Vector2 rightSize = right->GetSize() * 100.0f;
 
-		math::Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
-		math::Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
+		Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
+		Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
 
 		float distance = (leftCirclePos - rightCirclePos).length();
 
@@ -265,18 +265,18 @@ namespace huru
 		Transform* circleTr = circle->GetOwner()->GetComponent<Transform>();
 		Transform* rectTr = rect->GetOwner()->GetComponent<Transform>();
 
-		math::Vector2 circlePos = circleTr->GetPosition() + circle->GetOffset();
-		math::Vector2 circleSize = circle->GetSize() * 100.0f;
-		math::Vector2 circleCenter = circlePos + (circleSize / 2.0f);
+		Vector2 circlePos = circleTr->GetPosition() + circle->GetOffset();
+		Vector2 circleSize = circle->GetSize() * 100.0f;
+		Vector2 circleCenter = circlePos + (circleSize / 2.0f);
 		float circleRadius = circleSize.x / 2.0f;
 
-		math::Vector2 rectPos = rectTr->GetPosition() + rect->GetOffset();
-		math::Vector2 rectSize = rect->GetSize() * 100.0f;
-		math::Vector2 rectHalf = rectSize / 2.0f;
-		math::Vector2 rectCenter = rectPos + rectHalf;
+		Vector2 rectPos = rectTr->GetPosition() + rect->GetOffset();
+		Vector2 rectSize = rect->GetSize() * 100.0f;
+		Vector2 rectHalf = rectSize / 2.0f;
+		Vector2 rectCenter = rectPos + rectHalf;
 
 		// 사각형 내부에서 가장 가까운 점 계산
-		math::Vector2 closestPoint;
+		Vector2 closestPoint;
 		closestPoint.x = max(rectCenter.x - rectHalf.x, min(circleCenter.x, rectCenter.x + rectHalf.x));
 		closestPoint.y = max(rectCenter.y - rectHalf.y, min(circleCenter.y, rectCenter.y + rectHalf.y));
 

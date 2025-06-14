@@ -82,22 +82,22 @@ namespace huru
 		CollisionManager::Clear();
 	}
 
-	void Scene::AddGameObject(GameObject* gameObj, const enums::eLayerType type)
+	void Scene::AddGameObject(GameObject* gameObj, const eLayerType type)
 	{
 		mLayers[(UINT)type]->AddGameObject(gameObj);
 	}
 
 	void Scene::EraseGameObject(GameObject* gameObj)
 	{
-		enums::eLayerType layerType = gameObj->GetLayerType();
+		eLayerType layerType = gameObj->GetLayerType();
 		mLayers[(UINT)layerType]->EraseGameObject(gameObj);
 	}
 
 	void Scene::createLayers()
 	{
-		mLayers.resize((UINT)enums::eLayerType::Max);
+		mLayers.resize((UINT)eLayerType::Max);
 
-		std::for_each(mLayers.begin(), mLayers.end(),
+		for_each(mLayers.begin(), mLayers.end(),
 			[](Layer*& layer) { layer = new Layer(); });
 	}
 }

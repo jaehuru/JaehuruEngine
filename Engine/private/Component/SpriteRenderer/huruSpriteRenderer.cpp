@@ -7,9 +7,9 @@
 namespace huru
 {
 	SpriteRenderer::SpriteRenderer() :
-		Component(enums::eComponentType::SpriteRenderer),
+		Component(eComponentType::SpriteRenderer),
 		mTexture(nullptr),
-		mSize(math::Vector2::One)
+		mSize(Vector2::One)
 
 	{
 
@@ -41,13 +41,13 @@ namespace huru
 			assert(false);
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		math::Vector2 pos = tr->GetPosition();
-		math::Vector2 scale = tr->GetScale();
+		Vector2 pos = tr->GetPosition();
+		Vector2 scale = tr->GetScale();
 		float rot = tr->GetRotation();
 
 		pos = renderer::mainCamera-> CalculatePosition(pos);
 
-		if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
+		if (mTexture->GetTextureType() == Texture::eTextureType::Bmp)
 		{
 			if (mTexture->IsAlpha())
 			{

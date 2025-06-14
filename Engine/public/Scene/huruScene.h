@@ -22,9 +22,9 @@ namespace huru
 		virtual void	OnExit();
 
 		void			AddGameObject(GameObject* gameObj,
-										const enums::eLayerType type);
+										const eLayerType type);
 		void			EraseGameObject(GameObject* gameObj);
-		Layer*			GetLayer(const enums::eLayerType type)
+		Layer*			GetLayer(const eLayerType type)
 		{
 			return mLayers[(UINT)type]; 
 		}
@@ -33,7 +33,7 @@ namespace huru
 		void			createLayers();
 		
 	private:
-		std::vector<Layer*> mLayers;
+		vector<Layer*> mLayers;
 	};
 }
 

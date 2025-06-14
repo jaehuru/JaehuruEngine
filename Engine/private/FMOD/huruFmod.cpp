@@ -18,7 +18,7 @@ namespace huru
 		mSystem->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL, extraDriverData);
 	}
 
-	bool Fmod::CreateSound(const std::string& path, FMOD::Sound** sound)
+	bool Fmod::CreateSound(const string& path, FMOD::Sound** sound)
 	{
 		if (FMOD_OK != mCoreSystem->createSound(path.c_str(), FMOD_3D, 0, sound))
 			return false;
@@ -31,7 +31,7 @@ namespace huru
 		mCoreSystem->playSound(sound, 0, false, channel);
 	}
 
-	void Fmod::Set2DListenerAttributes(const math::Vector2* pos)
+	void Fmod::Set2DListenerAttributes(const Vector2* pos)
 	{
 		//-1 ~ 1
 		FMOD_VECTOR fmodPos(0.0f, 0.0f, 0.3f);

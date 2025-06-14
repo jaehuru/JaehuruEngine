@@ -11,9 +11,9 @@ namespace huru
 	public:
 		struct Event
 		{
-			void operator=(std::function<void()> func)
+			void operator=(function<void()> func)
 			{
-				mEvent = std::move(func);
+				mEvent = move(func);
 			}
 
 			void operator()()
@@ -22,7 +22,7 @@ namespace huru
 					mEvent();
 			}
 
-			std::function<void()> mEvent;
+			function<void()> mEvent;
 		};
 
 		struct Events
@@ -40,34 +40,34 @@ namespace huru
 		void	LateUpdate() override;
 		void	Render(HDC hdc) override;
 
-		void	CreateAnimation(const std::wstring& name,
+		void	CreateAnimation(const wstring& name,
 								graphics::Texture* spriteSheet,
-								math::Vector2 leftTop,
-								math::Vector2 size,
-								math::Vector2 offset,
+								Vector2 leftTop,
+								Vector2 size,
+								Vector2 offset,
 								UINT spriteLength,
 								float duration);
-		void	CreateAnimationByFolder(const std::wstring& name,
-										const std::wstring& path,
-										math::Vector2 offset,
+		void	CreateAnimationByFolder(const wstring& name,
+										const wstring& path,
+										Vector2 offset,
 										float duration);
-		Animation* FindAnimation(const std::wstring& name);
-		void PlayAnimation(const std::wstring& name, bool loop);
+		Animation* FindAnimation(const wstring& name);
+		void PlayAnimation(const wstring& name, bool loop);
 
-		Events* FindEvents(const std::wstring& name);
-		std::function<void()>& GetStartEvent(const std::wstring& name);
-		std::function<void()>& GetCompleteEvent(const std::wstring& name);
-		std::function<void()>& GetEndEvent(const std::wstring& name);
+		Events* FindEvents(const wstring& name);
+		function<void()>& GetStartEvent(const wstring& name);
+		function<void()>& GetCompleteEvent(const wstring& name);
+		function<void()>& GetEndEvent(const wstring& name);
 
 		bool IsComplete() { return mActiveAnimation->IsComplete(); }
 
 	private:
-		std::map<std::wstring, Animation*> mAnimations;
+		map<wstring, Animation*> mAnimations;
 		Animation* mActiveAnimation;
 		bool mbLoop;
 
 		//Event
-		std::map<std::wstring, Events*> mEvents;
+		map<wstring, Events*> mEvents;
 	};
 }
 

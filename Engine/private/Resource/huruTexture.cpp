@@ -6,7 +6,7 @@ extern huru::Application application;
 
 namespace huru::graphics
 {
-	Texture* Texture::Create(const std::wstring& name, UINT width, UINT height)
+	Texture* Texture::Create(const wstring& name, UINT width, UINT height)
 	{
 		Texture* image = Resources::Find<Texture>(name);
 		if (image)
@@ -36,7 +36,7 @@ namespace huru::graphics
 	}
 
 	Texture::Texture() :
-		Resource(enums::eResourceType::Texture),
+		Resource(eResourceType::Texture),
 		mbAlpha(false)
 	{
 
@@ -47,9 +47,9 @@ namespace huru::graphics
 
 	}
 
-	HRESULT Texture::Load(const std::wstring& path)
+	HRESULT Texture::Load(const wstring& path)
 	{
-		std::wstring ext = path.substr(path.find_last_of(L".") + 1);
+		wstring ext = path.substr(path.find_last_of(L".") + 1);
 		if (ext == L"bmp")
 		{
 			//bmp

@@ -10,7 +10,7 @@ namespace huru
 {
 
 	Animation::Animation() :
-		Resource(enums::eResourceType::Animation),
+		Resource(eResourceType::Animation),
 		mAnimator(nullptr),
 		mTexture(nullptr),
 		mAnimationSheet{ },
@@ -26,7 +26,7 @@ namespace huru
 
 	}
 
-	HRESULT Animation::Load(const std::wstring& path)
+	HRESULT Animation::Load(const wstring& path)
 	{
 		return E_NOTIMPL;
 	}
@@ -56,9 +56,9 @@ namespace huru
 
 		GameObject* gameObj = mAnimator->GetOwner();
 		Transform* tr = gameObj->GetComponent<Transform>();
-		math::Vector2 pos = tr->GetPosition();
+		Vector2 pos = tr->GetPosition();
 		float rot = tr->GetRotation();
-		math::Vector2 scale = tr->GetScale();
+		Vector2 scale = tr->GetScale();
 
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
@@ -138,10 +138,10 @@ namespace huru
 		}
 	}
 
-	void Animation::CreateAnimation(const std::wstring& name,
+	void Animation::CreateAnimation(const wstring& name,
 									graphics::Texture* spriteSheet,
-									math::Vector2 leftTop, math::Vector2 size,
-									math::Vector2 offset, UINT spriteLength,
+									Vector2 leftTop, Vector2 size,
+									Vector2 offset, UINT spriteLength,
 									float duration)
 	{
 		mTexture = spriteSheet;

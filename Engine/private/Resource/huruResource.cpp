@@ -2,13 +2,13 @@
 
 namespace huru
 {
-	Resource::Resource(enums::eResourceType type) :
+	Resource::Resource(eResourceType type) :
 		mType(type)
 	{
 
 	}
 
-	HRESULT Resource::Load(const std::wstring& path)
+	HRESULT Resource::Load(const wstring& path)
 	{
 		return E_NOTIMPL;
 	}

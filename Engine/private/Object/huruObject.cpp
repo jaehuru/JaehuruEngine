@@ -2,7 +2,7 @@
 
 namespace huru::object
 {
-	static std::vector<GameObject*> DontDestroyGameObjects = { };
+	static vector<GameObject*> DontDestroyGameObjects = { };
 
 
 }

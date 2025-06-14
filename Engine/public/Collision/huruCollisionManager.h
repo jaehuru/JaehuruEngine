@@ -31,23 +31,23 @@ namespace huru
 		static void				Render(HDC hdc);
 		static void				Clear();
 
-		static void				CollisionLayerCheck(enums::eLayerType left,
-													enums::eLayerType right,
+		static void				CollisionLayerCheck(eLayerType left,
+													eLayerType right,
 													bool enable);
-		static void				LayerCollsion(Scene* scene, enums::eLayerType left, enums::eLayerType right);
+		static void				LayerCollsion(Scene* scene, eLayerType left, eLayerType right);
 		static void				ColliderCollision(Collider* left, Collider* right);
 		static bool				Intersect(Collider* left, Collider* right);
 
-		static math::Vector2	CalculateCollisionDepth(Collider* left, Collider* right);
-		static bool				CheckCollisionWithDepth(Collider* left, Collider* right, math::Vector2& outDepth);
+		static Vector2	CalculateCollisionDepth(Collider* left, Collider* right);
+		static bool				CheckCollisionWithDepth(Collider* left, Collider* right, Vector2& outDepth);
 
 		static bool				IntersectRectRect(Collider* left, Collider* right);
 		static bool				IntersectCircleCircle(Collider* left, Collider* right);
 		static bool				IntersectCircleRect(Collider* circle, Collider* rect);
 
 	private:
-		static std::bitset<(UINT)enums::eLayerType::Max>mCollisionLayerMatrix[(UINT)enums::eLayerType::Max];
-		static std::unordered_map<UINT64, bool> mCollisionMap;
+		static bitset<(UINT)eLayerType::Max>mCollisionLayerMatrix[(UINT)eLayerType::Max];
+		static unordered_map<UINT64, bool> mCollisionMap;
 	};
 }
 

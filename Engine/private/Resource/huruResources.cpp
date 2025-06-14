@@ -2,5 +2,5 @@
 
 namespace huru
 {
-	std::map<std::wstring, Resource*> Resources::mResources = {};
+	map<wstring, Resource*> Resources::mResources = {};
 }

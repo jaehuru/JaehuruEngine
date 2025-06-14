@@ -6,7 +6,7 @@
 namespace huru
 {
 	AudioListener::AudioListener()
-		: Component(enums::eComponentType::AudioListener)
+		: Component(eComponentType::AudioListener)
 	{
 	}
 
@@ -25,7 +25,7 @@ namespace huru
 	void AudioListener::LateUpdate()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		math::Vector2 pos = tr->GetPosition();
+		Vector2 pos = tr->GetPosition();
 
 		Fmod::Set2DListenerAttributes(&pos);
 	}

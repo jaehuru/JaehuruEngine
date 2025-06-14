@@ -10,25 +10,25 @@ namespace huru
 	{
 	public:
 		template<typename T>
-		static Scene* CreateScene(const std::wstring& name)
+		static Scene* CreateScene(const wstring& name)
 		{
 			T* scene = new T();
 			scene->SetName(name);
 			mActiveScene = scene;
 			scene->Initialize();
 
-			mScene.insert(std::make_pair(name, scene));
+			mScene.insert(make_pair(name, scene));
 
 			return scene;
 		}
 
-		static Scene* LoadScene(const std::wstring& name);
+		static Scene* LoadScene(const wstring& name);
 		static Scene* GetActiveScene() { return mActiveScene; }
 		static Scene* GetDontDestroyOnLoad() 
 		{ 
 			return mDontDestroyOnLoad; 
 		}
-		static std::vector<GameObject*> GetGameObjects(enums::eLayerType layer);
+		static vector<GameObject*> GetGameObjects(eLayerType layer);
 
 		static void	Initialize();
 		static void	Update();
@@ -38,7 +38,7 @@ namespace huru
 		static void Release();
 
 	private:
-		static std::map<std::wstring, Scene*> mScene;
+		static map<wstring, Scene*> mScene;
 		static Scene* mActiveScene;
 		static Scene* mDontDestroyOnLoad;
 	};

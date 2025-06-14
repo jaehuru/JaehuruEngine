@@ -6,8 +6,8 @@ extern huru::Application application;
 namespace huru
 {
 
-	std::vector<Input::Key> Input::Keys = { };
-	math::Vector2 huru::Input::mMousePosition = math::Vector2::One;
+	vector<Input::Key> Input::Keys = { };
+	Vector2 huru::Input::mMousePosition = Vector2::One;
 
 	int ASCII[(int)eKeyCode::End] =
 	{
@@ -42,7 +42,7 @@ namespace huru
 
 	void Input::updateKeys()
 	{
-		std::for_each(Keys.begin(), Keys.end(),
+		for_each(Keys.begin(), Keys.end(),
 			[](Key& key) -> void { updateKey(key); });		
 	}
 

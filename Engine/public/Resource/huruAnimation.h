@@ -10,15 +10,15 @@ namespace huru
 	public:
 		struct Sprite
 		{
-			math::Vector2 leftTop;
-			math::Vector2 size;
-			math::Vector2 offset;
+			Vector2 leftTop;
+			Vector2 size;
+			Vector2 offset;
 			float duration;
 
 			Sprite() :
-				leftTop(math::Vector2::Zero),
-				size(math::Vector2::Zero),
-				offset(math::Vector2::Zero),
+				leftTop(Vector2::Zero),
+				size(Vector2::Zero),
+				offset(Vector2::Zero),
 				duration(0.f)
 			{
 
@@ -28,16 +28,16 @@ namespace huru
 		Animation();
 		~Animation();
 
-		HRESULT Load(const std::wstring& path) override;
+		HRESULT Load(const wstring& path) override;
 
 		void Update();
 		void Render(HDC hdc);
 
-		void		CreateAnimation(const std::wstring& name,
+		void		CreateAnimation(const wstring& name,
 									graphics::Texture* spriteSheet,
-									math::Vector2 leftTop,
-									math::Vector2 size,
-									math::Vector2 offset,
+									Vector2 leftTop,
+									Vector2 size,
+									Vector2 offset,
 									UINT spriteLength,
 									float duration);
 
@@ -50,7 +50,7 @@ namespace huru
 		class Animator*			mAnimator;
 		graphics::Texture*		mTexture;
 
-		std::vector<Sprite>		mAnimationSheet;
+		vector<Sprite>		mAnimationSheet;
 		int						mIndex;
 		float					mTime;
 		bool					mbComplete;

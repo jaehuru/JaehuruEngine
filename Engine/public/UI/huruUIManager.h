@@ -10,7 +10,7 @@ namespace huru
 	{
 	public:
 		static void Initialize();
-		static void OnLoad(enums::eUIType type);
+		static void OnLoad(eUIType type);
 		static void Update();
 		static void LateUpdate();
 		static void Render(HDC hdc);
@@ -18,13 +18,13 @@ namespace huru
 		static void OnFail();
 		static void Release();
 
-		static void Push(enums::eUIType type);
-		static void Pop(enums::eUIType type);
+		static void Push(eUIType type);
+		static void Pop(eUIType type);
 
 	private:
-		static std::unordered_map<enums::eUIType, UIBase*> mUIs;
-		static std::stack<UIBase*> mUIBases;
-		static std::queue<enums::eUIType> mRequestUIQueue;
+		static unordered_map<eUIType, UIBase*> mUIs;
+		static stack<UIBase*> mUIBases;
+		static queue<eUIType> mRequestUIQueue;
 		static UIBase* mActiveUI;
 	};
 }

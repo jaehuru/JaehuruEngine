@@ -16,7 +16,7 @@ namespace huru
 		void Render(HDC hdc) override;
 
 	private:
-		math::Vector2 mRiadius;
+		Vector2 mRiadius;
 	};
 }
 

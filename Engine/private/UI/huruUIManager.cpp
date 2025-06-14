@@ -5,24 +5,24 @@
 
 namespace huru
 {
-	std::unordered_map<enums::eUIType, UIBase*> UIManager::mUIs = { };
-	std::stack<UIBase*> UIManager::mUIBases = { };
-	std::queue<enums::eUIType> UIManager::mRequestUIQueue = { };
+	unordered_map<eUIType, UIBase*> UIManager::mUIs = { };
+	stack<UIBase*> UIManager::mUIBases = { };
+	queue<eUIType> UIManager::mRequestUIQueue = { };
 	UIBase* UIManager::mActiveUI = nullptr;
 
 	void UIManager::Initialize()
 	{
 		// UI 객체 생성해주기
 		UIHUD* hud = new UIHUD();
-		mUIs.insert(std::make_pair(enums::eUIType::HUD, hud));
+		mUIs.insert(make_pair(eUIType::HUD, hud));
 
 		UIButton* button = new UIButton();
-		mUIs.insert(std::make_pair(enums::eUIType::Button, button));
+		mUIs.insert(make_pair(eUIType::Button, button));
 	}
 
-	void UIManager::OnLoad(enums::eUIType type)
+	void UIManager::OnLoad(eUIType type)
 	{
-		std::unordered_map<enums::eUIType, UIBase*>::iterator iter
+		unordered_map<eUIType, UIBase*>::iterator iter
 			= mUIs.find(type);
 
 		if (iter == mUIs.end())
@@ -36,7 +36,7 @@ namespace huru
 
 	void UIManager::Update()
 	{
-		std::stack<UIBase*> uiBases = mUIBases;
+		stack<UIBase*> uiBases = mUIBases;
 		while(!uiBases.empty())
 		{
 			UIBase* uiBase = uiBases.top();
@@ -49,7 +49,7 @@ namespace huru
 
 		if (mRequestUIQueue.size() > 0)
 		{
-			enums::eUIType requestUI = mRequestUIQueue.front();
+			eUIType requestUI = mRequestUIQueue.front();
 			mRequestUIQueue.pop();
 			OnLoad(requestUI);
 		}
@@ -57,7 +57,7 @@ namespace huru
 
 	void UIManager::LateUpdate()
 	{
-		std::stack<UIBase*> uiBases = mUIBases;
+		stack<UIBase*> uiBases = mUIBases;
 		while (!uiBases.empty())
 		{
 			UIBase* uiBase = uiBases.top();
@@ -70,7 +70,7 @@ namespace huru
 
 		if (mRequestUIQueue.size() > 0)
 		{
-			enums::eUIType requestUI = mRequestUIQueue.front();
+			eUIType requestUI = mRequestUIQueue.front();
 			mRequestUIQueue.pop();
 			OnLoad(requestUI);
 		}
@@ -78,7 +78,7 @@ namespace huru
 
 	void UIManager::Render(HDC hdc)
 	{
-		std::stack<UIBase*> uiBases = mUIBases;
+		stack<UIBase*> uiBases = mUIBases;
 		while (!uiBases.empty())
 		{
 			UIBase* uiBase = uiBases.top();
@@ -91,7 +91,7 @@ namespace huru
 
 		if (mRequestUIQueue.size() > 0)
 		{
-			enums::eUIType requestUI = mRequestUIQueue.front();
+			eUIType requestUI = mRequestUIQueue.front();
 			mRequestUIQueue.pop();
 			OnLoad(requestUI);
 		}
@@ -110,7 +110,7 @@ namespace huru
 		// 전체화면인 ui 말고 나머지를 전부 비활성화
 		if (addUI->IsFullScreen())
 		{
-			std::stack<UIBase*> uiBases = mUIBases;
+			stack<UIBase*> uiBases = mUIBases;
 			while (!uiBases.empty())
 			{
 				UIBase* uiBase = uiBases.top();
@@ -141,17 +141,17 @@ namespace huru
 		}
 	}
 
-	void UIManager::Push(enums::eUIType type)
+	void UIManager::Push(eUIType type)
 	{
 		mRequestUIQueue.push(type);
 	}
 
-	void UIManager::Pop(enums::eUIType type)
+	void UIManager::Pop(eUIType type)
 	{
 		if (mUIBases.size() <= 0)
 			return;
 
-		std::stack<UIBase*> tempStack;
+		stack<UIBase*> tempStack;
 
 		UIBase* uibase = nullptr;
 		while (mUIBases.size() > 0)
@@ -167,7 +167,7 @@ namespace huru
 
 			if (uibase->IsFullScreen())
 			{
-				std::stack<UIBase*> uiBases = mUIBases;
+				stack<UIBase*> uiBases = mUIBases;
 				while (!uiBases.empty())
 				{
 					UIBase* uiBase = uiBases.top();

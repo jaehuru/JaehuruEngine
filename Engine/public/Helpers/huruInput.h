@@ -50,7 +50,7 @@ namespace huru
 			return Keys[(UINT)code].state == eKeyState::Pressed; 
 		}
 
-		__forceinline static math::Vector2 GetMousePosition() 
+		__forceinline static Vector2 GetMousePosition() 
 		{ 
 			return mMousePosition; 
 		}
@@ -67,8 +67,8 @@ namespace huru
 
 
 	private:
-		static std::vector<Key> Keys;
-		static math::Vector2 mMousePosition;
+		static vector<Key> Keys;
+		static Vector2 mMousePosition;
 	};
 }
 

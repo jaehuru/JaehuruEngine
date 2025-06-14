@@ -9,7 +9,7 @@ namespace huru
 	class Component : public Entity
 	{
 	public:
-		Component(enums::eComponentType type);
+		Component(eComponentType type);
 		~Component();
 
 		virtual void Initialize();
@@ -19,10 +19,10 @@ namespace huru
 
 		void SetOwner(GameObject* owner) { mOwner = owner; }
 		GameObject* GetOwner() { return mOwner; }
-		enums::eComponentType GetType() { return mType; }
+		eComponentType GetType() { return mType; }
 
 	private:
 		GameObject* mOwner;
-		enums::eComponentType mType;
+		eComponentType mType;
 	};
 }

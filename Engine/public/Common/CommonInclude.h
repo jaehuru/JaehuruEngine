@@ -26,5 +26,6 @@
 #include "huruMath.h"
 #include "huruEnums.h"
 
-// Removed 'using namespace std;' to avoid namespace conflicts
-// Explicitly qualify standard library types with 'std::'
+using namespace std;
+using namespace huru::math;
+using namespace huru::enums;

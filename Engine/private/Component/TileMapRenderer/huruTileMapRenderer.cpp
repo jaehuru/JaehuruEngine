@@ -6,10 +6,10 @@
 
 namespace huru
 {
-	math::Vector2 TileMapRenderer::SelectedIndex = math::Vector2::One;
+	Vector2 TileMapRenderer::SelectedIndex = Vector2::One;
 
 	TileMapRenderer::TileMapRenderer() :
-		Component(enums::eComponentType::TileMapRenderer),
+		Component(eComponentType::TileMapRenderer),
 		mTexture(nullptr),
 		mSize(0.f, 0.f),
 		mScale(0.f, 0.f),
@@ -44,8 +44,8 @@ namespace huru
 			assert(false);
 
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		math::Vector2 pos = tr->GetPosition();
-		math::Vector2 scale = tr->GetScale();
+		Vector2 pos = tr->GetPosition();
+		Vector2 scale = tr->GetScale();
 		float rot = tr->GetRotation();
 
 		pos = renderer::mainCamera->CalculatePosition(pos);

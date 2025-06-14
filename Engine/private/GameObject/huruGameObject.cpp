@@ -16,9 +16,9 @@ namespace huru
 {
 	GameObject::GameObject() :
 		mState(eState::Active),
-		mLayerType(enums::eLayerType::None)
+		mLayerType(eLayerType::None)
 	{
-		mComponents.resize((UINT)enums::eComponentType::End);
+		mComponents.resize((UINT)eComponentType::End);
 		initializeTransform();
 	}
 	GameObject::~GameObject()

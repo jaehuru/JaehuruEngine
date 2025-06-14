@@ -4,7 +4,7 @@
 namespace huru
 {
 	Animator::Animator() :
-		Component(enums::eComponentType::Animator),
+		Component(eComponentType::Animator),
 		mAnimations{ },
 		mActiveAnimation(nullptr),
 		mbLoop(false),
@@ -63,10 +63,10 @@ namespace huru
 			mActiveAnimation->Render(hdc);
 	}
 
-	void Animator::CreateAnimation(const std::wstring& name,
-									graphics::Texture* spriteSheet,
-									math::Vector2 leftTop, math::Vector2 size,
-									math::Vector2 offset, UINT spriteLength,
+	void Animator::CreateAnimation(const wstring& name,
+									Texture* spriteSheet,
+									Vector2 leftTop, Vector2 size,
+									Vector2 offset, UINT spriteLength,
 									float duration)
 	{
 		Animation* animation = nullptr;
@@ -82,14 +82,14 @@ namespace huru
 		animation->SetAnimator(this);
 
 		Events* events = new Events();
-		mEvents.insert(std::make_pair(name, events));
+		mEvents.insert(make_pair(name, events));
 
-		mAnimations.insert(std::make_pair(name, animation));
+		mAnimations.insert(make_pair(name, animation));
 	}
 
-	void Animator::CreateAnimationByFolder(const std::wstring& name, 
-											const std::wstring& path,
-											math::Vector2 offset,
+	void Animator::CreateAnimationByFolder(const wstring& name, 
+											const wstring& path,
+											Vector2 offset,
 											float duration)
 	{
 		Animation* animation = nullptr;
@@ -98,14 +98,14 @@ namespace huru
 			return;
 
 		int fileCount = 0;
-		std::filesystem::path fs(path);
-		std::vector<graphics::Texture*> images = { };
-		for (auto& p : std::filesystem::recursive_directory_iterator(fs))
+		filesystem::path fs(path);
+		vector<graphics::Texture*> images = { };
+		for (auto& p : filesystem::recursive_directory_iterator(fs))
 		{
-			std::wstring fileName = p.path().filename();
-			std::wstring fullName = p.path();
+			wstring fileName = p.path().filename();
+			wstring fullName = p.path();
 
-			graphics::Texture* texture = 
+			graphics::Texture* texture =
 				Resources::Load<graphics::Texture>(fileName, fullName);
 			images.push_back(texture);
 			fileCount++;
@@ -113,8 +113,7 @@ namespace huru
 
 		UINT sheetWidth = images[0]->GetWidth() * fileCount;
 		UINT sheetHeight = images[0]->GetHeight();
-		graphics::Texture* spriteSheet = 
-			graphics::Texture::Create(name, sheetWidth, sheetHeight);
+		graphics::Texture* spriteSheet = graphics::Texture::Create(name, sheetWidth, sheetHeight);
 
 		UINT imageWidth = images[0]->GetWidth();
 		UINT imageHeight = images[0]->GetHeight();
@@ -132,12 +131,12 @@ namespace huru
 				SRCCOPY);
 		}
 
-		CreateAnimation(name, spriteSheet, math::Vector2(math::Vector2::Zero),
-						math::Vector2(imageWidth, imageHeight),
+		CreateAnimation(name, spriteSheet, Vector2(Vector2::Zero),
+						Vector2(imageWidth, imageHeight),
 						offset, fileCount, duration);
 	}
 
-	Animation* Animator::FindAnimation(const std::wstring& name)
+	Animation* Animator::FindAnimation(const wstring& name)
 	{
 		auto iter = mAnimations.find(name);
 		if (iter == mAnimations.end())
@@ -146,7 +145,7 @@ namespace huru
 		return iter->second;
 	}
 
-	void Animator::PlayAnimation(const std::wstring& name, bool loop)
+	void Animator::PlayAnimation(const wstring& name, bool loop)
 	{
 		Animation* animation = FindAnimation(name);
 		if (animation == nullptr)
@@ -166,7 +165,7 @@ namespace huru
 		mActiveAnimation->Reset();
 		mbLoop = loop;
 	}
-	Animator::Events* Animator::FindEvents(const std::wstring& name)
+	Animator::Events* Animator::FindEvents(const wstring& name)
 	{
 		auto iter = mEvents.find(name);
 		if (iter == mEvents.end())
@@ -175,19 +174,19 @@ namespace huru
 		return iter->second;
 	}
 
-	std::function<void()>& Animator::GetStartEvent(const std::wstring& name)
+	function<void()>& Animator::GetStartEvent(const wstring& name)
 	{
 		Events* events = FindEvents(name);
 		return events->startEvent.mEvent;
 	}
 
-	std::function<void()>& Animator::GetCompleteEvent(const std::wstring& name)
+	function<void()>& Animator::GetCompleteEvent(const wstring& name)
 	{
 		Events* events = FindEvents(name);
 		return events->completeEvent.mEvent;
 	}
 
-	std::function<void()>& Animator::GetEndEvent(const std::wstring& name)
+	function<void()>& Animator::GetEndEvent(const wstring& name)
 	{
 		Events* events = FindEvents(name);
 		return events->endEvent.mEvent;

@@ -19,17 +19,17 @@ namespace huru
 
 		void AddGameObject(GameObject* gameObj);
 		void EraseGameObject(GameObject* eraseGameObj);
-		const std::vector<GameObject*>GetGameObjects() { return mGameObjects; }
+		const vector<GameObject*>GetGameObjects() { return mGameObjects; }
 
 	private:
-		void findDeadGameObjects(OUT std::vector<GameObject*>& gameObjs);
-		void deleteGameObjects(std::vector<GameObject*> gameObjs);
+		void findDeadGameObjects(OUT vector<GameObject*>& gameObjs);
+		void deleteGameObjects(vector<GameObject*> gameObjs);
 		void eraseDeadGameObject();
 
 	private:
-		std::vector<GameObject*> mGameObjects;
+		vector<GameObject*> mGameObjects;
 	};
 
-	typedef std::vector<GameObject*>::iterator GameObjectIter;
+	typedef vector<GameObject*>::iterator GameObjectIter;
 }
 

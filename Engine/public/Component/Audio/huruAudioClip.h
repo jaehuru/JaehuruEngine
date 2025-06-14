@@ -11,11 +11,11 @@ namespace huru
 		AudioClip();
 		virtual ~AudioClip();
 
-		virtual HRESULT Load(const std::wstring& path) override;
+		virtual HRESULT Load(const wstring& path) override;
 
 		void			Play();
 		void			Stop();
-		void			Set2DAttributes(const math::Vector2 pos);
+		void			Set2DAttributes(const Vector2 pos);
 		void			SetLoop(bool loop) { mbLoop = loop; }
 
 	private:

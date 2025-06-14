@@ -7,7 +7,7 @@
 namespace huru
 {
 	CircleCollider2D::CircleCollider2D()
-		: Collider(enums::eColliderType::Circle2D)
+		: Collider(eColliderType::Circle2D)
 	{
 
 	}
@@ -35,12 +35,12 @@ namespace huru
 	void CircleCollider2D::Render(HDC hdc)
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		math::Vector2 pos = tr->GetPosition();
+		Vector2 pos = tr->GetPosition();
 
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		math::Vector2 offset = GetOffset();
+		Vector2 offset = GetOffset();
 
 		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, transparentBrush);
@@ -48,7 +48,7 @@ namespace huru
 		HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
 		HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
 
-		math::Vector2 rightBottom;
+		Vector2 rightBottom;
 		rightBottom.x = pos.x + offset.x + 100 * GetSize().x;
 		rightBottom.y = pos.y + offset.y + 100 * GetSize().y;
 
