@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Common/CommonInclude.h"
-
 namespace huru::enums
 {
 	enum class eComponentType
@@ -47,10 +45,7 @@ namespace huru::enums
 		HUD,
 		End,
 	};
-}
 
-namespace huru::utils
-{
 	template<typename T>
 	constexpr eLayerType ToEngineLayerType(T layerEnum)
 	{
