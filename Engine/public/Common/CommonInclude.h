@@ -26,8 +26,5 @@
 #include "huruMath.h"
 #include "huruEnums.h"
 
-#define DIRECTINPUT_VERSION 0x0900
-#include <dinput.h>
-
 // Removed 'using namespace std;' to avoid namespace conflicts
 // Explicitly qualify standard library types with 'std::'
