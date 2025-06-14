@@ -27,7 +27,6 @@
 #include "huruEnums.h"
 
 using namespace std;
-using namespace huru;
 using namespace huru::math;
 using namespace huru::enums;
 
