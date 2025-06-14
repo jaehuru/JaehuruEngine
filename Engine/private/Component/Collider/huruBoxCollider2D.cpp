@@ -36,11 +36,12 @@ namespace huru
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		Vector2 offset = GetOffset();
+		Vector2 size = GetSize();
 
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		Vector2 offset = GetOffset();
 
 		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, transparentBrush);
@@ -48,7 +49,7 @@ namespace huru
 		HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
 		HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
 
-		Vector2 size = GetSize() * 100.f;
+	
 		Vector2 leftTop = pos + offset - size / 2.f;
 
 		Rectangle(hdc,

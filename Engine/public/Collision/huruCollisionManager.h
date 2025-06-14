@@ -38,7 +38,7 @@ namespace huru
 		static void				ColliderCollision(Collider* left, Collider* right);
 		static bool				Intersect(Collider* left, Collider* right);
 
-		static Vector2	CalculateCollisionDepth(Collider* left, Collider* right);
+		static Vector2			CalculateCollisionDepth(Collider* left, Collider* right);
 		static bool				CheckCollisionWithDepth(Collider* left, Collider* right, Vector2& outDepth);
 
 		static bool				IntersectRectRect(Collider* left, Collider* right);
