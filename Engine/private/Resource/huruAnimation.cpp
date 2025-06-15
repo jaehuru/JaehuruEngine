@@ -13,11 +13,14 @@ namespace huru
 		Resource(eResourceType::Animation),
 		mAnimator(nullptr),
 		mTexture(nullptr),
-		mFrames{ },
+		mTextures{ },
+		mAnimationSheet{ },
 		mIndex(-1),
 		mTime(0.f),
 		mbComplete(false),
-        mbUseSheet(true)
+        mbUseSheet(true),
+		mOffset(Vector2::One),
+		mDuration(0.f)
 	{
 
 	}
@@ -37,30 +40,10 @@ namespace huru
 		if (mbComplete)
 			return;
 
-		mTime += Time::DeltaTime();
-
-		if (!mbUseSheet)
-		{
-			if (mFrames[mIndex].duration < mTime)
-			{
-				mTime = 0.f;
-				if (mIndex < (int)mFrames.size() - 1)
-					mIndex++;
-				else
-					mbComplete = true;
-			}
-		}
+		if (mbUseSheet)
+			UpdateSheet();
 		else
-		{
-			if (mFrames[mIndex].duration < mTime)
-			{
-				mTime = 0.f;
-				if (mIndex < (int)mFrames.size() - 1)
-					mIndex++;
-				else
-					mbComplete = true;
-			}
-		}
+			UpdateFrame();
 	}
 
 	void Animation::Render(HDC hdc)
@@ -88,7 +71,7 @@ namespace huru
 			sprite.offset = offset;
 			sprite.duration = duration;
 
-			mFrames.push_back(sprite);
+			mAnimationSheet.push_back(sprite);
 		}
 	}
 
@@ -98,20 +81,11 @@ namespace huru
 									float duration)
 	{
 		mbUseSheet = false;
-		mTextures = frames;
-		mFrames.clear();
 
-		for (size_t i = 0; i < frames.size(); i++)
-		{
-			Sprite sprite;
-			sprite.offset = offset;
-			sprite.duration = duration;
-			mFrames.push_back(sprite);
-		}
-
-		mIndex = 0;
-		mTime = 0.f;
-		mbComplete = false;
+		mTextures = frames;  
+		mAnimationSheet.clear();  
+		mOffset = offset;  
+		mDuration = duration;
 	}
 
 	void Animation::Reset()
@@ -132,11 +106,6 @@ namespace huru
         return nullptr;
     }
 
-	void Animation::AddFrame(const Sprite& frame)
-	{
-		mFrames.push_back(frame);
-	}
-
 	void Animation::RenderFromFrames(HDC hdc)
 	{
 		if (mTextures.empty() || mIndex < 0 || mIndex >= (int)mTextures.size())
@@ -154,8 +123,10 @@ namespace huru
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		Sprite& sprite = mFrames[mIndex];
 		Gdiplus::Image* img = texture->GetImage();
+
+		// 독립 텍스처는 보통 전체 이미지가 한 프레임이므로 offset을 별도로 멤버로 관리한다고 가정
+		Vector2 offset = mOffset; // 멤버 변수로 offset 관리 (없으면 Vector2::Zero로 대체)
 
 		Gdiplus::Graphics graphics(hdc);
 		graphics.TranslateTransform(pos.x, pos.y);
@@ -165,8 +136,8 @@ namespace huru
 		graphics.DrawImage(
 			img,
 			Gdiplus::Rect(
-				pos.x - (img->GetWidth() / 2) + sprite.offset.x,
-				pos.y - (img->GetHeight() / 2) + sprite.offset.y,
+				pos.x - (img->GetWidth() / 2) + offset.x,
+				pos.y - (img->GetHeight() / 2) + offset.y,
 				img->GetWidth() * scale.x,
 				img->GetHeight() * scale.y),
 			0, 0,
@@ -180,6 +151,9 @@ namespace huru
 	{
 		if (!mTexture) return;
 
+		if (mIndex < 0 || mIndex >= (int)mAnimationSheet.size()) 
+			return; 
+
 		GameObject* gameObj = mAnimator->GetOwner();
 		Transform* tr = gameObj->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
@@ -189,7 +163,7 @@ namespace huru
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		Sprite& sprite = mFrames[mIndex];
+		Sprite& sprite = mAnimationSheet[mIndex];
 		graphics::Texture::eTextureType type = mTexture->GetTextureType();
 
 		if (type == graphics::Texture::eTextureType::Bmp)
@@ -248,6 +222,43 @@ namespace huru
 				sprite.size.y,
 				Gdiplus::UnitPixel,
 				nullptr);
+		}
+	}
+
+	void Animation::UpdateFrame()
+	{
+		if (mTextures.empty())
+			return;
+
+		mTime += Time::DeltaTime();
+
+		if (mTime >= mDuration)
+		{
+			mTime = 0.f;
+			if (mIndex < (int)mTextures.size() - 1)
+				mIndex++;
+			else
+				mbComplete = true;
+		}
+	}
+
+	void Animation::UpdateSheet()
+	{
+		if (mIndex < 0 || mIndex >= (int)mAnimationSheet.size())
+			return;
+
+		if (mAnimationSheet.empty())
+			return;
+
+		mTime += Time::DeltaTime();
+
+		if (mAnimationSheet[mIndex].duration < mTime)
+		{
+			mTime = 0.f;
+			if (mIndex < (int)mAnimationSheet.size() - 1)
+				mIndex++;
+			else
+				mbComplete = true;
 		}
 	}
 }

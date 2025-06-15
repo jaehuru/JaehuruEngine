@@ -58,22 +58,25 @@ namespace huru
 
 		Texture*	GetTextureAtCurrentFrame() const;
 
-		void		AddFrame(const Sprite& frame);
-
 	private:
-		void				RenderFromFrames(HDC hdc);
-		void				RenderFromSheet(HDC hdc);
+		void		RenderFromFrames(HDC hdc);
+		void		RenderFromSheet(HDC hdc);
+
+		void		UpdateFrame();
+		void		UpdateSheet();
 
 	private:
 		class Animator*				mAnimator;
 		Texture*					mTexture; // 시트 
+		vector<Sprite>				mAnimationSheet; 
 		vector<Texture*>			mTextures; // 독립 텍스처
-		vector<Sprite>				mFrames; 
 
 		int							mIndex;
 		float						mTime;
 		bool						mbComplete;
 		bool						mbUseSheet;
+		Vector2						mOffset;
+		float						mDuration;
 	};
 }
 
