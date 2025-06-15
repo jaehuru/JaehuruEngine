@@ -1,5 +1,6 @@
 #include "Component/Animator/huruAnimator.h"
 #include "Resource/huruResources.h"
+#include "Resource/huruAnimation.h"
 
 namespace huru
 {
@@ -165,6 +166,7 @@ namespace huru
 		mActiveAnimation->Reset();
 		mbLoop = loop;
 	}
+
 	Animator::Events* Animator::FindEvents(const wstring& name)
 	{
 		auto iter = mEvents.find(name);

@@ -3,17 +3,21 @@
 #include "Resource/huruResource.h"
 #include "Resource/huruTexture.h"
 
+
+
 namespace huru
 {
+	using namespace graphics;
+
 	class Animation : public Resource
 	{
 	public:
 		struct Sprite
 		{
-			Vector2 leftTop;
-			Vector2 size;
-			Vector2 offset;
-			float duration;
+			Vector2		leftTop;
+			Vector2		size;
+			Vector2		offset;
+			float		duration;
 
 			Sprite() :
 				leftTop(Vector2::Zero),
@@ -28,32 +32,48 @@ namespace huru
 		Animation();
 		~Animation();
 
-		HRESULT Load(const wstring& path) override;
+		HRESULT		Load(const wstring& path) override;
 
-		void Update();
-		void Render(HDC hdc);
+		void		Update();
+		void		Render(HDC hdc);
 
+		//시트 기반 애니메이션 생성
 		void		CreateAnimation(const wstring& name,
-									graphics::Texture* spriteSheet,
+									Texture* spriteSheet,
 									Vector2 leftTop,
 									Vector2 size,
 									Vector2 offset,
 									UINT spriteLength,
 									float duration);
 
-		void Reset();
+		// 새로운 독립 PNG 프레임 기반 애니메이션 생성
+		void		CreateAnimation(const wstring& name,
+									const vector<Texture*>& frames,
+									Vector2 offset,
+									float duration);
 
-		bool IsComplete() { return mbComplete; } 
-		void SetAnimator(class Animator* animator) { mAnimator = animator; }
+		void		Reset();
+
+		bool		IsComplete() { return mbComplete; } 
+		void		SetAnimator(class Animator* animator) { mAnimator = animator; }
+		bool		IsUsingSheet() const { return mbUseSheet; }
+
+		Texture*	GetTextureAtCurrentFrame() const;
 
 	private:
-		class Animator*			mAnimator;
-		graphics::Texture*		mTexture;
+		void				RenderFromFrames(HDC hdc);
+		void				RenderFromSheet(HDC hdc);
 
-		vector<Sprite>		mAnimationSheet;
-		int						mIndex;
-		float					mTime;
-		bool					mbComplete;
+	private:
+		class Animator*				mAnimator;
+		Texture*					mTexture; // 시트 
+		vector<Texture*>			mTextures; // 독립 텍스처
+		vector<Sprite>				mFrames; 
+
+		int							mIndex;
+		float						mTime;
+		bool						mbComplete;
+		bool						mbUseSheet;
 	};
 }
 

@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Component/huruComponent.h"
-#include "Resource/huruAnimation.h"
 
 
 namespace huru
 {
+	class Animation;
+
 	class Animator : public Component
 	{
 	public:
@@ -35,39 +36,39 @@ namespace huru
 		Animator();
 		~Animator();
 
-		void	Initialize() override;
-		void	Update() override;
-		void	LateUpdate() override;
-		void	Render(HDC hdc) override;
+		void				Initialize() override;
+		void				Update() override;
+		void				LateUpdate() override;
+		void				Render(HDC hdc) override;
 
-		void	CreateAnimation(const wstring& name,
-								graphics::Texture* spriteSheet,
-								Vector2 leftTop,
-								Vector2 size,
-								Vector2 offset,
-								UINT spriteLength,
-								float duration);
-		void	CreateAnimationByFolder(const wstring& name,
-										const wstring& path,
-										Vector2 offset,
-										float duration);
-		Animation* FindAnimation(const wstring& name);
-		void PlayAnimation(const wstring& name, bool loop);
+		void				CreateAnimation(const wstring& name,
+											graphics::Texture* spriteSheet,
+											Vector2 leftTop,
+											Vector2 size,
+											Vector2 offset,
+											UINT spriteLength,
+											float duration);
+		void				CreateAnimationByFolder(const wstring& name,
+													const wstring& path,
+													Vector2 offset,
+													float duration);
+		Animation*			FindAnimation(const wstring& name);
+		void				PlayAnimation(const wstring& name, bool loop);
 
-		Events* FindEvents(const wstring& name);
-		function<void()>& GetStartEvent(const wstring& name);
-		function<void()>& GetCompleteEvent(const wstring& name);
-		function<void()>& GetEndEvent(const wstring& name);
+		Events*				FindEvents(const wstring& name);
+		function<void()>&	GetStartEvent(const wstring& name);
+		function<void()>&	GetCompleteEvent(const wstring& name);
+		function<void()>&	GetEndEvent(const wstring& name);
 
-		bool IsComplete() { return mActiveAnimation->IsComplete(); }
+		bool				IsComplete() { return mActiveAnimation->IsComplete(); }
 
 	private:
-		map<wstring, Animation*> mAnimations;
-		Animation* mActiveAnimation;
-		bool mbLoop;
+		map<wstring, Animation*>	mAnimations;
+		Animation*					mActiveAnimation;
+		bool						mbLoop;
 
 		//Event
-		map<wstring, Events*> mEvents;
+		map<wstring, Events*>		mEvents;
 	};
 }
 

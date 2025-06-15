@@ -13,10 +13,11 @@ namespace huru
 		Resource(eResourceType::Animation),
 		mAnimator(nullptr),
 		mTexture(nullptr),
-		mAnimationSheet{ },
+		mFrames{ },
 		mIndex(-1),
 		mTime(0.f),
-		mbComplete(false)
+		mbComplete(false),
+        mbUseSheet(true)
 	{
 
 	}
@@ -38,21 +39,106 @@ namespace huru
 
 		mTime += Time::DeltaTime();
 
-		if (mAnimationSheet[mIndex].duration < mTime)
+		if (!mbUseSheet)
 		{
-			mTime = 0.f;
-			if (mIndex < mAnimationSheet.size() - 1)
-				mIndex++;
-			else
-				mbComplete = true;
+			if (mFrames[mIndex].duration < mTime)
+			{
+				mTime = 0.f;
+				if (mIndex < (int)mFrames.size() - 1)
+					mIndex++;
+				else
+					mbComplete = true;
+			}
+		}
+		else
+		{
+			if (mFrames[mIndex].duration < mTime)
+			{
+				mTime = 0.f;
+				if (mIndex < (int)mFrames.size() - 1)
+					mIndex++;
+				else
+					mbComplete = true;
+			}
 		}
 	}
 
 	void Animation::Render(HDC hdc)
 	{
-		// 조건 : 해당 이미지 알파채널이 있어야함
-		if (mTexture == nullptr)
+		if (mbUseSheet)
+			RenderFromSheet(hdc);
+		else
+			RenderFromFrames(hdc);
+	}
+
+	void Animation::CreateAnimation(const wstring& name,
+									graphics::Texture* spriteSheet,
+									Vector2 leftTop, Vector2 size,
+									Vector2 offset, UINT spriteLength,
+									float duration)
+	{
+        mbUseSheet = true;
+		mTexture = spriteSheet;
+		for (size_t i = 0; i < spriteLength; i++)
+		{
+			Sprite sprite = { };
+			sprite.leftTop.x = leftTop.x + size.x * i;
+			sprite.leftTop.y = leftTop.y;
+			sprite.size = size;
+			sprite.offset = offset;
+			sprite.duration = duration;
+
+			mFrames.push_back(sprite);
+		}
+	}
+
+	void Animation::CreateAnimation(const wstring& name, 
+									const vector<graphics::Texture*>& frames,
+									Vector2 offset,
+									float duration)
+	{
+		mbUseSheet = false;
+		mTextures = frames;
+		mFrames.clear();
+
+		for (size_t i = 0; i < frames.size(); i++)
+		{
+			Sprite sprite;
+			sprite.offset = offset;
+			sprite.duration = duration;
+			mFrames.push_back(sprite);
+		}
+
+		mIndex = 0;
+		mTime = 0.f;
+		mbComplete = false;
+	}
+
+	void Animation::Reset()
+	{
+		mTime = 0;
+		mIndex = 0.f;
+		mbComplete = false;
+	}
+
+    Texture* Animation::GetTextureAtCurrentFrame() const
+    {
+        if (mbUseSheet)
+            return mTexture;
+
+        if (mIndex < mTextures.size())
+            return mTextures[mIndex];
+
+        return nullptr;
+    }
+
+	void Animation::RenderFromFrames(HDC hdc)
+	{
+		if (mTextures.empty() || mIndex < 0 || mIndex >= (int)mTextures.size())
 			return;
+
+		graphics::Texture* texture = mTextures[mIndex];
+		if (!texture) return;
 
 		GameObject* gameObj = mAnimator->GetOwner();
 		Transform* tr = gameObj->GetComponent<Transform>();
@@ -62,21 +148,52 @@ namespace huru
 
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
-		Sprite sprite = mAnimationSheet[mIndex];
 
+		Sprite& sprite = mFrames[mIndex];
+		Gdiplus::Image* img = texture->GetImage();
+
+		Gdiplus::Graphics graphics(hdc);
+		graphics.TranslateTransform(pos.x, pos.y);
+		graphics.RotateTransform(rot);
+		graphics.TranslateTransform(-pos.x, -pos.y);
+
+		graphics.DrawImage(
+			img,
+			Gdiplus::Rect(
+				pos.x - (img->GetWidth() / 2) + sprite.offset.x,
+				pos.y - (img->GetHeight() / 2) + sprite.offset.y,
+				img->GetWidth() * scale.x,
+				img->GetHeight() * scale.y),
+			0, 0,
+			img->GetWidth(),
+			img->GetHeight(),
+			Gdiplus::UnitPixel,
+			nullptr);
+	}
+
+	void Animation::RenderFromSheet(HDC hdc)
+	{
+		if (!mTexture) return;
+
+		GameObject* gameObj = mAnimator->GetOwner();
+		Transform* tr = gameObj->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+		float rot = tr->GetRotation();
+		Vector2 scale = tr->GetScale();
+
+		if (renderer::mainCamera)
+			pos = renderer::mainCamera->CalculatePosition(pos);
+
+		Sprite& sprite = mFrames[mIndex];
 		graphics::Texture::eTextureType type = mTexture->GetTextureType();
+
 		if (type == graphics::Texture::eTextureType::Bmp)
 		{
 			HDC imgHdc = mTexture->GetHdc();
 
 			if (mTexture->IsAlpha())
 			{
-				BLENDFUNCTION func = { };
-				func.BlendOp = AC_SRC_OVER;
-				func.BlendFlags = 0;
-				func.AlphaFormat = AC_SRC_ALPHA;
-				func.SourceConstantAlpha = 255; // 0(Transparent) ~ 255(Opaque)
-
+				BLENDFUNCTION func = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 				AlphaBlend(
 					hdc,
 					pos.x - (sprite.size.x / 2.f) + sprite.offset.x,
@@ -93,7 +210,7 @@ namespace huru
 			else
 			{
 				TransparentBlt(
-					hdc, 
+					hdc,
 					pos.x - (sprite.size.x / 2.f) + sprite.offset.x,
 					pos.y - (sprite.size.y / 2.f) + sprite.offset.y,
 					sprite.size.x * scale.x,
@@ -108,27 +225,18 @@ namespace huru
 		}
 		else if (type == graphics::Texture::eTextureType::Png)
 		{
-			// 픽셀을 투명화 시킬때
-			Gdiplus::ImageAttributes imgAtt = {};
-
-			// 투명화 시킬 픽셀의 색 범위
-			imgAtt.SetColorKey(Gdiplus::Color(100, 100, 100),
-								Gdiplus::Color(255, 255, 255));
 			Gdiplus::Graphics graphics(hdc);
-
 			graphics.TranslateTransform(pos.x, pos.y);
 			graphics.RotateTransform(rot);
 			graphics.TranslateTransform(-pos.x, -pos.y);
 
 			graphics.DrawImage(
 				mTexture->GetImage(),
-				Gdiplus::Rect
-				(
+				Gdiplus::Rect(
 					pos.x - (sprite.size.x / 2.f),
 					pos.y - (sprite.size.y / 2.f),
 					sprite.size.x * scale.x,
-					sprite.size.y * scale.y
-				),
+					sprite.size.y * scale.y),
 				sprite.leftTop.x,
 				sprite.leftTop.y,
 				sprite.size.x,
@@ -136,32 +244,5 @@ namespace huru
 				Gdiplus::UnitPixel,
 				nullptr);
 		}
-	}
-
-	void Animation::CreateAnimation(const wstring& name,
-									graphics::Texture* spriteSheet,
-									Vector2 leftTop, Vector2 size,
-									Vector2 offset, UINT spriteLength,
-									float duration)
-	{
-		mTexture = spriteSheet;
-		for (size_t i = 0; i < spriteLength; i++)
-		{
-			Sprite sprite = { };
-			sprite.leftTop.x = leftTop.x + size.x * i;
-			sprite.leftTop.y = leftTop.y;
-			sprite.size = size;
-			sprite.offset = offset;
-			sprite.duration = duration;
-
-			mAnimationSheet.push_back(sprite);
-		}
-	}
-
-	void Animation::Reset()
-	{
-		mTime = 0;
-		mIndex = 0.f;
-		mbComplete = false;
 	}
 }
