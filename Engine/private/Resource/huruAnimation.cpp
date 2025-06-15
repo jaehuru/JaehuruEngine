@@ -128,9 +128,9 @@ namespace huru
 			Gdiplus::Graphics graphics(hdc);
 			float centerX = pos.x;
 			float centerY = pos.y;
-
+			float testRot = 45.0f;
 			graphics.TranslateTransform(centerX, centerY);   // 이미지 중심으로 원점 이동
-			graphics.RotateTransform(rot);                    // 회전
+			graphics.RotateTransform(testRot);                    // 회전
 			graphics.TranslateTransform(-centerX, -centerY); // 원점 복귀
 
 			graphics.DrawImage(
