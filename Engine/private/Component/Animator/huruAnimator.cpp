@@ -87,54 +87,87 @@ namespace huru
 
 		mAnimations.insert(make_pair(name, animation));
 	}
-
+	
 	void Animator::CreateAnimationByFolder(const wstring& name, 
 											const wstring& path,
 											Vector2 offset,
 											float duration)
 	{
-		Animation* animation = nullptr;
-		animation = FindAnimation(name);
-		if (animation != nullptr)
-			return;
+		Animation* animation = FindAnimation(name);
+		if (animation != nullptr) return;
 
 		int fileCount = 0;
 		filesystem::path fs(path);
-		vector<graphics::Texture*> images = { };
-		for (auto& p : filesystem::recursive_directory_iterator(fs))
+		vector<graphics::Texture*> images;
+
+		for (auto& p : filesystem::directory_iterator(fs))
 		{
+			wstring ext = p.path().extension().wstring();
+			std::transform(ext.begin(), ext.end(), ext.begin(), ::towlower);
+
+			if (ext != L".bmp" && ext != L".png")
+				continue; 
+
 			wstring fileName = p.path().filename();
 			wstring fullName = p.path();
 
-			graphics::Texture* texture =
-				Resources::Load<graphics::Texture>(fileName, fullName);
-			images.push_back(texture);
-			fileCount++;
+			graphics::Texture* texture = Resources::Load<graphics::Texture>(fileName, fullName);
+			if (texture)
+			{
+				images.push_back(texture);
+				fileCount++;
+			}
 		}
 
-		UINT sheetWidth = images[0]->GetWidth() * fileCount;
-		UINT sheetHeight = images[0]->GetHeight();
-		graphics::Texture* spriteSheet = graphics::Texture::Create(name, sheetWidth, sheetHeight);
+		if (images.empty())
+			return;
 
 		UINT imageWidth = images[0]->GetWidth();
 		UINT imageHeight = images[0]->GetHeight();
-		for (size_t i = 0; i < images.size(); i++)
+		UINT sheetWidth = imageWidth * fileCount;
+		UINT sheetHeight = imageHeight;
+
+		graphics::Texture* spriteSheet = graphics::Texture::Create(name, sheetWidth, sheetHeight);
+
+		Gdiplus::Graphics graphics(spriteSheet->GetHdc());
+
+		for (size_t i = 0; i < images.size(); ++i)
 		{
-			BitBlt(
-				spriteSheet->GetHdc(),
-				i * imageWidth,
-				0,
-				imageWidth,
-				imageHeight,
-				images[i]->GetHdc(),
-				0,
-				0,
-				SRCCOPY);
+			filesystem::path filepath = images[i]->GetPath();
+
+			wstring ext = filepath.extension().wstring();
+			std::transform(ext.begin(), ext.end(), ext.begin(), ::towlower);
+
+			if (ext == L".png")
+			{
+				Gdiplus::Image image(filepath.c_str());
+				graphics.DrawImage(&image, i * imageWidth, 0, imageWidth, imageHeight);
+			}
+			else if (ext == L".bmp")
+			{
+				BLENDFUNCTION bf = {};
+				bf.BlendOp = AC_SRC_OVER;
+				bf.SourceConstantAlpha = 255;
+				bf.AlphaFormat = 0;
+
+				AlphaBlend(
+					spriteSheet->GetHdc(),
+					i * imageWidth,
+					0,
+					imageWidth,
+					imageHeight,
+					images[i]->GetHdc(),
+					0,
+					0,
+					imageWidth,
+					imageHeight,
+					bf);
+			}
 		}
 
-		CreateAnimation(name, spriteSheet, Vector2(Vector2::Zero),
-						Vector2(imageWidth, imageHeight),
-						offset, fileCount, duration);
+		CreateAnimation(name, spriteSheet, Vector2::Zero,
+			Vector2(imageWidth, imageHeight),
+			offset, fileCount, duration);
 	}
 
 	void Animator::AddAnimation(const std::wstring& name, Animation* animation)

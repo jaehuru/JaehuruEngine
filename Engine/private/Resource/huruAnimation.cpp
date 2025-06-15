@@ -13,14 +13,10 @@ namespace huru
 		Resource(eResourceType::Animation),
 		mAnimator(nullptr),
 		mTexture(nullptr),
-		mTextures{ },
-		mAnimationSheet{ },
+		mSpriteSheet{ },
 		mIndex(-1),
 		mTime(0.f),
-		mbComplete(false),
-        mbUseSheet(true),
-		mOffset(Vector2::One),
-		mDuration(0.f)
+		mbComplete(false)
 	{
 
 	}
@@ -37,21 +33,12 @@ namespace huru
 
 	void Animation::Update()
 	{
-		if (mbComplete)
-			return;
-
-		if (mbUseSheet)
-			UpdateSheet();
-		else
-			UpdateFrame();
+		UpdateSheet();
 	}
 
 	void Animation::Render(HDC hdc)
 	{
-		if (mbUseSheet)
-			RenderFromSheet(hdc);
-		else
-			RenderFromFrames(hdc);
+		RenderFromSheet(hdc);
 	}
 
 	void Animation::CreateAnimation(const wstring& name,
@@ -60,7 +47,6 @@ namespace huru
 									Vector2 offset, UINT spriteLength,
 									float duration)
 	{
-        mbUseSheet = true;
 		mTexture = spriteSheet;
 		for (size_t i = 0; i < spriteLength; i++)
 		{
@@ -71,21 +57,8 @@ namespace huru
 			sprite.offset = offset;
 			sprite.duration = duration;
 
-			mAnimationSheet.push_back(sprite);
+			mSpriteSheet.push_back(sprite);
 		}
-	}
-
-	void Animation::CreateAnimation(const wstring& name, 
-									const vector<graphics::Texture*>& frames,
-									Vector2 offset,
-									float duration)
-	{
-		mbUseSheet = false;
-
-		mTextures = frames;  
-		mAnimationSheet.clear();  
-		mOffset = offset;  
-		mDuration = duration;
 	}
 
 	void Animation::Reset()
@@ -95,63 +68,11 @@ namespace huru
 		mbComplete = false;
 	}
 
-    Texture* Animation::GetTextureAtCurrentFrame() const
-    {
-        if (mbUseSheet)
-            return mTexture;
-
-        if (mIndex < mTextures.size())
-            return mTextures[mIndex];
-
-        return nullptr;
-    }
-
-	void Animation::RenderFromFrames(HDC hdc)
-	{
-		if (mTextures.empty() || mIndex < 0 || mIndex >= (int)mTextures.size())
-			return;
-
-		graphics::Texture* texture = mTextures[mIndex];
-		if (!texture) return;
-
-		GameObject* gameObj = mAnimator->GetOwner();
-		Transform* tr = gameObj->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
-		float rot = tr->GetRotation();
-		Vector2 scale = tr->GetScale();
-
-		if (renderer::mainCamera)
-			pos = renderer::mainCamera->CalculatePosition(pos);
-
-		Gdiplus::Image* img = texture->GetImage();
-
-		// 독립 텍스처는 보통 전체 이미지가 한 프레임이므로 offset을 별도로 멤버로 관리한다고 가정
-		Vector2 offset = mOffset; // 멤버 변수로 offset 관리 (없으면 Vector2::Zero로 대체)
-
-		Gdiplus::Graphics graphics(hdc);
-		graphics.TranslateTransform(pos.x, pos.y);
-		graphics.RotateTransform(rot);
-		graphics.TranslateTransform(-pos.x, -pos.y);
-
-		graphics.DrawImage(
-			img,
-			Gdiplus::Rect(
-				pos.x - (img->GetWidth() / 2) + offset.x,
-				pos.y - (img->GetHeight() / 2) + offset.y,
-				img->GetWidth() * scale.x,
-				img->GetHeight() * scale.y),
-			0, 0,
-			img->GetWidth(),
-			img->GetHeight(),
-			Gdiplus::UnitPixel,
-			nullptr);
-	}
-
 	void Animation::RenderFromSheet(HDC hdc)
 	{
 		if (!mTexture) return;
 
-		if (mIndex < 0 || mIndex >= (int)mAnimationSheet.size()) 
+		if (mIndex < 0 || mIndex >= (int)mSpriteSheet.size())
 			return; 
 
 		GameObject* gameObj = mAnimator->GetOwner();
@@ -163,7 +84,7 @@ namespace huru
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		Sprite& sprite = mAnimationSheet[mIndex];
+		Sprite& sprite = mSpriteSheet[mIndex];
 		graphics::Texture::eTextureType type = mTexture->GetTextureType();
 
 		if (type == graphics::Texture::eTextureType::Bmp)
@@ -225,37 +146,20 @@ namespace huru
 		}
 	}
 
-	void Animation::UpdateFrame()
-	{
-		if (mTextures.empty())
-			return;
-
-		mTime += Time::DeltaTime();
-
-		if (mTime >= mDuration)
-		{
-			mTime = 0.f;
-			if (mIndex < (int)mTextures.size() - 1)
-				mIndex++;
-			else
-				mbComplete = true;
-		}
-	}
-
 	void Animation::UpdateSheet()
 	{
-		if (mIndex < 0 || mIndex >= (int)mAnimationSheet.size())
+		if (mIndex < 0 || mIndex >= (int)mSpriteSheet.size())
 			return;
 
-		if (mAnimationSheet.empty())
+		if (mSpriteSheet.empty())
 			return;
 
 		mTime += Time::DeltaTime();
 
-		if (mAnimationSheet[mIndex].duration < mTime)
+		if (mSpriteSheet[mIndex].duration < mTime)
 		{
 			mTime = 0.f;
-			if (mIndex < (int)mAnimationSheet.size() - 1)
+			if (mIndex < (int)mSpriteSheet.size() - 1)
 				mIndex++;
 			else
 				mbComplete = true;
