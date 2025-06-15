@@ -95,8 +95,6 @@ namespace huru
 			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230),
 								Gdiplus::Color(255, 255, 255));
 
-			Gdiplus::Graphics graphics(hdc);
-
 			float width = mTexture->GetWidth() * mSize.x * scale.x;
 			float height = mTexture->GetHeight() * mSize.y * scale.y;
 
