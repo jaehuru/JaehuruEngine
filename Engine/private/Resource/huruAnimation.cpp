@@ -126,15 +126,18 @@ namespace huru
 		else if (type == graphics::Texture::eTextureType::Png)
 		{
 			Gdiplus::Graphics graphics(hdc);
-			graphics.TranslateTransform(pos.x, pos.y);
-			graphics.RotateTransform(rot);
-			graphics.TranslateTransform(-pos.x, -pos.y);
+			float centerX = pos.x;
+			float centerY = pos.y;
+
+			graphics.TranslateTransform(centerX, centerY);   // 이미지 중심으로 원점 이동
+			graphics.RotateTransform(rot);                    // 회전
+			graphics.TranslateTransform(-centerX, -centerY); // 원점 복귀
 
 			graphics.DrawImage(
 				mTexture->GetImage(),
 				Gdiplus::Rect(
-					pos.x - (sprite.size.x / 2.f),
-					pos.y - (sprite.size.y / 2.f),
+					centerX - (sprite.size.x * scale.x) / 2,
+					centerY - (sprite.size.y * scale.y) / 2,
 					sprite.size.x * scale.x,
 					sprite.size.y * scale.y),
 				sprite.leftTop.x,
