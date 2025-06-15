@@ -51,6 +51,8 @@ namespace huru
 													const wstring& path,
 													Vector2 offset,
 													float duration);
+
+		void				AddAnimation(const std::wstring& name, Animation* animation);
 		Animation*			FindAnimation(const wstring& name);
 		void				PlayAnimation(const wstring& name, bool loop);
 
@@ -62,12 +64,13 @@ namespace huru
 		bool				IsComplete() { return mActiveAnimation->IsComplete(); }
 
 	private:
-		map<wstring, Animation*>	mAnimations;
-		Animation*					mActiveAnimation;
-		bool						mbLoop;
+		unordered_map<wstring, Animation*>	mAnimations;
+		Animation*							mActiveAnimation;
+		bool								mbLoop;
 
 		//Event
-		map<wstring, Events*>		mEvents;
+		unordered_map<wstring, Events*>		mEvents;
+
 	};
 }
 

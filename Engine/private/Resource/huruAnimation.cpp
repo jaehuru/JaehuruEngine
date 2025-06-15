@@ -132,6 +132,11 @@ namespace huru
         return nullptr;
     }
 
+	void Animation::AddFrame(const Sprite& frame)
+	{
+		mFrames.push_back(frame);
+	}
+
 	void Animation::RenderFromFrames(HDC hdc)
 	{
 		if (mTextures.empty() || mIndex < 0 || mIndex >= (int)mTextures.size())

@@ -137,6 +137,14 @@ namespace huru
 						offset, fileCount, duration);
 	}
 
+	void Animator::AddAnimation(const std::wstring& name, Animation* animation)
+	{
+		if (animation == nullptr)
+			return;
+
+		mAnimations[name] = animation;
+	}
+
 	Animation* Animator::FindAnimation(const wstring& name)
 	{
 		auto iter = mAnimations.find(name);

@@ -58,6 +58,8 @@ namespace huru
 
 		Texture*	GetTextureAtCurrentFrame() const;
 
+		void		AddFrame(const Sprite& frame);
+
 	private:
 		void				RenderFromFrames(HDC hdc);
 		void				RenderFromSheet(HDC hdc);
