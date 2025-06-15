@@ -70,15 +70,16 @@ namespace huru
 
 	void Animation::RenderFromSheet(HDC hdc)
 	{
-		if (!mTexture) return;
+		if (!mTexture)
+			return;
 
 		if (mIndex < 0 || mIndex >= (int)mSpriteSheet.size())
-			return; 
+			return;
 
 		GameObject* gameObj = mAnimator->GetOwner();
 		Transform* tr = gameObj->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
-		float rot = 45.f;
+		float rot = tr->GetRotation();
 		Vector2 scale = tr->GetScale();
 
 		if (renderer::mainCamera)
@@ -126,20 +127,16 @@ namespace huru
 		else if (type == graphics::Texture::eTextureType::Png)
 		{
 			Gdiplus::Graphics graphics(hdc);
-			Gdiplus::Matrix oldMatrix;
-			graphics.GetTransform(&oldMatrix);
-			float centerX = sprite.size.x * scale.x / 2.f;
-			float centerY = sprite.size.y * scale.y / 2.f;
-		
-			graphics.TranslateTransform(pos.x + centerX, pos.y + centerY);
+
+			graphics.TranslateTransform(pos.x, pos.y);
 			graphics.RotateTransform(rot);
-			graphics.TranslateTransform(-(pos.x + centerX), -(pos.y + centerY));
+			graphics.TranslateTransform(-pos.x, -pos.y);
 
 			graphics.DrawImage(
 				mTexture->GetImage(),
 				Gdiplus::Rect(
-					centerX - (sprite.size.x * scale.x) / 2,
-					centerY - (sprite.size.y * scale.y) / 2,
+					pos.x - (sprite.size.x / 2.f),
+					pos.y - (sprite.size.y / 2.f),
 					sprite.size.x * scale.x,
 					sprite.size.y * scale.y),
 				sprite.leftTop.x,
@@ -148,8 +145,7 @@ namespace huru
 				sprite.size.y,
 				Gdiplus::UnitPixel,
 				nullptr);
-
-			graphics.SetTransform(&oldMatrix);
+		}
 		}
 	}
 
