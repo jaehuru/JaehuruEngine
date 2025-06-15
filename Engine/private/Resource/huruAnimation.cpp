@@ -78,7 +78,7 @@ namespace huru
 		GameObject* gameObj = mAnimator->GetOwner();
 		Transform* tr = gameObj->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
-		float rot = tr->GetRotation();
+		float rot = 45.f;
 		Vector2 scale = tr->GetScale();
 
 		if (renderer::mainCamera)
@@ -126,12 +126,14 @@ namespace huru
 		else if (type == graphics::Texture::eTextureType::Png)
 		{
 			Gdiplus::Graphics graphics(hdc);
-			float centerX = pos.x;
-			float centerY = pos.y;
-			float testRot = 45.0f;
-			graphics.TranslateTransform(centerX, centerY);   // 이미지 중심으로 원점 이동
-			graphics.RotateTransform(testRot);                    // 회전
-			graphics.TranslateTransform(-centerX, -centerY); // 원점 복귀
+			Gdiplus::Matrix oldMatrix;
+			graphics.GetTransform(&oldMatrix);
+			float centerX = sprite.size.x * scale.x / 2.f;
+			float centerY = sprite.size.y * scale.y / 2.f;
+		
+			graphics.TranslateTransform(pos.x + centerX, pos.y + centerY);
+			graphics.RotateTransform(rot);
+			graphics.TranslateTransform(-(pos.x + centerX), -(pos.y + centerY));
 
 			graphics.DrawImage(
 				mTexture->GetImage(),
@@ -146,6 +148,8 @@ namespace huru
 				sprite.size.y,
 				Gdiplus::UnitPixel,
 				nullptr);
+
+			graphics.SetTransform(&oldMatrix);
 		}
 	}
 
