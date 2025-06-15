@@ -93,23 +93,25 @@ namespace huru
 
 			// 투명화 시킬 픽셀의 색 범위
 			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230),
-				Gdiplus::Color(255, 255, 255));
+								Gdiplus::Color(255, 255, 255));
 
 			Gdiplus::Graphics graphics(hdc);
 
-			graphics.TranslateTransform(pos.x, pos.y);
+			float width = mTexture->GetWidth() * mSize.x * scale.x;
+			float height = mTexture->GetHeight() * mSize.y * scale.y;
+
+			float cx = pos.x + width / 2.f;
+			float cy = pos.y + height / 2.f;
+
+			Gdiplus::Graphics graphics(hdc);
+
+			graphics.TranslateTransform(cx, cy);
 			graphics.RotateTransform(rot);
-			graphics.TranslateTransform(-pos.x, -pos.y);
+			graphics.TranslateTransform(-width / 2.f, -height / 2.f);
 
 			graphics.DrawImage(
 				mTexture->GetImage(),
-				Gdiplus::Rect
-				(
-					(int)pos.x,
-					(int)pos.y,
-					mTexture->GetWidth() * mSize.x * scale.x,
-					mTexture->GetHeight() * mSize.y * scale.y
-				),
+				Gdiplus::Rect(0, 0, (int)width, (int)height),
 				0, 0,
 				mTexture->GetWidth(),
 				mTexture->GetHeight(),
