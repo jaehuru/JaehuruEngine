@@ -36,8 +36,8 @@ namespace huru
 		T* AddComponent()
 		{
 			T* comp = new T();
-			comp->Initialize();
 			comp->SetOwner(this);
+			comp->Initialize();
 
 			mComponents[(UINT)comp->GetType()] = comp;
 			

@@ -2,10 +2,10 @@
 
 #include "Common/CommonInclude.h"
 
-#include "../../../External\FMOD\\inc\\fmod_studio.hpp"
-#include "../../../External\\FMOD\\inc\fmod.hpp"
-#include "../../../External\\FMOD\\inc\fmod_common.h"
-#include "../../../External\\FMOD\\inc\fmod_codec.h"
+#include "../../../External/FMOD/inc/fmod_studio.hpp"
+#include "../../../External/FMOD/inc/fmod.hpp"
+#include "../../../External/FMOD/inc/fmod_common.h"
+#include "../../../External/FMOD/inc/fmod_codec.h"
 
 namespace huru
 {
