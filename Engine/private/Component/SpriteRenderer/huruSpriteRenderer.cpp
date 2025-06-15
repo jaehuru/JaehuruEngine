@@ -98,19 +98,22 @@ namespace huru
 
 			Gdiplus::Graphics graphics(hdc);
 
-			graphics.TranslateTransform(pos.x, pos.y);
-			graphics.RotateTransform(rot);
-			graphics.TranslateTransform(-pos.x, -pos.y);
+			Vector2 scale = tr->GetScale();
+			float rot = tr->GetRotation();
 
-			// 중심 기준으로 위치 보정
 			float width = mTexture->GetWidth() * mSize.x * scale.x;
 			float height = mTexture->GetHeight() * mSize.y * scale.y;
 
+			// 회전 중심을 객체 위치로 설정
+			graphics.TranslateTransform(pos.x, pos.y);
+			graphics.RotateTransform(rot);
+			graphics.TranslateTransform(-width / 2.f, -height / 2.f);
+
+			// 중심 보정된 위치에 그리기
 			graphics.DrawImage(
 				mTexture->GetImage(),
 				Gdiplus::Rect(
-					(int)(pos.x - width * 0.5f),
-					(int)(pos.y - height * 0.5f),
+					0, 0,
 					(int)width,
 					(int)height),
 				0, 0,
