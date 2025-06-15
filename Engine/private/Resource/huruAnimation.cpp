@@ -146,7 +146,6 @@ namespace huru
 				Gdiplus::UnitPixel,
 				nullptr);
 		}
-		}
 	}
 
 	void Animation::UpdateSheet()
