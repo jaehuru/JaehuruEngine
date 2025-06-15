@@ -101,19 +101,23 @@ namespace huru
 			float width = mTexture->GetWidth() * mSize.x * scale.x;
 			float height = mTexture->GetHeight() * mSize.y * scale.y;
 
-			// 그냥 Transform 위치를 기준으로 (왼쪽 위 기준)
+			// 중심 좌표에서 왼쪽 위로 보정
+			Vector2 drawPos = pos;
+			drawPos.x -= width * 0.5f;
+			drawPos.y -= height * 0.5f;
+
 			graphics.DrawImage(
 				mTexture->GetImage(),
 				Gdiplus::Rect(
-					(int)pos.x,
-					(int)pos.y,
+					(int)drawPos.x,
+					(int)drawPos.y,
 					(int)width,
 					(int)height),
 				0, 0,
 				mTexture->GetWidth(),
 				mTexture->GetHeight(),
 				Gdiplus::UnitPixel,
-				nullptr);
+				&imgAtt); 
 		}
 	}
 }
