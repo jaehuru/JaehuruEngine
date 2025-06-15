@@ -1,12 +1,11 @@
 #pragma once
 
 #include "Component/huruComponent.h"
+#include "Resource/huruAnimation.h"
 
 
 namespace huru
 {
-	class Animation;
-
 	class Animator : public Component
 	{
 	public:

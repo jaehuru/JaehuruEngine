@@ -3,8 +3,6 @@
 #include "Resource/huruResource.h"
 #include "Resource/huruTexture.h"
 
-
-
 namespace huru
 {
 	using namespace graphics;
