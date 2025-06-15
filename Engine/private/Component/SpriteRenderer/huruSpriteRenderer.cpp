@@ -95,21 +95,29 @@ namespace huru
 			imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230),
 								Gdiplus::Color(255, 255, 255));
 
+			// 이미지 크기 계산
 			float width = mTexture->GetWidth() * mSize.x * scale.x;
 			float height = mTexture->GetHeight() * mSize.y * scale.y;
 
-			float cx = pos.x + width / 2.f;
-			float cy = pos.y + height / 2.f;
+			// 중심 좌표 계산
+			float cx = pos.x;
+			float cy = pos.y;
 
 			Gdiplus::Graphics graphics(hdc);
 
+			// 중심 기준으로 이동 -> 회전 -> 다시 중심 보정
 			graphics.TranslateTransform(cx, cy);
 			graphics.RotateTransform(rot);
 			graphics.TranslateTransform(-width / 2.f, -height / 2.f);
 
+			// 중심 기준으로 DrawImage
 			graphics.DrawImage(
 				mTexture->GetImage(),
-				Gdiplus::Rect(0, 0, (int)width, (int)height),
+				Gdiplus::Rect(
+					0,
+					0,
+					(int)width,
+					(int)height),
 				0, 0,
 				mTexture->GetWidth(),
 				mTexture->GetHeight(),
