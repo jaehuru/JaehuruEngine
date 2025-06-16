@@ -13,7 +13,7 @@ namespace huru
 		Resource(eResourceType::Animation),
 		mAnimator(nullptr),
 		mTexture(nullptr),
-		mSpriteSheet{ },
+		mAnimationSheet{ },
 		mIndex(-1),
 		mTime(0.f),
 		mbComplete(false)
@@ -33,47 +33,30 @@ namespace huru
 
 	void Animation::Update()
 	{
-		UpdateSheet();
+		if (mIndex < 0 || mIndex >= (int)mAnimationSheet.size())
+			return;
+
+		if (mAnimationSheet.empty())
+			return;
+
+		mTime += Time::DeltaTime();
+
+		if (mAnimationSheet[mIndex].duration < mTime)
+		{
+			mTime = 0.f;
+			if (mIndex < (int)mAnimationSheet.size() - 1)
+				mIndex++;
+			else
+				mbComplete = true;
+		}
 	}
 
 	void Animation::Render(HDC hdc)
 	{
-		RenderFromSheet(hdc);
-	}
-
-	void Animation::CreateAnimation(const wstring& name,
-									graphics::Texture* spriteSheet,
-									Vector2 leftTop, Vector2 size,
-									Vector2 offset, UINT spriteLength,
-									float duration)
-	{
-		mTexture = spriteSheet;
-		for (size_t i = 0; i < spriteLength; i++)
-		{
-			Sprite sprite = { };
-			sprite.leftTop.x = leftTop.x + size.x * i;
-			sprite.leftTop.y = leftTop.y;
-			sprite.size = size;
-			sprite.offset = offset;
-			sprite.duration = duration;
-
-			mSpriteSheet.push_back(sprite);
-		}
-	}
-
-	void Animation::Reset()
-	{
-		mTime = 0;
-		mIndex = 0.f;
-		mbComplete = false;
-	}
-
-	void Animation::RenderFromSheet(HDC hdc)
-	{
 		if (!mTexture)
 			return;
 
-		if (mIndex < 0 || mIndex >= (int)mSpriteSheet.size())
+		if (mIndex < 0 || mIndex >= (int)mAnimationSheet.size())
 			return;
 
 		GameObject* gameObj = mAnimator->GetOwner();
@@ -85,7 +68,7 @@ namespace huru
 		if (renderer::mainCamera)
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
-		Sprite& sprite = mSpriteSheet[mIndex];
+		Sprite& sprite = mAnimationSheet[mIndex];
 		graphics::Texture::eTextureType type = mTexture->GetTextureType();
 
 		if (type == graphics::Texture::eTextureType::Bmp)
@@ -94,7 +77,12 @@ namespace huru
 
 			if (mTexture->IsAlpha())
 			{
-				BLENDFUNCTION func = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+				BLENDFUNCTION func = { };
+				func.BlendOp = AC_SRC_OVER;
+				func.BlendFlags = 0;
+				func.AlphaFormat = AC_SRC_ALPHA;
+				func.SourceConstantAlpha = 255; // 0(Transparent) ~ 255(Opaque)
+
 				AlphaBlend(
 					hdc,
 					pos.x - (sprite.size.x / 2.f) + sprite.offset.x,
@@ -126,6 +114,13 @@ namespace huru
 		}
 		else if (type == graphics::Texture::eTextureType::Png)
 		{
+			// 픽셀을 투명화 시킬때
+			Gdiplus::ImageAttributes imgAtt = {};
+
+			// 투명화 시킬 픽셀의 색 범위
+			imgAtt.SetColorKey(Gdiplus::Color(100, 100, 100),
+				Gdiplus::Color(255, 255, 255));
+
 			Gdiplus::Graphics graphics(hdc);
 
 			graphics.TranslateTransform(pos.x, pos.y);
@@ -148,23 +143,30 @@ namespace huru
 		}
 	}
 
-	void Animation::UpdateSheet()
+	void Animation::CreateAnimation(const wstring& name,
+									graphics::Texture* spriteSheet,
+									Vector2 leftTop, Vector2 size,
+									Vector2 offset, UINT spriteLength,
+									float duration)
 	{
-		if (mIndex < 0 || mIndex >= (int)mSpriteSheet.size())
-			return;
-
-		if (mSpriteSheet.empty())
-			return;
-
-		mTime += Time::DeltaTime();
-
-		if (mSpriteSheet[mIndex].duration < mTime)
+		mTexture = spriteSheet;
+		for (size_t i = 0; i < spriteLength; i++)
 		{
-			mTime = 0.f;
-			if (mIndex < (int)mSpriteSheet.size() - 1)
-				mIndex++;
-			else
-				mbComplete = true;
+			Sprite sprite = { };
+			sprite.leftTop.x = leftTop.x + size.x * i;
+			sprite.leftTop.y = leftTop.y;
+			sprite.size = size;
+			sprite.offset = offset;
+			sprite.duration = duration;
+
+			mAnimationSheet.push_back(sprite);
 		}
+	}
+
+	void Animation::Reset()
+	{
+		mTime = 0;
+		mIndex = 0.f;
+		mbComplete = false;
 	}
 }

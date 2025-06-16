@@ -48,14 +48,11 @@ namespace huru
 		bool		IsComplete() { return mbComplete; } 
 		void		SetAnimator(class Animator* animator) { mAnimator = animator; }
 
-	private:
-		void		RenderFromSheet(HDC hdc);
-		void		UpdateSheet();
 
 	private:
 		class Animator*				mAnimator;
 		Texture*					mTexture;  
-		vector<Sprite>				mSpriteSheet; 
+		vector<Sprite>				mAnimationSheet; 
 
 		int							mIndex;
 		float						mTime;
