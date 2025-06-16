@@ -3,7 +3,7 @@
 #include "Component/Transform/huruTransform.h"
 #include "HighLevelInterface/huruApplication.h"
 
-extern huru::Application application;
+extern Application application;
 
 namespace huru
 {

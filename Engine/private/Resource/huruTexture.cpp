@@ -2,7 +2,7 @@
 #include "HighLevelInterface/huruApplication.h"
 #include "Resource/huruResources.h"
 
-extern huru::Application application;
+extern Application application;
 
 namespace huru::graphics
 {

@@ -2,33 +2,33 @@
 
 namespace huru
 {
-	huru::Component::Component(eComponentType type) :
+	Component::Component(eComponentType type) :
 		mType(type)
 	{
 		
 	}
 
-	huru::Component::~Component()
+	Component::~Component()
 	{
 
 	}
 
-	void huru::Component::Initialize()
+	void Component::Initialize()
 	{
 
 	}
 
-	void huru::Component::Update()
+	void Component::Update()
 	{
 
 	}
 
-	void huru::Component::LateUpdate()
+	void Component::LateUpdate()
 	{
 
 	}
 
-	void huru::Component::Render(HDC hdc)
+	void Component::Render(HDC hdc)
 	{
 
 	}

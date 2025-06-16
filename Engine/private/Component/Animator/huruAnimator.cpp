@@ -100,18 +100,30 @@ namespace huru
 		filesystem::path fs(path);
 		vector<graphics::Texture*> images;
 
+		vector<filesystem::directory_entry> entries;
 		for (auto& p : filesystem::directory_iterator(fs))
 		{
 			wstring ext = p.path().extension().wstring();
-			std::transform(ext.begin(), ext.end(), ext.begin(), ::towlower);
+			transform(ext.begin(), ext.end(), ext.begin(), ::towlower);
 
 			if (ext != L".bmp" && ext != L".png")
-				continue; 
+				continue;
 
+			entries.push_back(p);
+		}
+
+		sort(entries.begin(), entries.end(), [](const auto& a, const auto& b) 
+		{
+			return a.path().filename().wstring() < b.path().filename().wstring();
+		});
+
+		for (auto& p : entries)
+		{
 			wstring fileName = p.path().filename();
+			wstring keyName = name + L"_" + fileName;
 			wstring fullName = p.path();
 
-			graphics::Texture* texture = Resources::Load<graphics::Texture>(fileName, fullName);
+			graphics::Texture* texture = Resources::Load<graphics::Texture>(keyName, fullName);
 			if (texture)
 			{
 				images.push_back(texture);
@@ -135,34 +147,8 @@ namespace huru
 		{
 			filesystem::path filepath = images[i]->GetPath();
 
-			wstring ext = filepath.extension().wstring();
-			std::transform(ext.begin(), ext.end(), ext.begin(), ::towlower);
-
-			if (ext == L".png")
-			{
-				Gdiplus::Image image(filepath.c_str());
-				graphics.DrawImage(&image, i * imageWidth, 0, imageWidth, imageHeight);
-			}
-			else if (ext == L".bmp")
-			{
-				BLENDFUNCTION bf = {};
-				bf.BlendOp = AC_SRC_OVER;
-				bf.SourceConstantAlpha = 255;
-				bf.AlphaFormat = 0;
-
-				AlphaBlend(
-					spriteSheet->GetHdc(),
-					i * imageWidth,
-					0,
-					imageWidth,
-					imageHeight,
-					images[i]->GetHdc(),
-					0,
-					0,
-					imageWidth,
-					imageHeight,
-					bf);
-			}
+			Gdiplus::Image image(filepath.c_str());
+			graphics.DrawImage(&image, i * imageWidth, 0, imageWidth, imageHeight);
 		}
 
 		CreateAnimation(name, spriteSheet, Vector2::Zero,
@@ -170,7 +156,7 @@ namespace huru
 			offset, fileCount, duration);
 	}
 
-	void Animator::AddAnimation(const std::wstring& name, Animation* animation)
+	void Animator::AddAnimation(const wstring& name, Animation* animation)
 	{
 		if (animation == nullptr)
 			return;
