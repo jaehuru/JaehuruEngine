@@ -111,5 +111,22 @@ IF "$(Configuration)"=="Debug" (
 - 엔진을 Git 서브모듈 형태로 독립적인 버전 관리
 - 정적 라이브러리 프로젝트에 핵심 엔진 코드 정리
 
+## Legendary bugs 🐞
+
+### `Animator::CreateAnimationByFolder` 사용 시 애니메이션이 하나만 출력되는 버그
+- **버그 상황**  
+  `CreateAnimationByFolder`를 사용해 폴더 내 여러 이미지들을 기반으로 애니메이션을 생성할 때, 파일명을 `"0"`, `"1"`, `"2"` 등 단순한 형식으로 지정하면 **가장 먼저 생성한 애니메이션만 반복적으로 출력되는 현상**이 발생함.
+- **원인 분석**  
+  `Resources::Load` 함수 내부에서 리소스를 `std::map`에 **fileName을 key로 저장**하기 때문에, 동일한 파일명을 가진 리소스들이 이후에 덮어지지 않고 **이미 존재하는 리소스를 그대로 반환**하면서 생긴 문제였음.
+  - **해결 방법**  
+  `fileName`만으로는 고유한 key가 되지 않으므로, 다음과 같이 **애니메이션 이름(`name`)과 파일 이름을 조합한 key**를 사용하여 중복을 방지함.
+ ```cpp
+  wstring fileName = p.path().filename();
+  wstring keyName = name + L"_" + fileName; // ← 고유 키 구성
+  wstring fullName = p.path();
+
+  graphics::Texture* texture = Resources::Load<graphics::Texture>(keyName, fullName);
+ ```
+
 ## Reflections
 엔진 아키텍처를 리팩토링하는 과정에서 큰 흥미를 느낄 수 있었다. 구조가 점차 명확해지고 체계적으로 정리되면서, 엔진과 클라이언트 간의 역할이 분리되고 각각의 책임이 분명해지는 점이 특히 인상적이었다. 이러한 경험을 통해 엔진 개발에 대한 흥미가 더욱 깊어졌고, 나아가 언리얼 엔진의 구조를 분석하고 직접 구현해보고자 하는 동기 또한 생겼다. 
