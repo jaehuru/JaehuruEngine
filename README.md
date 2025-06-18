@@ -1,13 +1,13 @@
-## 프로젝트 소개
+## Project Description
 이 프로젝트는 자체 게임 엔진을 개발하며 3D 그래픽스 렌더링과 게임 엔진 아키텍처의 근본 원리를 학습하기 위한 목적으로 시작되었습니다.
 Win32 API 기반의 기초적인 윈도우 창 생성과 메시지 루프 처리부터 시작하여, DirectX 11 기반의 렌더링 파이프라인을 직접 구현을 목표로 하고 있습니다. 
 모듈화를 통해 게임 엔진의 핵심 기능과 클라이언트(게임 실행 및 로직)를 명확히 분리하여, 시스템의 유지보수성과 확장성을 향상시켰습니다.
 
-## 개발 환경
+## Development Environment
 - ' Window OS '
 - ' Visual Studio 2022 '
 
-## ⚠️ 서브모듈 사용 시 주의 사항
+## ⚠️ Caution
 
 `Application::Initialize()` 함수에서 `Fmod::Initialize()`가 호출되는 순간부터 빌드가 안 되는 경우가 생깁니다.
 
@@ -41,8 +41,6 @@ IF "$(Configuration)"=="Debug" (
 )
 ```
 ---
-
-
 ## Version1. Win32 API 기반 아키텍처 및 기본 렌더링 구조 
 
 ### 윈도우 및 메시지 처리  
@@ -111,7 +109,7 @@ IF "$(Configuration)"=="Debug" (
 - 엔진을 Git 서브모듈 형태로 독립적인 버전 관리
 - 정적 라이브러리 프로젝트에 핵심 엔진 코드 정리
 
-## Legendary bugs 🐞
+## bugs 🐞
 
 ### `Animator::CreateAnimationByFolder` 사용 시 애니메이션이 하나만 출력되는 버그
 - **버그 상황**  
