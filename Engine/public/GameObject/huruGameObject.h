@@ -2,7 +2,7 @@
 
 #include "Common/CommonInclude.h"
 #include "Component/huruComponent.h"
-#include "Component/Collider/huruCollider.h"
+
 
 namespace huru::object
 {
