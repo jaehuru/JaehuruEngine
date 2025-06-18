@@ -39,6 +39,11 @@ namespace huru::math
             return v1.x * v2.y - v1.y * v2.x;
         }
 
+        static Vector2 Lerp(const Vector2& start, const Vector2& end, float t)
+        {
+            return start * (1.0f - t) + end * t;
+        }
+
         // 연산자 오버로딩
         Vector2 operator-() const { return Vector2(-x, -y); }
         Vector2 operator+(const Vector2& other) const { return Vector2(x + other.x, y + other.y); }

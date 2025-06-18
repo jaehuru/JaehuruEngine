@@ -29,6 +29,7 @@ namespace huru
 
 		PrevFrequency.QuadPart = CurrentFrequency.QuadPart;
 	}
+
 	void Time::Render(HDC hdc)
 	{
 		static float time = 0.f;
