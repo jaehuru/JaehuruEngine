@@ -21,6 +21,7 @@ namespace huru
 		mComponents.resize((UINT)eComponentType::End);
 		initializeTransform();
 	}
+
 	GameObject::~GameObject()
 	{
 		for (Component* comp : mComponents)
@@ -31,6 +32,17 @@ namespace huru
 			delete comp;
 			comp = nullptr;
 		}
+		mComponents.clear();
+
+		for (GameObject* child : mChildren)
+		{
+			if (child == nullptr)
+				continue;
+
+			delete child;
+			child = nullptr;
+		}
+		mChildren.clear();
 	}
 
 	void GameObject::Initialize()
