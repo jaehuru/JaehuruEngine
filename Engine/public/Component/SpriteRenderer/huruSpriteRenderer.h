@@ -11,15 +11,19 @@ namespace huru
 		SpriteRenderer();
 		~SpriteRenderer();
 
-		void Initialize() override;
-		void Update()  override;
-		void LateUpdate()  override;
-		void Render(HDC hdc)  override;
+		void		Initialize() override;
+		void		Update()  override;
+		void		LateUpdate()  override;
+		void		Render(HDC hdc)  override;
 
-		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
-		void SetSize(Vector2 size) { mSize = size; }
+		void		SetTexture(graphics::Texture* texture)	{ mTexture = texture; }
+		void		SetSize(Vector2 size)					{ mSize = size; }
+		void		SetVisible(bool visible)				{ mVisible = visible; }
+		bool		IsVisible() const						{ return mVisible; }
+
 	private:
-		graphics::Texture* mTexture;
-		Vector2 mSize;
+		graphics::Texture*	mTexture;
+		Vector2				mSize;
+		bool				mVisible;
 	};
 }
