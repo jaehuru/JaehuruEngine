@@ -64,14 +64,6 @@ namespace huru
 			mChildren.push_back(child);
 		}
 
-		void RemoveChild(GameObject* child)
-		{
-			mChildren.erase(
-            std::remove(mChildren.begin(), mChildren.end(), child),
-            mChildren.end());
-			child->mParent = nullptr;
-		}
-
 		template<typename T>
 		T* FindChildOfType()
 		{
