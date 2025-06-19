@@ -10,7 +10,7 @@ namespace huru
 		Component(eComponentType::SpriteRenderer),
 		mTexture(nullptr),
 		mSize(Vector2::One),
-		mVisible(false)
+		mVisible(true)
 	{
 
 	}
@@ -37,6 +37,9 @@ namespace huru
 
 	void SpriteRenderer::Render(HDC hdc)
 	{
+		if (!mVisible)
+			return;
+
 		if (mTexture == nullptr)
 			assert(false);
 
