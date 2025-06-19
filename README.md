@@ -118,7 +118,16 @@ IF "$(Configuration)"=="Debug" (
 ### Lerp(Linear Interpolation) 함수 추가
 - Vector2 구조체에 Lerp 함수를 추가
 
-# bugs 🐞
+## V1.02
+
+### 1. GameObject의 부모-자식 계층 구조 설계
+
+- `AddChild` ,  `FindChildOfType` , `RemoveChild` 계층 구조 관련 함수들을 구현
+- 주요 트래킹 (댕글링 포인터와 컨테이너 순회 중 삭제 문제) 이슈 해결
+
+---
+
+# Bug Issue 
 
 ### `Animator::CreateAnimationByFolder` 사용 시 애니메이션이 하나만 출력되는 버그
 - **버그 상황**  
@@ -127,13 +136,16 @@ IF "$(Configuration)"=="Debug" (
   `Resources::Load` 함수 내부에서 리소스를 `std::map`에 **fileName을 key로 저장**하기 때문에, 동일한 파일명을 가진 리소스들이 이후에 덮어지지 않고 **이미 존재하는 리소스를 그대로 반환**하면서 생긴 문제였음.
 - **해결 방법**  
   `fileName`만으로는 고유한 key가 되지 않으므로, 다음과 같이 **애니메이션 이름(`name`)과 파일 이름을 조합한 key**를 사용하여 중복을 방지함.
- ```cpp
-  wstring fileName = p.path().filename();
-  wstring keyName = name + L"_" + fileName; // ← 고유 키 구성
-  wstring fullName = p.path();
 
-  graphics::Texture* texture = Resources::Load<graphics::Texture>(keyName, fullName);
- ```
+### `GameObject`의 부모-자식 계층 구조 설계 중, 삭제 시점과 접근 시점이 어긋나면서 예외 발생
+- **버그 상황**
+  `GameObject`의 부모-자식 계층 구조 설계 중, 삭제 시점과 접근 시점들이 어긋나면서 댕글링 포인터 (Dangling Pointer), 컨테이너 수정 중 순회 (Iterator Invalidation) 예외 발생
+- **원인 분석**
+  GameObject에서 사용하는 Destroy()는 즉시 삭제가 아닌 지연 삭제 구조로 생길 수 있는 예외 들이 너무 많음
+- **해결 방법**
+  관련 함수들 꼼꼼히 예외 처리하고 호출 시점을 점검 해주는 것으로 해결
 
-## Reflections
+---
+
+# Reflections
 엔진 아키텍처를 리팩토링하는 과정에서 큰 흥미를 느낄 수 있었다. 구조가 점차 명확해지고 체계적으로 정리되면서, 엔진과 클라이언트 간의 역할이 분리되고 각각의 책임이 분명해지는 점이 특히 인상적이었다. 이러한 경험을 통해 엔진 개발에 대한 흥미가 더욱 깊어졌고, 나아가 언리얼 엔진의 구조를 분석하고 직접 구현해보고자 하는 동기 또한 생겼다. 
