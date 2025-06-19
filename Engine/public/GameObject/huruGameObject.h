@@ -77,6 +77,9 @@ namespace huru
 		{
 			for (GameObject* child : mChildren)
 			{
+				if (child == nullptr) 
+					continue;
+
 				T* typedChild = dynamic_cast<T*>(child);
 				if (typedChild != nullptr)
 					return typedChild;
@@ -101,6 +104,13 @@ namespace huru
 	private:
 		void	initializeTransform();
 		void	death() { mState = eState::Dead; }
+		void	RemoveChild(GameObject* child)
+		{
+			mChildren.erase(
+				std::remove(mChildren.begin(), mChildren.end(), child),
+				mChildren.end());
+			child->mParent = nullptr;
+		}
 
 	private:
 		eState						mState;
