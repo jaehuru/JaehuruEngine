@@ -57,6 +57,33 @@ namespace huru
 			return component;
 		}
 
+		void AddChild(GameObject* child)
+		{
+			if (child == nullptr) return;
+			child->mParent = this;
+			mChildren.push_back(child);
+		}
+
+		void RemoveChild(GameObject* child)
+		{
+			mChildren.erase(
+            std::remove(mChildren.begin(), mChildren.end(), child),
+            mChildren.end());
+			child->mParent = nullptr;
+		}
+
+		template<typename T>
+		T* FindChildOfType()
+		{
+			for (GameObject* child : mChildren)
+			{
+				T* typedChild = dynamic_cast<T*>(child);
+				if (typedChild != nullptr)
+					return typedChild;
+			}
+			return nullptr;
+		}
+
 		eState GetState() { return mState; }
 		void SetActive(bool power)
 		{
@@ -67,11 +94,9 @@ namespace huru
 		}
 		bool IsActive() { return mState == eState::Active; }
 		bool IsDead() { return mState == eState::Dead; }
-		void SetLayerType(eLayerType layerType) 
-		{ 
-			mLayerType = layerType; 
-		}
+		void SetLayerType(eLayerType layerType) { mLayerType = layerType; }
 		eLayerType GetLayerType() { return mLayerType; }
+		const vector<GameObject*>& GetChildren() const { return mChildren; }
 
 	private:
 		void	initializeTransform();
@@ -79,8 +104,11 @@ namespace huru
 
 	private:
 		eState						mState;
-		vector<Component*>		mComponents;
+		vector<Component*>			mComponents;
 		eLayerType					mLayerType;
+
+		GameObject*					mParent;
+		vector<GameObject*>			mChildren;
 	};
 }
 
