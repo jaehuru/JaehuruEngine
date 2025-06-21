@@ -63,6 +63,14 @@ namespace huru
 
 		bool				IsComplete() { return mActiveAnimation->IsComplete(); }
 
+		const wstring&		GetActiveAnimationName() const
+		{
+			static const std::wstring empty = L"";
+			if (mActiveAnimation)
+				return mActiveAnimation->GetName();
+			return empty;
+		}
+
 	private:
 		map<wstring, Animation*>			mAnimations;
 		Animation*							mActiveAnimation;
