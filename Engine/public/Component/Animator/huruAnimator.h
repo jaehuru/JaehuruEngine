@@ -62,6 +62,7 @@ namespace huru
 		function<void()>&	GetEndEvent(const wstring& name);
 
 		bool				IsComplete() { return mActiveAnimation->IsComplete(); }
+		void				Stop() { mActiveAnimation = nullptr; }
 
 		const wstring&		GetActiveAnimationName() const
 		{
@@ -70,6 +71,7 @@ namespace huru
 				return mActiveAnimation->GetName();
 			return empty;
 		}
+
 
 	private:
 		map<wstring, Animation*>			mAnimations;
