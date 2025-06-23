@@ -100,9 +100,6 @@
     <ClInclude Include="public\UI\huruUIButton.h">
       <Filter>public\UI</Filter>
     </ClInclude>
-    <ClInclude Include="public\UI\huruUIHUD.h">
-      <Filter>public\UI</Filter>
-    </ClInclude>
     <ClInclude Include="public\UI\huruUIManager.h">
       <Filter>public\UI</Filter>
     </ClInclude>
@@ -114,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="public\HighLevelInterface\huruApplication.h">
       <Filter>public\High Level Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="public\UI\huruUIHUD.h">
+      <Filter>public\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -314,9 +314,6 @@
     <ClCompile Include="private\UI\huruUIButton.cpp">
       <Filter>private\UI</Filter>
     </ClCompile>
-    <ClCompile Include="private\UI\huruUIHUD.cpp">
-      <Filter>private\UI</Filter>
-    </ClCompile>
     <ClCompile Include="private\UI\huruUIManager.cpp">
       <Filter>private\UI</Filter>
     </ClCompile>
@@ -364,6 +361,9 @@
     </ClCompile>
     <ClCompile Include="private\HighLevelInterface\huruApplication.cpp">
       <Filter>private\High Level Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="private\UI\huruUIHUD.cpp">
+      <Filter>private\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
