@@ -51,4 +51,10 @@ namespace huru::enums
 	{
 		return static_cast<eLayerType>(layerEnum);
 	}
+
+	template<typename T>
+	constexpr eUIType ToEngineUIType(T uiEnum)
+	{
+		return static_cast<eUIType>(uiEnum);
+	}
 }
