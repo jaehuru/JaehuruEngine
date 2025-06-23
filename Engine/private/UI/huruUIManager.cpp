@@ -5,6 +5,7 @@
 
 namespace huru
 {
+	unordered_map<eUIType, UIManager::UIFactoryFunc> UIManager::mUIFactories = { };
 	unordered_map<eUIType, UIBase*> UIManager::mUIs = { };
 	stack<UIBase*> UIManager::mUIBases = { };
 	queue<eUIType> UIManager::mRequestUIQueue = { };
@@ -12,32 +13,14 @@ namespace huru
 
 	void UIManager::Initialize()
 	{
-		// UI 객체 생성해주기
-		UIHUD* hud = new UIHUD();
-		mUIs.insert(make_pair(eUIType::HUD, hud));
-
-		UIButton* button = new UIButton();
-		mUIs.insert(make_pair(eUIType::Button, button));
-	}
-
-	void UIManager::OnLoad(eUIType type)
-	{
-		unordered_map<eUIType, UIBase*>::iterator iter
-			= mUIs.find(type);
-
-		if (iter == mUIs.end())
-		{
-			OnFail();
-			return;
-		}
-
-		OnComplete(iter->second);
+		RegisterUIFactory(eUIType::HUD, []() { return new UIHUD(); });
+		RegisterUIFactory(eUIType::Button, []() { return new UIButton(); });
 	}
 
 	void UIManager::Update()
 	{
 		stack<UIBase*> uiBases = mUIBases;
-		while(!uiBases.empty())
+		while (!uiBases.empty())
 		{
 			UIBase* uiBase = uiBases.top();
 			if (uiBase)
@@ -97,41 +80,6 @@ namespace huru
 		}
 	}
 
-	void UIManager::OnComplete(UIBase* addUI)
-	{
-		if (addUI == nullptr)
-			return;
-
-		addUI->Initialize();
-		addUI->Active();
-		addUI->Update();
-
-		// 만약에 현재 추가된 ui가 전체화면이라면
-		// 전체화면인 ui 말고 나머지를 전부 비활성화
-		if (addUI->IsFullScreen())
-		{
-			stack<UIBase*> uiBases = mUIBases;
-			while (!uiBases.empty())
-			{
-				UIBase* uiBase = uiBases.top();
-				uiBases.pop();
-				if (uiBase)
-				{
-					uiBase->InActive();
-				}
-			}
-		}
-
-		mUIBases.push(addUI);
-		mActiveUI = nullptr;
-
-	}
-
-	void UIManager::OnFail()
-	{
-		mActiveUI = nullptr;
-	}
-
 	void UIManager::Release()
 	{
 		for (auto iter : mUIs)
@@ -139,6 +87,7 @@ namespace huru
 			delete iter.second;
 			iter.second = nullptr;
 		}
+		mUIs.clear();
 	}
 
 	void UIManager::Push(eUIType type)
@@ -189,5 +138,65 @@ namespace huru
 			tempStack.pop();
 			mUIBases.push(uibase);
 		}
+	}
+
+	void UIManager::RegisterUIFactory(eUIType type, UIFactoryFunc factory)
+	{
+		mUIFactories[type] = factory;
+	}
+
+	void UIManager::OnLoad(eUIType type)
+	{
+		auto itFind = mUIs.find(type);
+		if (itFind != mUIs.end())
+		{
+			OnComplete(itFind->second);
+			return;
+		}
+
+		auto it = mUIFactories.find(type);
+		if (it == mUIFactories.end())
+		{
+			OnFail();
+			return;
+		}
+		UIBase* ui = it->second();
+		mUIs.insert(make_pair(type, ui));
+		OnComplete(ui);
+	}
+
+	void UIManager::OnComplete(UIBase* addUI)
+	{
+		if (addUI == nullptr)
+			return;
+
+		addUI->Initialize();
+		addUI->Active();
+		addUI->Update();
+
+		// 만약에 현재 추가된 ui가 전체화면이라면
+		// 전체화면인 ui 말고 나머지를 전부 비활성화
+		if (addUI->IsFullScreen())
+		{
+			stack<UIBase*> uiBases = mUIBases;
+			while (!uiBases.empty())
+			{
+				UIBase* uiBase = uiBases.top();
+				uiBases.pop();
+				if (uiBase)
+				{
+					uiBase->InActive();
+				}
+			}
+		}
+
+		mUIBases.push(addUI);
+		mActiveUI = nullptr;
+
+	}
+
+	void UIManager::OnFail()
+	{
+		mActiveUI = nullptr;
 	}
 }
