@@ -41,6 +41,9 @@ namespace huru
 		swprintf_s(str, 50, L"fps : %d", (int)fps);
 		int len = static_cast<int>(wcsnlen_s(str, 50));
 
+		SetTextColor(hdc, RGB(255, 0, 0));
+		SetBkMode(hdc, TRANSPARENT);
+
 		TextOut(hdc, 0, 0, str, len); // ½Ç½Ã°£ fps
 	}
 }
