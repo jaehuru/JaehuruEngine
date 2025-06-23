@@ -15,7 +15,7 @@ namespace huru
 
 	void UIHUD::OnInit()
 	{
-		mTexture = Resources::Find<graphics::Texture>(L"HUD");
+		
 	}
 
 	void UIHUD::OnActive()
@@ -37,16 +37,7 @@ namespace huru
 
 	void UIHUD::OnRender(HDC hdc)
 	{
-		TransparentBlt(
-			hdc,
-			0, 0,
-			mTexture->GetWidth(),
-			mTexture->GetHeight(),
-			mTexture->GetHdc(),
-			0, 0,
-			mTexture->GetWidth(),
-			mTexture->GetHeight(),
-			RGB(255, 0, 255));
+	
 	}
 
 	void UIHUD::OnClear()
