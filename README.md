@@ -120,10 +120,16 @@ IF "$(Configuration)"=="Debug" (
 
 ## V1.02
 
-### 1. GameObject의 부모-자식 계층 구조 설계
-
+### GameObject의 부모-자식 계층 구조 설계
 - `AddChild` ,  `FindChildOfType` , `RemoveChild` 계층 구조 관련 함수들을 구현
 - 주요 트래킹 (댕글링 포인터와 컨테이너 순회 중 삭제 문제) 이슈 해결
+
+### Animator Update
+- `GetActiveAnimationName` 함수 추가
+- `Stop` 함수 추가
+
+### UIManager 리팩토링
+- UI Factory 패턴 적용
 
 ---
 
