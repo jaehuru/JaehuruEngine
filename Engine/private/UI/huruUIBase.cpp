@@ -54,29 +54,36 @@ namespace huru
 
 	void UIBase::OnInit()
 	{
+
 	}
 
 	void UIBase::OnActive()
 	{
+
 	}
 
 	void UIBase::OnInActive()
 	{
+
 	}
 
 	void UIBase::OnUpdate()
 	{
+
 	}
 
 	void UIBase::OnLateUpdate()
 	{
+
 	}
 
 	void UIBase::OnRender(HDC hdc)
 	{
+
 	}
 
 	void UIBase::OnClear()
 	{
+
 	}
 }
