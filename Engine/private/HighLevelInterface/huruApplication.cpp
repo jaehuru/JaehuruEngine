@@ -32,6 +32,8 @@ namespace huru
 		createBuffer(width, height);
 		initializeEtc();
 
+		mGraphicDevice = make_unique<graphics::GraphicDevice_DX11>();
+
 		Fmod::Initialize();
 		CollisionManager::Initialize();
 		UIManager::Initialize();
@@ -94,7 +96,7 @@ namespace huru
 		HBRUSH blackBrush = (HBRUSH)CreateSolidBrush(RGB(0, 0, 0));
 		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHdc, blackBrush);
 
-		Rectangle(mBackHdc, -1, -1, 1601, 901);
+		::Rectangle(mBackHdc, -1, -1, 1601, 901);
 
 		SelectObject(mBackHdc, oldBrush);
 		DeleteObject(blackBrush);

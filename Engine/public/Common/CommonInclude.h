@@ -1,8 +1,9 @@
 #pragma once
 
+#define NOMINMAX
 #include <Windows.h>
-#include <assert.h>
 
+#include <assert.h>
 
 #include <vector>
 #include <string>
@@ -14,6 +15,9 @@
 #include <functional>
 #include <filesystem>
 #include <math.h>
+#include <cmath>
+#include <limits>
+#include <wrl.h>
 
 #include <mmsystem.h>
 #include <dinput.h>

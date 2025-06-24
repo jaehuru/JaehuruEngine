@@ -52,7 +52,7 @@ namespace huru
 	
 		Vector2 leftTop = pos + offset - size / 2.f;
 
-		Rectangle(hdc,
+		::Rectangle(hdc,
 			leftTop.x,
 			leftTop.y,
 			leftTop.x + size.x,

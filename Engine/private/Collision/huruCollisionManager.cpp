@@ -255,7 +255,7 @@ namespace huru
 		Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
 		Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
 
-		float distance = (leftCirclePos - rightCirclePos).length();
+		float distance = (leftCirclePos - rightCirclePos).Length();
 
 		return (distance <= (leftSize.x / 2.0f + rightSize.x / 2.0f));
 	}
@@ -281,7 +281,7 @@ namespace huru
 		closestPoint.y = max(rectCenter.y - rectHalf.y, min(circleCenter.y, rectCenter.y + rectHalf.y));
 
 		// 거리 비교
-		float distance = (circleCenter - closestPoint).length();
+		float distance = (circleCenter - closestPoint).Length();
 
 		return (distance <= circleRadius);
 	}

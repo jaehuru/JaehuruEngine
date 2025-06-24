@@ -13,9 +13,6 @@
     <ClInclude Include="public\Common\huruEnums.h">
       <Filter>public\Common</Filter>
     </ClInclude>
-    <ClInclude Include="public\Common\huruMath.h">
-      <Filter>public\Common</Filter>
-    </ClInclude>
     <ClInclude Include="public\Component\Animator\huruAnimator.h">
       <Filter>public\Component\Animator</Filter>
     </ClInclude>
@@ -114,6 +111,12 @@
     </ClInclude>
     <ClInclude Include="public\UI\huruUIHUD.h">
       <Filter>public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Common\huruMath.h">
+      <Filter>public\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="public\GraphicDevice\pacGraphicDevice_DX11.h">
+      <Filter>public\GraphicDevice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -255,15 +258,18 @@
     <Filter Include="public\High Level Interface">
       <UniqueIdentifier>{d56f4d9b-952a-4c00-8941-071baec9db30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="public\GraphicDevice">
+      <UniqueIdentifier>{cd5e9e1a-9428-4127-b21d-210fafda8a75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\GraphicDevice">
+      <UniqueIdentifier>{e90158e6-d361-4217-baed-75593003ae9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="private\Collision\huruCollisionManager.cpp">
       <Filter>private\Collision</Filter>
     </ClCompile>
     <ClCompile Include="private\Common\huruEntity.cpp">
-      <Filter>private\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="private\Common\huruMath.cpp">
       <Filter>private\Common</Filter>
     </ClCompile>
     <ClCompile Include="private\FMOD\huruFmod.cpp">
@@ -364,6 +370,12 @@
     </ClCompile>
     <ClCompile Include="private\UI\huruUIHUD.cpp">
       <Filter>private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Common\huruMath.cpp">
+      <Filter>private\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="private\GraphicDevice\pacGraphicDevice_DX11.cpp">
+      <Filter>private\GraphicDevice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

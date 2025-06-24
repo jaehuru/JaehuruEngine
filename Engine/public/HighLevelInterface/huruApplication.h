@@ -2,6 +2,7 @@
 
 #include "Common/CommonInclude.h"
 #include "GameObject/huruGameObject.h"
+#include "GraphicDevice/pacGraphicDevice_DX11.h"
 
 namespace huru
 {
@@ -34,6 +35,8 @@ namespace huru
 		void	initializeEtc();
 
 	private:
+		unique_ptr<graphics::GraphicDevice_DX11>	mGraphicDevice;
+
 		HWND			mHwnd;
 		HDC				mHdc;
 

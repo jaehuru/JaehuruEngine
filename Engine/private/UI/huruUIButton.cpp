@@ -59,7 +59,7 @@ namespace huru
 
 	void UIButton::OnRender(HDC hdc)
 	{
-		Rectangle(
+		::Rectangle(
 			hdc,
 			(int)mPosition.x,
 			(int)mPosition.y,
