@@ -44,6 +44,8 @@ IF "$(Configuration)"=="Debug" (
 # Version 1
 ***Win32 API*** 기반 아키텍처 및 기본 렌더링 구조 
 
+## V1.00
+
 ### 윈도우 및 메시지 처리  
 - WinMain 진입점 및 메시지 루프 처리 흐름 이해  
 - PeekMessage 기반 논블로킹 메시지 루프 구현  
@@ -130,9 +132,13 @@ IF "$(Configuration)"=="Debug" (
 
 ### UIManager 리팩토링
 - UI Factory 패턴 적용
+---
+# Version 2
+***DirectX 11*** 기반 그래픽스 파이프라인 및 엔진 아키텍처 확장
+
+## V2.00
 
 ---
-
 # Bug Issue 
 
 ### `Animator::CreateAnimationByFolder` 사용 시 애니메이션이 하나만 출력되는 버그
