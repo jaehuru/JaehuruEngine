@@ -16,14 +16,15 @@ namespace huru::graphics
 		GraphicDevice_DX11();
 		~GraphicDevice_DX11();
 
-		void Draw();
+		void Initialize();
+		void Render();
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device>			mDevice;
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext>		mContext;
 		Microsoft::WRL::ComPtr<ID3D11Texture2D>			mRenderTarget;
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView>	mRenderTargetView;
-		Microsoft::WRL::ComPtr<ID3D11Texture2D>			mDepthStencilBuffer;
+		Microsoft::WRL::ComPtr<ID3D11Texture2D>			mDepthStencil;
 		Microsoft::WRL::ComPtr<ID3D11DepthStencilView>	mDepthStencilView;
 
 		Microsoft::WRL::ComPtr<IDXGISwapChain>			mSwapChain;

@@ -33,6 +33,7 @@ namespace huru
 		initializeEtc();
 
 		mGraphicDevice = make_unique<graphics::GraphicDevice_DX11>();
+		mGraphicDevice->Initialize();
 
 		Fmod::Initialize();
 		CollisionManager::Initialize();
@@ -69,14 +70,14 @@ namespace huru
 
 	void Application::Render()
 	{
-		clearRenderTarget();
+		mGraphicDevice->Render();
 
 		Time::Render(mBackHdc);
 		CollisionManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 		UIManager::Render(mBackHdc);
 
-		copyRenderTarget(mBackHdc, mHdc);
+		
 	}
 
 	void Application::Destroy()
