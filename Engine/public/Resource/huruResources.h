@@ -36,6 +36,23 @@ namespace huru
 			return resource;
 		}
 
+		template <typename T>
+		static T* Load(const wstring& key, const map<graphics::eShaderStage, wstring>& paths)
+		{
+			T* resource = Resources::Find<T>(key);
+			if (resource != nullptr)
+				return resource;
+
+			resource = new T();
+			if (FAILED(resource->Load(paths)))
+				assert(false);
+
+			resource->SetName(key);
+			mResources.insert(make_pair(key, resource));
+
+			return resource;
+		}
+
 		static void Insert(const wstring& key, Resource* resource)
 		{
 			if (key == L"")

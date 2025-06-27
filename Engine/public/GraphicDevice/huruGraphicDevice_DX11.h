@@ -22,21 +22,23 @@ namespace huru::graphics
 		bool	CreateTexture2D(const D3D11_TEXTURE2D_DESC* pDesc,
 								const D3D11_SUBRESOURCE_DATA* pInitialData,
 								ID3D11Texture2D** ppTexture2D);
-		bool	CreateVertexShader(const wstring& fileName,
+		bool	CreateVertexShader(const wstring& fullPath,
 									ID3DBlob** ppCode,
 									ID3D11VertexShader** ppVertexShader);
-		bool	CreatePixelShader(const wstring& fileName,
+		bool	CreatePixelShader(const wstring& fullPath,
 									ID3DBlob** ppCode,
 									ID3D11PixelShader** ppPixelShader);
 		bool	CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs,
-									UINT NumElements
-									, const void* pShaderBytecodeWithInputSignature,
+									UINT NumElements,
+									const void* pShaderBytecodeWithInputSignature,
 									SIZE_T BytecodeLength,
 									ID3D11InputLayout** ppInputLayout);
 		bool	CreateBuffer(const D3D11_BUFFER_DESC* pDesc,
 								const D3D11_SUBRESOURCE_DATA* pInitialData,
 								ID3D11Buffer** ppBuffer);
 
+		void	BindVS(ID3D11VertexShader* pVertexShader);
+		void	BindPS(ID3D11PixelShader* pPixelShader);
 		void	BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
 
 		void	Initialize();
@@ -49,7 +51,6 @@ namespace huru::graphics
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView>	mRenderTargetView;
 		Microsoft::WRL::ComPtr<ID3D11Texture2D>			mDepthStencil;
 		Microsoft::WRL::ComPtr<ID3D11DepthStencilView>	mDepthStencilView;
-
 		Microsoft::WRL::ComPtr<IDXGISwapChain>			mSwapChain;
 		Microsoft::WRL::ComPtr<ID3D11SamplerState>		mSamplers;
 	};

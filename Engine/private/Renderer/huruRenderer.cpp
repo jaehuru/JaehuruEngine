@@ -1,5 +1,7 @@
 #include "Renderer/huruRenderer.h"
-
+#include "Common/huruGraphics.h"
+#include "Resource/huruResources.h"
+#include "Resource/Graphics/huruShader.h"
 
 namespace huru::renderer
 {
@@ -39,18 +41,26 @@ namespace huru::renderer
 		LoadTriangleMesh();
 	}
 
+	void LoadShaders()
+	{
+		map<graphics::eShaderStage, wstring> shaderPaths = {
+		{ graphics::eShaderStage::VS, L"../Shaders/VS/TriangleVS.hlsl" },
+		{ graphics::eShaderStage::PS, L"../Shaders/PS/TrianglePS.hlsl" }
+		};
+
+		Resources::Load<graphics::Shader>(L"TriangleShader", shaderPaths);
+	}
+
 	void Initialize()
 	{
 		LoadMeshes();
+		LoadShaders();
 	}
 
 	void Release()
 	{
 		vertexBuffer->Release();
-		vsBlob->Release();
-		vsShader->Release();
-		psBlob->Release();
-		psShader->Release();
+	
 		inputLayouts->Release();
 		indexBuffer->Release();
 		constantBuffer->Release();

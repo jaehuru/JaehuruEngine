@@ -4,13 +4,12 @@
 
 namespace huru
 {
-	class Resource : public Entity // 추상 클래스
+	class Resource : public Entity
 	{
 	public:
 		Resource(eResourceType type);
 		virtual ~Resource() = default;
 
-		// 순수 가상 함수
 		virtual HRESULT Load(const wstring& path) = 0;
 
 		const wstring& GetPath() const { return mPath; }

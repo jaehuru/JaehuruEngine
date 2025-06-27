@@ -21,11 +21,6 @@ namespace huru::renderer
 	extern ID3D11Buffer* indexBuffer;
 	extern ID3D11Buffer* constantBuffer;
 
-	extern ID3DBlob* vsBlob;
-	extern ID3D11VertexShader* vsShader;
-
-	extern ID3DBlob* psBlob;
-	extern ID3D11PixelShader* psShader;
 	extern ID3D11InputLayout* inputLayouts;
 
 	void Initialize();

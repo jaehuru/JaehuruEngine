@@ -1,6 +1,8 @@
 #include "GraphicDevice/huruGraphicDevice_DX11.h"
 #include "HighLevelInterface/huruApplication.h"
 #include "Renderer/huruRenderer.h"
+#include "Resource/Graphics/huruShader.h"
+#include "Resource/huruResources.h"
 
 extern huru::Application application;
 
@@ -9,6 +11,9 @@ namespace huru::graphics
 	GraphicDevice_DX11::GraphicDevice_DX11()
 	{
 		huru::graphics::GetDevice() = this;
+
+		if (!(CreateDevice()))
+			assert(NULL && "Create Device Failed!");
 	}
 
 	GraphicDevice_DX11::~GraphicDevice_DX11()
@@ -86,16 +91,23 @@ namespace huru::graphics
 		return true;
 	}
 
-	bool GraphicDevice_DX11::CreateVertexShader(const wstring& fileName, ID3DBlob** ppCode, ID3D11VertexShader** ppVertexShader)
+	bool GraphicDevice_DX11::CreateVertexShader(const wstring& fullPath, ID3DBlob** ppCode, ID3D11VertexShader** ppVertexShader)
 	{
 		DWORD shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 		shaderFlags |= D3DCOMPILE_DEBUG;
 		shaderFlags |= D3DCOMPILE_SKIP_OPTIMIZATION;
 
 		ID3DBlob* errorBlob = nullptr;
-		const wstring shaderFilePath = L"../JaehuruEngine/Engine/Shader/VS/";
-		D3DCompileFromFile((shaderFilePath + fileName).c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-			, "main", "vs_5_0", shaderFlags, 0, ppCode, &errorBlob);
+		D3DCompileFromFile(
+			fullPath.c_str(),
+			nullptr,
+			D3D_COMPILE_STANDARD_FILE_INCLUDE,
+			"main",
+			"vs_5_0",
+			shaderFlags,
+			0,
+			ppCode,
+			&errorBlob);
 
 		if (errorBlob)
 		{
@@ -111,16 +123,23 @@ namespace huru::graphics
 		return true;
 	}
 
-	bool GraphicDevice_DX11::CreatePixelShader(const wstring& fileName, ID3DBlob** ppCode, ID3D11PixelShader** ppPixelShader)
+	bool GraphicDevice_DX11::CreatePixelShader(const wstring& fullPath, ID3DBlob** ppCode, ID3D11PixelShader** ppPixelShader)
 	{
 		DWORD shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 		shaderFlags |= D3DCOMPILE_DEBUG;
 		shaderFlags |= D3DCOMPILE_SKIP_OPTIMIZATION;
 
 		ID3DBlob* errorBlob = nullptr;
-		const wstring shaderFilePath = L"../JaehuruEngine/Engine/Shader/PS/";
-		D3DCompileFromFile((shaderFilePath + fileName).c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-			, "main", "ps_5_0", shaderFlags, 0, ppCode, &errorBlob);
+		D3DCompileFromFile(
+			fullPath.c_str(),
+			nullptr,
+			D3D_COMPILE_STANDARD_FILE_INCLUDE,
+			"main",
+			"ps_5_0",
+			shaderFlags,
+			0,
+			ppCode,
+			&errorBlob);
 
 		if (errorBlob)
 		{
@@ -153,6 +172,16 @@ namespace huru::graphics
 			return false;
 
 		return true;
+	}
+
+	void GraphicDevice_DX11::BindVS(ID3D11VertexShader* pVertexShader)
+	{
+		mContext->VSSetShader(pVertexShader, 0, 0);
+	}
+
+	void GraphicDevice_DX11::BindPS(ID3D11PixelShader* pPixelShader)
+	{
+		mContext->PSSetShader(pPixelShader, 0, 0);
 	}
 
 	void GraphicDevice_DX11::BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer)
@@ -193,9 +222,6 @@ namespace huru::graphics
 
 	void GraphicDevice_DX11::Initialize()
 	{
-		if (!(CreateDevice()))
-			assert(NULL && "Create Device Failed!");
-
 #pragma region swapchain desc
 		DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
 
@@ -249,12 +275,6 @@ namespace huru::graphics
 		if (!(CreateDepthStencilView(mDepthStencil.Get(), nullptr, mDepthStencilView.GetAddressOf())))
 			assert(NULL && "Create depthstencilview failed!");
 
-		if (!(CreateVertexShader(L"TriangleVS.hlsl", &renderer::vsBlob, &renderer::vsShader)))
-			assert(NULL && "Create vertex shader failed!");
-
-		if (!(CreatePixelShader(L"TrianglePS.hlsl", &renderer::psBlob, &renderer::psShader)))
-			assert(NULL && "Create pixel shader failed!");
-
 #pragma region inputLayout Desc
 		D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[2] = {};
 
@@ -272,9 +292,12 @@ namespace huru::graphics
 		inputLayoutDesces[1].SemanticName = "COLOR";
 		inputLayoutDesces[1].SemanticIndex = 0;
 #pragma endregion
+
+		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
+
 		if (!(CreateInputLayout(inputLayoutDesces, 2
-			, renderer::vsBlob->GetBufferPointer()
-			, renderer::vsBlob->GetBufferSize()
+			, triangle->GetVSBlob()->GetBufferPointer()
+			, triangle->GetVSBlob()->GetBufferSize()
 			, &renderer::inputLayouts)))
 			assert(NULL && "Create input layout failed!");
 
@@ -344,8 +367,8 @@ namespace huru::graphics
 		mContext->IASetVertexBuffers(0, 1, &renderer::vertexBuffer, &vertexSize, &offset);
 		mContext->IASetIndexBuffer(renderer::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
-		mContext->VSSetShader(renderer::vsShader, 0, 0);
-		mContext->PSSetShader(renderer::psShader, 0, 0);
+		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
+		triangle->Bind();
 
 		mContext->Draw(3, 0);
 

@@ -276,23 +276,23 @@
     <Filter Include="private\GraphicDevice">
       <UniqueIdentifier>{e90158e6-d361-4217-baed-75593003ae9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{df3363d4-ddad-4962-bc41-4b43d79f410e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader\VS">
-      <UniqueIdentifier>{2201d850-67ca-4a77-90ae-5aee2efde693}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader\PS">
-      <UniqueIdentifier>{3ad297c8-c25f-43b7-8380-5c473645cca0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shader\LIB">
-      <UniqueIdentifier>{63a6b13d-0e9c-4af5-bedd-2dd66e7a68ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="public\Resource\Graphics">
       <UniqueIdentifier>{2ec1cdb1-ffe5-4c33-9a7b-3e131a4355df}</UniqueIdentifier>
     </Filter>
     <Filter Include="private\Resource\Graphics">
       <UniqueIdentifier>{be56a3ac-97bd-4b6c-9b3b-8a91b3fba212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{df3363d4-ddad-4962-bc41-4b43d79f410e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\VS">
+      <UniqueIdentifier>{2201d850-67ca-4a77-90ae-5aee2efde693}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\PS">
+      <UniqueIdentifier>{3ad297c8-c25f-43b7-8380-5c473645cca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\LIB">
+      <UniqueIdentifier>{63a6b13d-0e9c-4af5-bedd-2dd66e7a68ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -418,16 +418,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shader\VS\TriangleVS.hlsl">
-      <Filter>Shader\VS</Filter>
+    <FxCompile Include="Shaders\VS\TriangleVS.hlsl">
+      <Filter>Shaders\VS</Filter>
     </FxCompile>
-    <FxCompile Include="Shader\PS\TrianglePS.hlsl">
-      <Filter>Shader\PS</Filter>
+    <FxCompile Include="Shaders\PS\TrianglePS.hlsl">
+      <Filter>Shaders\PS</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shader\LIB\ConstantBuffers.hlsli">
-      <Filter>Shader\LIB</Filter>
+    <None Include="Shaders\LIB\ConstantBuffers.hlsli">
+      <Filter>Shaders\LIB</Filter>
     </None>
   </ItemGroup>
 </Project>
