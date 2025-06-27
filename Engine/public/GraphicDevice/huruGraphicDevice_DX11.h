@@ -17,7 +17,7 @@ namespace huru::graphics
 		~GraphicDevice_DX11();
 
 		void Initialize();
-		void Render();
+		void Draw();
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device>			mDevice;

@@ -2,7 +2,7 @@
 
 #include "Common/CommonInclude.h"
 #include "GameObject/huruGameObject.h"
-#include "GraphicDevice/pacGraphicDevice_DX11.h"
+#include "GraphicDevice/huruGraphicDevice_DX11.h"
 
 namespace huru
 {

@@ -70,7 +70,7 @@ namespace huru
 
 	void Application::Render()
 	{
-		mGraphicDevice->Render();
+		mGraphicDevice->Draw();
 
 		Time::Render(mBackHdc);
 		CollisionManager::Render(mBackHdc);

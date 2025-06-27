@@ -39,7 +39,7 @@
     <ClInclude Include="public\Component\Transform\huruTransform.h" />
     <ClInclude Include="public\FMOD\huruFmod.h" />
     <ClInclude Include="public\GameObject\huruGameObject.h" />
-    <ClInclude Include="public\GraphicDevice\pacGraphicDevice_DX11.h" />
+    <ClInclude Include="public\GraphicDevice\huruGraphicDevice_DX11.h" />
     <ClInclude Include="public\Helpers\huruInput.h" />
     <ClInclude Include="public\Helpers\huruTime.h" />
     <ClInclude Include="public\HighLevelInterface\huruApplication.h" />
@@ -78,7 +78,7 @@
     <ClCompile Include="private\Component\Transform\huruTransform.cpp" />
     <ClCompile Include="private\FMOD\huruFmod.cpp" />
     <ClCompile Include="private\GameObject\huruGameObject.cpp" />
-    <ClCompile Include="private\GraphicDevice\pacGraphicDevice_DX11.cpp" />
+    <ClCompile Include="private\GraphicDevice\huruGraphicDevice_DX11.cpp" />
     <ClCompile Include="private\Helpers\huruInput.cpp" />
     <ClCompile Include="private\Helpers\huruTime.cpp" />
     <ClCompile Include="private\HighLevelInterface\huruApplication.cpp" />
@@ -97,6 +97,20 @@
     <ClCompile Include="private\UI\huruUIButton.cpp" />
     <ClCompile Include="private\UI\huruUIHUD.cpp" />
     <ClCompile Include="private\UI\huruUIManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\PS\TrianglePS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shader\VS\TriangleVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
