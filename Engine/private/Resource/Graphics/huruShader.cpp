@@ -33,9 +33,9 @@ namespace huru::graphics
 		switch (stage)
 		{
 		case eShaderStage::VS:
-			return GetDevice()->CreateVertexShader(fullPath, mVSBlob.GetAddressOf(), mVS.GetAddressOf());
+			return CreateVertexShader(fullPath);
 		case eShaderStage::PS:
-			return GetDevice()->CreatePixelShader(fullPath, mPSBlob.GetAddressOf(), mPS.GetAddressOf());
+			return CreatePixelShader(fullPath);
 			// Geometry, Compute 등 확장 가능
 		default:
 			assert(false && "Invalid Shader Stage");

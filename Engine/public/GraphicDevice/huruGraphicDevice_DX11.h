@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/huruGraphics.h"
+#include "Common/CommonInclude.h"
 
 namespace huru::graphics
 {

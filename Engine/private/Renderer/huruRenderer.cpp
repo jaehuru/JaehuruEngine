@@ -44,8 +44,8 @@ namespace huru::renderer
 	void LoadShaders()
 	{
 		map<graphics::eShaderStage, wstring> shaderPaths = {
-		{ graphics::eShaderStage::VS, L"../Shaders/VS/TriangleVS.hlsl" },
-		{ graphics::eShaderStage::PS, L"../Shaders/PS/TrianglePS.hlsl" }
+		{ graphics::eShaderStage::VS, L"../JaehuruEngine/Engine/Shaders/VS/TriangleVS.hlsl" },
+		{ graphics::eShaderStage::PS, L"../JaehuruEngine/Engine/Shaders/PS/TrianglePS.hlsl" }
 		};
 
 		Resources::Load<graphics::Shader>(L"TriangleShader", shaderPaths);

@@ -201,6 +201,9 @@
     xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
 )</Command>
     </PostBuildEvent>
+    <FxCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -233,6 +236,9 @@
     xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
 )</Command>
     </PostBuildEvent>
+    <FxCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -261,6 +267,9 @@
     xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
 )</Command>
     </PostBuildEvent>
+    <FxCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -293,6 +302,9 @@
     xcopy /Y /D "$(ProjectDir)..\External\FMOD\lib\x64\fmodstudio.dll" "$(OutDir)"
 )</Command>
     </PostBuildEvent>
+    <FxCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </FxCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

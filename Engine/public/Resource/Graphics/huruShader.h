@@ -34,8 +34,5 @@ namespace huru::graphics
 		Microsoft::WRL::ComPtr<ID3D11DomainShader>		mDS;
 		Microsoft::WRL::ComPtr<ID3D11GeometryShader>	mGS;
 		Microsoft::WRL::ComPtr<ID3D11PixelShader>		mPS;
-
-		wstring			mDirectory;
-		wstring			mFileName;
 	};
 }
