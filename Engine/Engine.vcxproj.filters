@@ -121,6 +121,15 @@
     <ClInclude Include="public\Common\huruGraphics.h">
       <Filter>public\Common</Filter>
     </ClInclude>
+    <ClInclude Include="public\Resource\huruMesh.h">
+      <Filter>public\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Resource\huruMaterial.h">
+      <Filter>public\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="public\Resource\Graphics\huruShader.h">
+      <Filter>public\Resource\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="public">
@@ -279,6 +288,12 @@
     <Filter Include="Shader\LIB">
       <UniqueIdentifier>{63a6b13d-0e9c-4af5-bedd-2dd66e7a68ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="public\Resource\Graphics">
+      <UniqueIdentifier>{2ec1cdb1-ffe5-4c33-9a7b-3e131a4355df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\Resource\Graphics">
+      <UniqueIdentifier>{be56a3ac-97bd-4b6c-9b3b-8a91b3fba212}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="private\Collision\huruCollisionManager.cpp">
@@ -391,6 +406,15 @@
     </ClCompile>
     <ClCompile Include="private\GraphicDevice\huruGraphicDevice_DX11.cpp">
       <Filter>private\GraphicDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Resource\huruMesh.cpp">
+      <Filter>private\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Resource\huruMaterial.cpp">
+      <Filter>private\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="private\Resource\Graphics\huruShader.cpp">
+      <Filter>private\Resource\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

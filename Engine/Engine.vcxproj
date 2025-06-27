@@ -47,8 +47,11 @@
     <ClInclude Include="public\Layer\huruLayer.h" />
     <ClInclude Include="public\Object\huruObject.h" />
     <ClInclude Include="public\Renderer\huruRenderer.h" />
+    <ClInclude Include="public\Resource\Graphics\huruShader.h" />
     <ClInclude Include="public\Resource\huruAnimation.h" />
     <ClInclude Include="public\Resource\huruAudioSource.h" />
+    <ClInclude Include="public\Resource\huruMaterial.h" />
+    <ClInclude Include="public\Resource\huruMesh.h" />
     <ClInclude Include="public\Resource\huruResource.h" />
     <ClInclude Include="public\Resource\huruResources.h" />
     <ClInclude Include="public\Resource\huruTexture.h" />
@@ -86,8 +89,11 @@
     <ClCompile Include="private\Layer\huruLayer.cpp" />
     <ClCompile Include="private\Object\huruObject.cpp" />
     <ClCompile Include="private\Renderer\huruRenderer.cpp" />
+    <ClCompile Include="private\Resource\Graphics\huruShader.cpp" />
     <ClCompile Include="private\Resource\huruAnimation.cpp" />
     <ClCompile Include="private\Resource\huruAudioClip.cpp" />
+    <ClCompile Include="private\Resource\huruMaterial.cpp" />
+    <ClCompile Include="private\Resource\huruMesh.cpp" />
     <ClCompile Include="private\Resource\huruResource.cpp" />
     <ClCompile Include="private\Resource\huruResources.cpp" />
     <ClCompile Include="private\Resource\huruTexture.cpp" />

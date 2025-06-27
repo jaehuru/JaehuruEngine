@@ -20,7 +20,7 @@ namespace huru::renderer
 
 	void LoadTriangleMesh()
 	{
-		renderer::vertexes[0].pos = Vector3(0.f, 0.5f, 0.0f);
+		renderer::vertexes[0].pos = Vector3(0.0f, 0.5f, 0.0f);
 		renderer::vertexes[0].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
 		renderer::vertexes[1].pos = Vector3(0.5f, -0.5f, 0.0f);
@@ -52,5 +52,7 @@ namespace huru::renderer
 		psBlob->Release();
 		psShader->Release();
 		inputLayouts->Release();
+		indexBuffer->Release();
+		constantBuffer->Release();
 	}
 }

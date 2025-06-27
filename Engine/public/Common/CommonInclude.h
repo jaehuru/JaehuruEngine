@@ -15,7 +15,8 @@
 #include <math.h>
 #include <cmath>
 #include <limits>
-#include <wrl.h>
+#include <mutex>
+#include <thread>
 #include <mmsystem.h>
 #include <dinput.h>
 #pragma comment(lib, "Msimg32.lib")
