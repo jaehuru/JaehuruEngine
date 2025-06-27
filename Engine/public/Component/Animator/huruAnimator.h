@@ -66,7 +66,7 @@ namespace huru
 
 		const wstring&		GetActiveAnimationName() const
 		{
-			static const std::wstring empty = L"";
+			static const wstring empty = L"";
 			if (mActiveAnimation)
 				return mActiveAnimation->GetName();
 			return empty;

@@ -1,4 +1,5 @@
 #include "HighLevelInterface/huruApplication.h"
+#include "Renderer/huruRenderer.h"
 #include "Helpers/huruInput.h"
 #include "Helpers/huruTime.h"
 #include "Scene/huruSceneManager.h"
@@ -33,6 +34,7 @@ namespace huru
 		initializeEtc();
 
 		mGraphicDevice = make_unique<graphics::GraphicDevice_DX11>();
+		renderer::Initialize();
 		mGraphicDevice->Initialize();
 
 		Fmod::Initialize();
@@ -76,8 +78,6 @@ namespace huru
 		CollisionManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 		UIManager::Render(mBackHdc);
-
-		
 	}
 
 	void Application::Destroy()
@@ -90,6 +90,7 @@ namespace huru
 		SceneManager::Release();
 		UIManager::Release();
 		Resources::Release();
+		renderer::Release();
 	}
 
 	void Application::clearRenderTarget()

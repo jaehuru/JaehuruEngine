@@ -118,6 +118,9 @@
     <ClInclude Include="public\GraphicDevice\huruGraphicDevice_DX11.h">
       <Filter>public\GraphicDevice</Filter>
     </ClInclude>
+    <ClInclude Include="public\Common\huruGraphics.h">
+      <Filter>public\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="public">
@@ -273,6 +276,9 @@
     <Filter Include="Shader\PS">
       <UniqueIdentifier>{3ad297c8-c25f-43b7-8380-5c473645cca0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader\LIB">
+      <UniqueIdentifier>{63a6b13d-0e9c-4af5-bedd-2dd66e7a68ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="private\Collision\huruCollisionManager.cpp">
@@ -394,5 +400,10 @@
     <FxCompile Include="Shader\PS\TrianglePS.hlsl">
       <Filter>Shader\PS</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\LIB\ConstantBuffers.hlsli">
+      <Filter>Shader\LIB</Filter>
+    </None>
   </ItemGroup>
 </Project>

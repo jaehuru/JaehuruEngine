@@ -99,7 +99,7 @@ namespace huru
 		void	RemoveChild(GameObject* child)
 		{
 			mChildren.erase(
-				std::remove(mChildren.begin(), mChildren.end(), child),
+				remove(mChildren.begin(), mChildren.end(), child),
 				mChildren.end());
 			child->mParent = nullptr;
 		}

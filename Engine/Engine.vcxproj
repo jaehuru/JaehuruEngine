@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="public\Collision\huruCollisionManager.h" />
     <ClInclude Include="public\Common\CommonInclude.h" />
+    <ClInclude Include="public\Common\huruGraphics.h" />
     <ClInclude Include="public\Common\huruEntity.h" />
     <ClInclude Include="public\Common\huruEnums.h" />
     <ClInclude Include="public\Common\huruMath.h" />
@@ -111,6 +112,9 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\LIB\ConstantBuffers.hlsli" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
