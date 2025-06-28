@@ -65,7 +65,7 @@ namespace huru
 	}
 
 	void Animator::CreateAnimation(const wstring& name,
-									graphics::Texture* spriteSheet,
+									Texture* spriteSheet,
 									Vector2 leftTop, Vector2 size,
 									Vector2 offset, UINT spriteLength,
 									float duration)
@@ -98,7 +98,7 @@ namespace huru
 
 		int fileCount = 0;
 		filesystem::path fs(path);
-		vector<graphics::Texture*> images;
+		vector<Texture*> images;
 
 		vector<filesystem::directory_entry> entries;
 		for (auto& p : filesystem::directory_iterator(fs))
@@ -123,7 +123,7 @@ namespace huru
 			wstring keyName = name + L"_" + fileName;
 			wstring fullName = p.path();
 
-			graphics::Texture* texture = Resources::Load<graphics::Texture>(keyName, fullName);
+			Texture* texture = Resources::Load<Texture>(keyName, fullName);
 			if (texture)
 			{
 				images.push_back(texture);
@@ -139,7 +139,7 @@ namespace huru
 		UINT sheetWidth = imageWidth * fileCount;
 		UINT sheetHeight = imageHeight;
 
-		graphics::Texture* spriteSheet = graphics::Texture::Create(name, sheetWidth, sheetHeight);
+		Texture* spriteSheet = Texture::Create(name, sheetWidth, sheetHeight);
 
 		Gdiplus::Graphics graphics(spriteSheet->GetHdc());
 

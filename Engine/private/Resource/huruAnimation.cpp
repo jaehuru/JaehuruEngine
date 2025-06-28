@@ -69,9 +69,9 @@ namespace huru
 			pos = renderer::mainCamera->CalculatePosition(pos);
 
 		Sprite& sprite = mAnimationSheet[mIndex];
-		graphics::Texture::eTextureType type = mTexture->GetTextureType();
+		Texture::eTextureType type = mTexture->GetTextureType();
 
-		if (type == graphics::Texture::eTextureType::Bmp)
+		if (type == Texture::eTextureType::Bmp)
 		{
 			HDC imgHdc = mTexture->GetHdc();
 
@@ -112,7 +112,7 @@ namespace huru
 					RGB(255, 0, 255));
 			}
 		}
-		else if (type == graphics::Texture::eTextureType::Png)
+		else if (type == Texture::eTextureType::Png)
 		{
 			// 픽셀을 투명화 시킬때
 			Gdiplus::ImageAttributes imgAtt = {};
@@ -144,7 +144,7 @@ namespace huru
 	}
 
 	void Animation::CreateAnimation(const wstring& name,
-									graphics::Texture* spriteSheet,
+									Texture* spriteSheet,
 									Vector2 leftTop, Vector2 size,
 									Vector2 offset, UINT spriteLength,
 									float duration)

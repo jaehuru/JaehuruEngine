@@ -16,7 +16,7 @@ namespace huru
 		void LateUpdate()  override;
 		void Render(HDC hdc)  override;
 
-		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
+		void SetTexture(Texture* texture) { mTexture = texture; }
 		Vector2 GetIndex() { return mIndex; }
 		void SetIndex(Vector2 index) { mIndex = index; }
 		void SetSize(const Vector2& size) { mSize = size; }
@@ -27,7 +27,7 @@ namespace huru
 		static Vector2 SelectedIndex;
 
 	private:
-		graphics::Texture* mTexture;
+		Texture* mTexture;
 
 		Vector2 mSize;
 		Vector2 mScale;

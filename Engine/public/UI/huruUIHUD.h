@@ -21,7 +21,7 @@ namespace huru
 		virtual void OnClear() override;
 
 	private:
-		graphics::Texture* mTexture;
+		Texture* mTexture;
 	};
 }
 

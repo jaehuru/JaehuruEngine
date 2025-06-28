@@ -33,7 +33,7 @@ namespace huru
 		createBuffer(width, height);
 		initializeEtc();
 
-		mGraphicDevice = make_unique<graphics::GraphicDevice_DX11>();
+		mGraphicDevice = make_unique<GraphicDevice_DX11>();
 		renderer::Initialize();
 		mGraphicDevice->Initialize();
 

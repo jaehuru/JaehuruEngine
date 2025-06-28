@@ -3,8 +3,8 @@
 
 namespace huru::graphics
 {
-	Shader::Shader()
-		: Resource(eResourceType::Shader)
+	Shader::Shader() : 
+		Resource(eResourceType::Shader)
 	{
 	}
 

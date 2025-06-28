@@ -7,17 +7,14 @@ namespace huru::renderer
 {
 	Camera* mainCamera = nullptr;
 
-	vector<graphics::Vertex> vertexes = {};
+	vector<Vertex> vertexes = {};
 	vector<UINT> indices;
 
-	graphics::VertexBuffer vertexBuffer;
-	ID3D11Buffer* indexBuffer = nullptr;
-	ID3D11Buffer* constantBuffer = nullptr;
+	VertexBuffer vertexBuffer;
+	IndexBuffer indexBuffer;
+	ConstantBuffer constantBuffers[(UINT)eCBType::End] = {};
 
-	ID3DBlob* vsBlob = nullptr;
-	ID3D11VertexShader* vsShader = nullptr;
-	ID3DBlob* psBlob = nullptr;
-	ID3D11PixelShader* psShader = nullptr;
+	ID3D11Buffer* constantBuffer = nullptr;
 	ID3D11InputLayout* inputLayouts = nullptr;
 
 	void LoadTriangleMesh()
@@ -44,24 +41,28 @@ namespace huru::renderer
 
 	void LoadShaders()
 	{
-		map<graphics::eShaderStage, wstring> shaderPaths = {
-		{ graphics::eShaderStage::VS, L"../JaehuruEngine/Engine/Shaders/VS/TriangleVS.hlsl" },
-		{ graphics::eShaderStage::PS, L"../JaehuruEngine/Engine/Shaders/PS/TrianglePS.hlsl" }
+		map<eShaderStage, wstring> shaderPaths = {
+		{ eShaderStage::VS, L"../JaehuruEngine/Engine/Shaders/VS/TriangleVS.hlsl" },
+		{ eShaderStage::PS, L"../JaehuruEngine/Engine/Shaders/PS/TrianglePS.hlsl" }
 		};
 
-		Resources::Load<graphics::Shader>(L"TriangleShader", shaderPaths);
+		Resources::Load<Shader>(L"TriangleShader", shaderPaths);
+	}
+
+	void LoadConstantBuffers()
+	{
+		constantBuffers[(UINT)eCBType::Transform].Create(eCBType::Transform, sizeof(Vector4));
 	}
 
 	void Initialize()
 	{
 		LoadMeshes();
 		LoadShaders();
+		LoadConstantBuffers();
 	}
 
 	void Release()
 	{
 		inputLayouts->Release();
-		indexBuffer->Release();
-		constantBuffer->Release();
 	}
 }

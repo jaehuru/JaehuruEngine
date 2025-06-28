@@ -37,11 +37,14 @@ namespace huru::graphics
 								const D3D11_SUBRESOURCE_DATA* pInitialData,
 								ID3D11Buffer** ppBuffer);
 
+		void	SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size);
+
 		void	BindVS(ID3D11VertexShader* pVertexShader);
 		void	BindPS(ID3D11PixelShader* pPixelShader);
 		void	BindVertexBuffer(UINT StartSlot, UINT NumBuffers,
 									ID3D11Buffer* const* ppVertexBuffers,
 									const UINT* pStrides, const UINT* pOffsets);
+		void	BindIndexBuffer(ID3D11Buffer* pIndexBuffer, DXGI_FORMAT Format, UINT Offset);
 		void	BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
 
 		void	Initialize();

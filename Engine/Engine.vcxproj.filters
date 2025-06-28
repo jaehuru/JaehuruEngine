@@ -133,6 +133,12 @@
     <ClInclude Include="public\GraphicDevice\GPUBuffer\huruVertexBuffer.h">
       <Filter>public\GraphicDevice\GPU Buffer</Filter>
     </ClInclude>
+    <ClInclude Include="public\GraphicDevice\GPUBuffer\huruIndexBuffer.h">
+      <Filter>public\GraphicDevice\GPU Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="public\GraphicDevice\GPUBuffer\huruConstantBuffer.h">
+      <Filter>public\GraphicDevice\GPU Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="public">
@@ -426,6 +432,12 @@
       <Filter>private\Resource\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="private\GraphicDevice\GPUBuffer\huruVertexBuffer.cpp">
+      <Filter>private\GraphicDevice\GPU Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="private\GraphicDevice\GPUBuffer\huruIndexBuffer.cpp">
+      <Filter>private\GraphicDevice\GPU Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="private\GraphicDevice\GPUBuffer\huruConstantBuffer.cpp">
       <Filter>private\GraphicDevice\GPU Buffer</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,12 +4,15 @@ namespace huru::graphics
 {
 	VertexBuffer::VertexBuffer()
 	{
-	}
-	VertexBuffer::~VertexBuffer()
-	{
+
 	}
 
-	bool VertexBuffer::Create(const std::vector<Vertex>& vertexes)
+	VertexBuffer::~VertexBuffer()
+	{
+
+	}
+
+	bool VertexBuffer::Create(const vector<Vertex>& vertexes)
 	{
 		desc.ByteWidth = sizeof(Vertex) * vertexes.size();
 		desc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;

@@ -16,13 +16,13 @@ namespace huru
 		void		LateUpdate()  override;
 		void		Render(HDC hdc)  override;
 
-		void		SetTexture(graphics::Texture* texture)	{ mTexture = texture; }
+		void		SetTexture(Texture* texture)	{ mTexture = texture; }
 		void		SetSize(Vector2 size)					{ mSize = size; }
 		void		SetVisible(bool visible)				{ mVisible = visible; }
 		bool		IsVisible() const						{ return mVisible; }
 
 	private:
-		graphics::Texture*	mTexture;
+		Texture*	mTexture;
 		Vector2				mSize;
 		bool				mVisible;
 	};

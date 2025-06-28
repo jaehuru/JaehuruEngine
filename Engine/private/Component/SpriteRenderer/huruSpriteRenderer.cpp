@@ -50,7 +50,7 @@ namespace huru
 
 		pos = renderer::mainCamera-> CalculatePosition(pos);
 
-		if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
+		if (mTexture->GetTextureType() == Texture::eTextureType::Bmp)
 		{
 			if (mTexture->IsAlpha())
 			{
@@ -89,7 +89,7 @@ namespace huru
 					RGB(255, 0, 255));
 			}
 		}
-		else if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Png)
+		else if (mTexture->GetTextureType() == Texture::eTextureType::Png)
 		{
 			// 픽셀을 투명화 시킬때
 			Gdiplus::ImageAttributes imgAtt = {};

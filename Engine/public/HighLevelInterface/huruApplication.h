@@ -35,7 +35,7 @@ namespace huru
 		void	initializeEtc();
 
 	private:
-		unique_ptr<graphics::GraphicDevice_DX11>	mGraphicDevice;
+		unique_ptr<GraphicDevice_DX11>	mGraphicDevice;
 
 		HWND			mHwnd;
 		HDC				mHdc;

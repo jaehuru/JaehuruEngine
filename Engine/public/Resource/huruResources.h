@@ -37,7 +37,7 @@ namespace huru
 		}
 
 		template <typename T>
-		static T* Load(const wstring& key, const map<graphics::eShaderStage, wstring>& paths)
+		static T* Load(const wstring& key, const map<eShaderStage, wstring>& paths)
 		{
 			T* resource = Resources::Find<T>(key);
 			if (resource != nullptr)

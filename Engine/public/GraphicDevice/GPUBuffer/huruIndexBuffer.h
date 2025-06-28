@@ -2,16 +2,15 @@
 
 #include "GraphicDevice/huruGraphicDevice_DX11.h"
 
-
 namespace huru::graphics
 {
-	class VertexBuffer : public GpuBuffer
+	class IndexBuffer : public GpuBuffer
 	{
 	public:
-		VertexBuffer();
-		~VertexBuffer();
+		IndexBuffer();
+		~IndexBuffer();
 
-		bool Create(const vector<Vertex>& vertexes);
+		bool Create(const std::vector<UINT>& indices);
 		void Bind();
 
 	private:

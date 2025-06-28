@@ -50,7 +50,7 @@ namespace huru
 
 		pos = renderer::mainCamera->CalculatePosition(pos);
 
-		if (mTexture->GetTextureType() == graphics::Texture::eTextureType::Bmp)
+		if (mTexture->GetTextureType() == Texture::eTextureType::Bmp)
 		{
 			if (mTexture->IsAlpha())
 			{

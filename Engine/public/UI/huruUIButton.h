@@ -26,7 +26,7 @@ namespace huru
 		virtual void ButtonClick();
 
 	private:
-		graphics::Texture* mTexture;
+		Texture* mTexture;
 		Event mOnClick;
 	};
 }

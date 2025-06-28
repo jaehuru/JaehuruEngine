@@ -40,6 +40,8 @@
     <ClInclude Include="public\Component\Transform\huruTransform.h" />
     <ClInclude Include="public\FMOD\huruFmod.h" />
     <ClInclude Include="public\GameObject\huruGameObject.h" />
+    <ClInclude Include="public\GraphicDevice\GPUBuffer\huruConstantBuffer.h" />
+    <ClInclude Include="public\GraphicDevice\GPUBuffer\huruIndexBuffer.h" />
     <ClInclude Include="public\GraphicDevice\GPUBuffer\huruVertexBuffer.h" />
     <ClInclude Include="public\GraphicDevice\huruGraphicDevice_DX11.h" />
     <ClInclude Include="public\Helpers\huruInput.h" />
@@ -83,6 +85,8 @@
     <ClCompile Include="private\Component\Transform\huruTransform.cpp" />
     <ClCompile Include="private\FMOD\huruFmod.cpp" />
     <ClCompile Include="private\GameObject\huruGameObject.cpp" />
+    <ClCompile Include="private\GraphicDevice\GPUBuffer\huruConstantBuffer.cpp" />
+    <ClCompile Include="private\GraphicDevice\GPUBuffer\huruIndexBuffer.cpp" />
     <ClCompile Include="private\GraphicDevice\GPUBuffer\huruVertexBuffer.cpp" />
     <ClCompile Include="private\GraphicDevice\huruGraphicDevice_DX11.cpp" />
     <ClCompile Include="private\Helpers\huruInput.cpp" />

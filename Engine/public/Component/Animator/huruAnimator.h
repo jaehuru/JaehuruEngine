@@ -41,7 +41,7 @@ namespace huru
 		void				Render(HDC hdc) override;
 
 		void				CreateAnimation(const wstring& name,
-											graphics::Texture* spriteSheet,
+											Texture* spriteSheet,
 											Vector2 leftTop,
 											Vector2 size,
 											Vector2 offset,
