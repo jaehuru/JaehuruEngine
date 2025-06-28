@@ -2,22 +2,17 @@
 
 #include "Component/Camera/huruCamera.h"
 #include "GraphicDevice/huruGraphicDevice_DX11.h"
+#include "GraphicDevice/GPUBuffer/huruVertexBuffer.h"
 
 
 namespace huru::renderer
 {
 	extern Camera* mainCamera;
 
-	struct Vertex
-	{
-		Vector3 pos;
-		Vector4 color;
-	};
-
-	extern Vertex vertexes[3];
+	extern vector<graphics::Vertex> vertexes;
 	extern vector<UINT> indices;
 
-	extern ID3D11Buffer* vertexBuffer;
+	extern graphics::VertexBuffer vertexBuffer;
 	extern ID3D11Buffer* indexBuffer;
 	extern ID3D11Buffer* constantBuffer;
 

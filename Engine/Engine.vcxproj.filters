@@ -130,6 +130,9 @@
     <ClInclude Include="public\Resource\Graphics\huruShader.h">
       <Filter>public\Resource\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="public\GraphicDevice\GPUBuffer\huruVertexBuffer.h">
+      <Filter>public\GraphicDevice\GPU Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="public">
@@ -294,6 +297,12 @@
     <Filter Include="Shaders\LIB">
       <UniqueIdentifier>{63a6b13d-0e9c-4af5-bedd-2dd66e7a68ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="public\GraphicDevice\GPU Buffer">
+      <UniqueIdentifier>{d9bb1d26-0482-4ecc-8035-198f0a95ab70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="private\GraphicDevice\GPU Buffer">
+      <UniqueIdentifier>{4cc65141-46d8-41fb-b722-b7d42a9958a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="private\Collision\huruCollisionManager.cpp">
@@ -415,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="private\Resource\Graphics\huruShader.cpp">
       <Filter>private\Resource\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="private\GraphicDevice\GPUBuffer\huruVertexBuffer.cpp">
+      <Filter>private\GraphicDevice\GPU Buffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
