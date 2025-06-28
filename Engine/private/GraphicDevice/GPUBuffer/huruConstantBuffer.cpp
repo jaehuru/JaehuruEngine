@@ -3,7 +3,8 @@
 namespace huru::graphics
 {
 	ConstantBuffer::ConstantBuffer() : 
-		mSize(0)
+		mSize(0),
+		mType(eCBType::None)
 	{
 
 	}
@@ -32,17 +33,17 @@ namespace huru::graphics
 			succes = GetDevice()->CreateBuffer(&desc, &sub, buffer.GetAddressOf());
 
 		if (!succes)
-			assert(NULL, "Create constant buffer failed!");
+			assert(NULL);
 
 		return true;
 	}
 
-	void ConstantBuffer::SetData(void* data)
+	void ConstantBuffer::SetData(void* data) const
 	{
 		GetDevice()->SetDataBuffer(buffer.Get(), data, mSize);
 	}
 
-	void ConstantBuffer::Bind(eShaderStage stage)
+	void ConstantBuffer::Bind(eShaderStage stage) const
 	{
 		GetDevice()->BindConstantBuffer(stage, mType, buffer.Get());
 	}

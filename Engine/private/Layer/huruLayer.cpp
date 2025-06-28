@@ -10,72 +10,66 @@ namespace huru
 
 	Layer::~Layer()
 	{
-		for (GameObject* obj : mGameObjects)
+		for (GameObject* gameObj : mGameObjects)
 		{
-			if (obj == nullptr)
+			if (gameObj == nullptr)
 				continue;
 
-			delete obj;
-			obj = nullptr;
+			delete gameObj;
+			gameObj = nullptr;
 		}
 	}
 
 	void Layer::Initialize()
 	{
-		for (GameObject* obj : mGameObjects)
+		for (GameObject* gameObj : mGameObjects)
 		{
-			if (obj == nullptr)
+			if (gameObj == nullptr)
 				continue;
 
-			obj->Initialize();
+			gameObj->Initialize();
 		}
 	}
 
 	void Layer::Update()
 	{
-		for (GameObject* obj : mGameObjects)
+		for (GameObject* gameObj : mGameObjects)
 		{
-			if (obj == nullptr)
+			if (gameObj == nullptr)
 				continue;
 
-			GameObject::eState state = obj->GetState();
-			if (state == GameObject::eState::Paused ||
-				state == GameObject::eState::Dead)
+			if (gameObj->IsActive() == false)
 				continue;
 
-			obj->Update();
+			gameObj->Update();
 		}
 	}
 
 	void Layer::LateUpdate()
 	{
-		for (GameObject* obj : mGameObjects)
+		for (GameObject* gameObj : mGameObjects)
 		{
-			if (obj == nullptr)
+			if (gameObj == nullptr)
 				continue;
 
-			GameObject::eState state = obj->GetState();
-			if (state == GameObject::eState::Paused ||
-				state == GameObject::eState::Dead)
+			if (gameObj->IsActive() == false)
 				continue;
 
-			obj->LateUpdate();
+			gameObj->LateUpdate();
 		}
 	}
 
-	void Layer::Render(HDC hdc)
+	void Layer::Render()
 	{
-		for (GameObject* obj : mGameObjects)
+		for (GameObject* gameObj : mGameObjects)
 		{
-			if (obj == nullptr)
+			if (gameObj == nullptr)
 				continue;
 
-			GameObject::eState state = obj->GetState();
-			if (state == GameObject::eState::Paused ||
-				state == GameObject::eState::Dead)
+			if (gameObj->IsActive() == false)
 				continue;
 
-			obj->Render(hdc);
+			gameObj->Render();
 		}
 	}
 

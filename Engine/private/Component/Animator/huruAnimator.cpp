@@ -58,10 +58,9 @@ namespace huru
 
 	}
 
-	void Animator::Render(HDC hdc)
+	void Animator::Render()
 	{
-		if (mActiveAnimation)
-			mActiveAnimation->Render(hdc);
+
 	}
 
 	void Animator::CreateAnimation(const wstring& name,
@@ -88,72 +87,9 @@ namespace huru
 		mAnimations.insert(make_pair(name, animation));
 	}
 	
-	void Animator::CreateAnimationByFolder(const wstring& name, 
-											const wstring& path,
-											Vector2 offset,
-											float duration)
+	void Animator::CreateAnimationByFolder()
 	{
-		Animation* animation = FindAnimation(name);
-		if (animation != nullptr) return;
-
-		int fileCount = 0;
-		filesystem::path fs(path);
-		vector<Texture*> images;
-
-		vector<filesystem::directory_entry> entries;
-		for (auto& p : filesystem::directory_iterator(fs))
-		{
-			wstring ext = p.path().extension().wstring();
-			transform(ext.begin(), ext.end(), ext.begin(), ::towlower);
-
-			if (ext != L".bmp" && ext != L".png")
-				continue;
-
-			entries.push_back(p);
-		}
-
-		sort(entries.begin(), entries.end(), [](const auto& a, const auto& b) 
-		{
-			return a.path().filename().wstring() < b.path().filename().wstring();
-		});
-
-		for (auto& p : entries)
-		{
-			wstring fileName = p.path().filename();
-			wstring keyName = name + L"_" + fileName;
-			wstring fullName = p.path();
-
-			Texture* texture = Resources::Load<Texture>(keyName, fullName);
-			if (texture)
-			{
-				images.push_back(texture);
-				fileCount++;
-			}
-		}
-
-		if (images.empty())
-			return;
-
-		UINT imageWidth = images[0]->GetWidth();
-		UINT imageHeight = images[0]->GetHeight();
-		UINT sheetWidth = imageWidth * fileCount;
-		UINT sheetHeight = imageHeight;
-
-		Texture* spriteSheet = Texture::Create(name, sheetWidth, sheetHeight);
-
-		Gdiplus::Graphics graphics(spriteSheet->GetHdc());
-
-		for (size_t i = 0; i < images.size(); ++i)
-		{
-			filesystem::path filepath = images[i]->GetPath();
-
-			Gdiplus::Image image(filepath.c_str());
-			graphics.DrawImage(&image, i * imageWidth, 0, imageWidth, imageHeight);
-		}
-
-		CreateAnimation(name, spriteSheet, Vector2::Zero,
-			Vector2(imageWidth, imageHeight),
-			offset, fileCount, duration);
+		
 	}
 
 	void Animator::AddAnimation(const wstring& name, Animation* animation)

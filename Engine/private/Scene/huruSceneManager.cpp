@@ -53,10 +53,10 @@ namespace huru
 		mDontDestroyOnLoad->LateUpdate();
 	}
 
-	void SceneManager::Render(HDC hdc)
+	void SceneManager::Render()
 	{
-		mActiveScene->Render(hdc);
-		mDontDestroyOnLoad->Render(hdc);
+		mActiveScene->Render();
+		mDontDestroyOnLoad->Render();
 	}
 
 	void SceneManager::Destroy()

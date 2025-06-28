@@ -2,13 +2,13 @@
 #include "Resource/huruAudioClip.h"
 #include "Component/Transform/huruTransform.h"
 #include "GameObject/huruGameObject.h"
-#include "FMOD/huruFmod.h"
 
 
 namespace huru
 {
-	AudioSource::AudioSource()
-		: Component(eComponentType::AudioSource)
+	AudioSource::AudioSource() : 
+		Component(eComponentType::AudioSource),
+		mAudioClip(nullptr)
 	{
 	}
 
@@ -26,13 +26,11 @@ namespace huru
 
 	void AudioSource::LateUpdate()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
-
-		mAudioClip->Set2DAttributes(pos);
+		Transform* transform = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = transform->GetPosition();
 	}
 
-	void AudioSource::Render(HDC hdc)
+	void AudioSource::Render()
 	{
 	}
 

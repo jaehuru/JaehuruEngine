@@ -32,8 +32,8 @@ namespace huru
 			bool		bPressed;
 		};
 
-		static void Initialize();
-		static void Update();
+		static void		Initialize();
+		static void		Update();
 
 		__forceinline static bool GetKeyDown(eKeyCode code) 
 		{ 
@@ -56,19 +56,19 @@ namespace huru
 		}
 
 	private:
-		static void createKeys();
-		static void updateKeys();
-		static void updateKey(Key& key);
-		static bool isKeyDown(eKeyCode code);
-		static void updateKeyDown(Key& key);
-		static void updateKeyUp(Key& key);
-		static void getMousePositionByWindow();
-		static void clearKey();
+		static void		createKeys();
+		static void		updateKeys();
+		static void		updateKey(Key& key);
+		static bool		isKeyDown(eKeyCode code);
+		static void		updateKeyDown(Key& key);
+		static void		updateKeyUp(Key& key);
+		static void		getMousePositionByWindow();
+		static void		clearKey();
 
 
 	private:
-		static vector<Key> Keys;
-		static Vector2 mMousePosition;
+		static vector<Key>	Keys;
+		static Vector2		mMousePosition;
 	};
 }
 

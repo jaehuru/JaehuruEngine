@@ -31,7 +31,7 @@ namespace huru
 
 	}
 
-	void Transform::Render(HDC hdc)
+	void Transform::Render()
 	{
 
 	}

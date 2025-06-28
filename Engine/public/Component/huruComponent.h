@@ -10,19 +10,20 @@ namespace huru
 	{
 	public:
 		Component(eComponentType type);
-		~Component();
+		virtual ~Component();
 
-		virtual void Initialize();
-		virtual void Update();
-		virtual void LateUpdate();
-		virtual void Render(HDC hdc);
+		virtual void	Initialize();
+		virtual void	Update();
+		virtual void	LateUpdate();
+		virtual void	Render();
 
-		void SetOwner(GameObject* owner) { mOwner = owner; }
-		GameObject* GetOwner() { return mOwner; }
-		eComponentType GetType() { return mType; }
+		GameObject*		GetOwner() const			{ return mOwner; }
+		eComponentType	GetType() const				{ return mType; }
+
+		void			SetOwner(GameObject* owner) { mOwner = owner; }
 
 	private:
-		GameObject* mOwner;
-		eComponentType mType;
+		GameObject*			mOwner;
+		eComponentType		mType;
 	};
 }

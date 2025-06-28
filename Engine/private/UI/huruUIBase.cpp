@@ -41,10 +41,10 @@ namespace huru
 			OnLateUpdate();
 	}
 
-	void UIBase::Render(HDC hdc)
+	void UIBase::Render()
 	{
 		if (mbEnabled)
-			OnRender(hdc);
+			OnRender();
 	}
 
 	void UIBase::UIClear()
@@ -77,7 +77,7 @@ namespace huru
 
 	}
 
-	void UIBase::OnRender(HDC hdc)
+	void UIBase::OnRender()
 	{
 
 	}

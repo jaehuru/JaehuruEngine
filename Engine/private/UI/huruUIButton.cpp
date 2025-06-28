@@ -57,14 +57,9 @@ namespace huru
 	{
 	}
 
-	void UIButton::OnRender(HDC hdc)
+	void UIButton::OnRender()
 	{
-		::Rectangle(
-			hdc,
-			(int)mPosition.x,
-			(int)mPosition.y,
-			mPosition.x + mSize.x,
-			mPosition.y + mSize.y);
+
 	}
 
 	void UIButton::OnClear()

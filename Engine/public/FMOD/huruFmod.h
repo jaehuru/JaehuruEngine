@@ -12,15 +12,15 @@ namespace huru
 	class Fmod
 	{
 	public:
-		static void Initialize();
-		static bool CreateSound(const string& path, FMOD::Sound** sound);
-		static void SoundPlay(FMOD::Sound* sound, FMOD::Channel** channel);
-		static void Set2DListenerAttributes(const Vector2* pos);
-		static void Release();
+		static void		Initialize();
+		static bool		CreateSound(const string& path, FMOD::Sound** sound);
+		static void		SoundPlay(FMOD::Sound* sound, FMOD::Channel** channel);
+		static void		Set3DListenerAttributes(const Vector3& pos);
+		static void		Release();
 
 	private:
-		static FMOD::Studio::System* mSystem;
-		static FMOD::System* mCoreSystem;
+		static FMOD::Studio::System*	mSystem;
+		static FMOD::System*			mCoreSystem;
 	};
 }
 

@@ -1,8 +1,10 @@
 #include "Component/huruComponent.h"
 
+
 namespace huru
 {
 	Component::Component(eComponentType type) :
+		mOwner(nullptr),
 		mType(type)
 	{
 		
@@ -28,7 +30,7 @@ namespace huru
 
 	}
 
-	void Component::Render(HDC hdc)
+	void Component::Render()
 	{
 
 	}

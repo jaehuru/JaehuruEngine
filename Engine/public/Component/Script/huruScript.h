@@ -12,14 +12,14 @@ namespace huru
 		Script();
 		~Script();
 
-		void		Initialize() override;
-		void		Update() override;
-		void		LateUpdate() override;
-		void		Render(HDC hdc) override;
+		void	Initialize()	override;
+		void	Update()		override;
+		void	LateUpdate()	override;
+		void	Render()		override;
 
-		virtual void OnCollisionEnter(Collider* other);
-		virtual void OnCollisionStay(Collider* other);
-		virtual void OnCollisionExit(Collider* other);
+		virtual void	OnCollisionEnter(Collider* other);
+		virtual void	OnCollisionStay(Collider* other);
+		virtual void	OnCollisionExit(Collider* other);
 
 	private:
 

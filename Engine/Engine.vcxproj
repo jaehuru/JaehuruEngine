@@ -26,8 +26,8 @@
     <ClInclude Include="public\Common\huruEnums.h" />
     <ClInclude Include="public\Common\huruMath.h" />
     <ClInclude Include="public\Component\Animator\huruAnimator.h" />
-    <ClInclude Include="public\Component\Audio\huruAudioClip.h" />
     <ClInclude Include="public\Component\Audio\huruAudioListener.h" />
+    <ClInclude Include="public\Component\Audio\huruAudioSource.h" />
     <ClInclude Include="public\Component\Camera\huruCamera.h" />
     <ClInclude Include="public\Component\Collider\huruBoxCollider2D.h" />
     <ClInclude Include="public\Component\Collider\huruCircleCollider2D.h" />
@@ -52,7 +52,7 @@
     <ClInclude Include="public\Renderer\huruRenderer.h" />
     <ClInclude Include="public\Resource\Graphics\huruShader.h" />
     <ClInclude Include="public\Resource\huruAnimation.h" />
-    <ClInclude Include="public\Resource\huruAudioSource.h" />
+    <ClInclude Include="public\Resource\huruAudioClip.h" />
     <ClInclude Include="public\Resource\huruMaterial.h" />
     <ClInclude Include="public\Resource\huruMesh.h" />
     <ClInclude Include="public\Resource\huruResource.h" />

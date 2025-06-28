@@ -10,13 +10,13 @@ namespace huru
 		CircleCollider2D();
 		~CircleCollider2D();
 
-		void Initialize() override;
-		void Update() override;
-		void LateUpdate() override;
-		void Render(HDC hdc) override;
+		void	Initialize()	override;
+		void	Update()		override;
+		void	LateUpdate()	override;
+		void	Render()		override;
 
 	private:
-		Vector2 mRiadius;
+		Vector2 mRadius;
 	};
 }
 

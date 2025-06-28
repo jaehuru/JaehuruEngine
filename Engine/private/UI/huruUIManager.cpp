@@ -59,7 +59,7 @@ namespace huru
 		}
 	}
 
-	void UIManager::Render(HDC hdc)
+	void UIManager::Render()
 	{
 		stack<UIBase*> uiBases = mUIBases;
 		while (!uiBases.empty())
@@ -67,7 +67,7 @@ namespace huru
 			UIBase* uiBase = uiBases.top();
 			if (uiBase)
 			{
-				uiBase->Render(hdc);
+				uiBase->Render();
 				uiBases.pop();
 			}
 		}

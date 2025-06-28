@@ -1,6 +1,4 @@
 #include "UI/huruUIHUD.h"
-#include "Resource/huruTexture.h"
-#include "Resource/huruResources.h"
 
 namespace huru
 {
@@ -35,7 +33,7 @@ namespace huru
 	{
 	}
 
-	void UIHUD::OnRender(HDC hdc)
+	void UIHUD::OnRender()
 	{
 	
 	}

@@ -9,10 +9,10 @@ namespace huru
 {
 	Camera::Camera() :
 		Component(eComponentType::Camera),
+		mTarget(nullptr),
 		mDistance(Vector2::Zero),
 		mResolution(Vector2::Zero),
-		mLookPosition(Vector2::Zero),
-		mTarget(nullptr)
+		mLookPosition(Vector2::Zero)
 	{
 
 	}
@@ -24,8 +24,8 @@ namespace huru
 
 	void Camera::Initialize()
 	{
-		mResolution.x = application.GetWidth();
-		mResolution.y = application.GetHeight();
+		mResolution.x = (float)application.GetWidth();
+		mResolution.y = (float)application.GetHeight();
 	}
 
 	void Camera::Update()
@@ -49,7 +49,7 @@ namespace huru
 
 	}
 
-	void Camera::Render(HDC hdc)
+	void Camera::Render()
 	{
 
 	}

@@ -74,10 +74,10 @@ namespace huru
 	{
 		mGraphicDevice->Draw();
 
-		Time::Render(mBackHdc);
-		CollisionManager::Render(mBackHdc);
-		SceneManager::Render(mBackHdc);
-		UIManager::Render(mBackHdc);
+		Time::Render();
+		CollisionManager::Render();
+		UIManager::Render();
+		SceneManager::Render();
 	}
 
 	void Application::Destroy()
@@ -115,10 +115,7 @@ namespace huru
 		mHwnd = hwnd;
 		mHdc = GetDC(hwnd);
 
-		RECT rect = 
-		{ 
-			0, 0, static_cast<LONG>(width), static_cast<LONG>(height) 
-		};
+		RECT rect = { 0, 0, static_cast<LONG>(width), static_cast<LONG>(height) };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
 		mWidth = rect.right - rect.left;

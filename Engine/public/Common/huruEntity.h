@@ -10,15 +10,13 @@ namespace huru
 		Entity();
 		virtual ~Entity();
 
-		void SetName(const wstring& name) 
-		{
-			mName = name;
-		}
 
-		wstring& GetName() { return mName; }
+		wstring&	GetName() 						{ return mName; }
+
+		void		SetName(const wstring& name)	{ mName = name; }
 
 	private:
-		wstring mName;
+		wstring		mName;
 	};
 }
 

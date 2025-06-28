@@ -14,7 +14,7 @@ namespace huru::graphics
 
 	bool VertexBuffer::Create(const vector<Vertex>& vertexes)
 	{
-		desc.ByteWidth = sizeof(Vertex) * vertexes.size();
+		desc.ByteWidth = sizeof(Vertex) * (UINT)vertexes.size();
 		desc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
 		desc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
 		desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
@@ -23,11 +23,11 @@ namespace huru::graphics
 		sub.pSysMem = vertexes.data();
 
 		if (!(GetDevice()->CreateBuffer(&desc, &sub, buffer.GetAddressOf())))
-			assert(NULL, "Create vertex buffer failed!");
+			assert(NULL);
 
 		return true;
 	}
-	void VertexBuffer::Bind()
+	void VertexBuffer::Bind() const
 	{
 		UINT offset = 0;
 		UINT vectexSize = sizeof(Vertex);

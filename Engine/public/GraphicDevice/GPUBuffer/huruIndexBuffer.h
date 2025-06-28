@@ -10,8 +10,8 @@ namespace huru::graphics
 		IndexBuffer();
 		~IndexBuffer();
 
-		bool Create(const std::vector<UINT>& indices);
-		void Bind();
+		bool	Create(const vector<UINT>& indices);
+		void	Bind() const;
 
 	private:
 	};

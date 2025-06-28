@@ -12,20 +12,20 @@ namespace huru
 		AudioSource();
 		~AudioSource();
 
-		void Initialize() override;
-		void Update() override;
-		void LateUpdate() override;
-		void Render(HDC hdc) override;
+		void	Initialize()	override;
+		void	Update()		override;
+		void	LateUpdate()	override;
+		void	Render()		override;
 
-		void Play();
-		void Stop();
-		void SetLoop(bool loop);
+		void	Play();
+		void	Stop();
+		void	SetLoop(bool loop);
 
-		void SetClip(AudioClip* clip) { mAudioClip = clip; }
-		AudioClip* GetClip() { return mAudioClip; }
+		AudioClip*	GetClip() const				{ return mAudioClip; }
+		void		SetClip(AudioClip* clip)	{ mAudioClip = clip; }
 
 	private:
-		AudioClip* mAudioClip;
+		AudioClip*		mAudioClip;
 	};
 }
 

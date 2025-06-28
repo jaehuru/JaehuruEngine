@@ -27,6 +27,9 @@
 #include "huruEnums.h"
 #include "huruGraphics.h"
 
+#define CAST_UINT(value) static_cast<UINT>(value)
+#define CAST_FLOAT(value) static_cast<float>(value)
+
 using namespace std;
 using namespace huru;
 using namespace huru::math;

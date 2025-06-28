@@ -33,7 +33,7 @@ namespace huru
 		HRESULT		Load(const wstring& path) override;
 
 		void		Update();
-		void		Render(HDC hdc);
+		void		Render();
 
 		void		CreateAnimation(const wstring& name,
 									Texture* spriteSheet,
@@ -45,8 +45,9 @@ namespace huru
 
 		void		Reset();
 
-		bool		IsComplete() { return mbComplete; } 
-		void		SetAnimator(class Animator* animator) { mAnimator = animator; }
+		bool		IsComplete() const						{ return mbComplete; } 
+
+		void		SetAnimator(class Animator* animator)	{ mAnimator = animator; }
 
 
 	private:

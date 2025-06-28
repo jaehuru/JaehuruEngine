@@ -104,7 +104,7 @@ namespace huru
 
 	}
 
-	void Rigidbody::Render(HDC hdc)
+	void Rigidbody::Render()
 	{
 
 	}

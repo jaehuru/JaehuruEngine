@@ -38,56 +38,8 @@ namespace huru
 
 	}
 
-	void TileMapRenderer::Render(HDC hdc)
+	void TileMapRenderer::Render()
 	{
-		if (mTexture == nullptr)
-			assert(false);
 
-		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
-		Vector2 scale = tr->GetScale();
-		float rot = tr->GetRotation();
-
-		pos = renderer::mainCamera->CalculatePosition(pos);
-
-		if (mTexture->GetTextureType() == Texture::eTextureType::Bmp)
-		{
-			if (mTexture->IsAlpha())
-			{
-				BLENDFUNCTION func = { };
-				func.BlendOp = AC_SRC_OVER;
-				func.BlendFlags = 0;
-				func.AlphaFormat = AC_SRC_ALPHA;
-				func.SourceConstantAlpha = 255; // 0(Transparent) ~ 255(Opaque)
-
-				AlphaBlend(
-					hdc,
-					pos.x,
-					pos.y,
-					mSize.x * mScale.x * scale.x,
-					mSize.y * mScale.y * scale.y,
-					mTexture->GetHdc(),
-					mIndex.x * mSize.x,
-					mIndex.y * mSize.y,
-					mSize.x,
-					mSize.y,
-					func);
-			}
-			else
-			{
-				TransparentBlt(
-					hdc,
-					pos.x,
-					pos.y,
-					mSize.x * mScale.x * scale.x,
-					mSize.y * mScale.y * scale.y,
-					mTexture->GetHdc(),
-					mIndex.x * mSize.x,
-					mIndex.y * mSize.y,
-					mSize.x,
-					mSize.y,
-					RGB(255, 0, 255));
-			}
-		}
 	}
 }

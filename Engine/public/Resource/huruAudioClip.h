@@ -11,12 +11,13 @@ namespace huru
 		AudioClip();
 		virtual ~AudioClip();
 
-		virtual HRESULT Load(const std::wstring& path) override;
+		virtual HRESULT		Load(const wstring& path) override;
 
-		void			Play();
-		void			Stop();
-		void			Set2DAttributes(const math::Vector2 pos);
-		void			SetLoop(bool loop) { mbLoop = loop; }
+		void	Play();
+		void	Stop();
+		void	Set3DAttributes(const Vector3 pos);
+
+		void	SetLoop(bool loop)	{ mbLoop = loop; }
 
 	private:
 		FMOD::Sound*		mSound;

@@ -15,25 +15,22 @@ namespace huru
 		virtual void	Initialize();
 		virtual void	Update();
 		virtual void	LateUpdate();
-		virtual void	Render(HDC hdc);
+		virtual void	Render();
 		virtual void	Destroy();
 
 		virtual void	OnEnter();
 		virtual void	OnExit();
 
-		void			AddGameObject(GameObject* gameObj,
-										const eLayerType type);
-		void			EraseGameObject(GameObject* gameObj);
-		Layer*			GetLayer(const eLayerType type)
-		{
-			return mLayers[(UINT)type]; 
-		}
+		void	AddGameObject(GameObject* gameObj, const eLayerType type);
+		void	EraseGameObject(GameObject* gameObj);
+
+		Layer*	GetLayer(const eLayerType type) const	{ return mLayers[(UINT)type]; }
 
 	private:
-		void			createLayers();
+		void	createLayers();
 		
 	private:
-		vector<Layer*> mLayers;
+		vector<Layer*>		mLayers;
 	};
 }
 

@@ -29,7 +29,7 @@ namespace huru
 
 	}
 
-	void Script::Render(HDC hdc)
+	void Script::Render()
 	{
 
 	}

@@ -1,11 +1,12 @@
-
 #pragma once
 
 #include "Common/huruEntity.h"
-#include "Scene/huruScene.h"
 
 namespace huru
 {
+	class Scene;
+	class GameObject;
+
 	class SceneManager
 	{
 	public:
@@ -22,25 +23,23 @@ namespace huru
 			return scene;
 		}
 
-		static Scene* LoadScene(const wstring& name);
-		static Scene* GetActiveScene() { return mActiveScene; }
-		static Scene* GetDontDestroyOnLoad() 
-		{ 
-			return mDontDestroyOnLoad; 
-		}
-		static vector<GameObject*> GetGameObjects(eLayerType layer);
+		static Scene*	LoadScene(const wstring& name);
 
-		static void	Initialize();
-		static void	Update();
-		static void	LateUpdate();
-		static void	Render(HDC hdc);
-		static void Destroy();
-		static void Release();
+		static void		Initialize();
+		static void		Update();
+		static void		LateUpdate();
+		static void		Render();
+		static void		Destroy();
+		static void		Release();
+
+		static Scene*				GetActiveScene()		{ return mActiveScene; }
+		static Scene*				GetDontDestroyOnLoad()	{ return mDontDestroyOnLoad; }
+		static vector<GameObject*>	GetGameObjects(eLayerType layer);
 
 	private:
 		static map<wstring, Scene*> mScene;
-		static Scene* mActiveScene;
-		static Scene* mDontDestroyOnLoad;
+		static Scene*				mActiveScene;
+		static Scene*				mDontDestroyOnLoad;
 	};
 }
 

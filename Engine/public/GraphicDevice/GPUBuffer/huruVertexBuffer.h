@@ -11,8 +11,8 @@ namespace huru::graphics
 		VertexBuffer();
 		~VertexBuffer();
 
-		bool Create(const vector<Vertex>& vertexes);
-		void Bind();
+		bool	Create(const vector<Vertex>& vertexes);
+		void	Bind() const;
 
 	private:
 	};

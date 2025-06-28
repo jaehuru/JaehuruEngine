@@ -7,13 +7,8 @@ namespace huru::object
 {
 	void Destroy(GameObject* gameObject)
 	{
-		if (gameObject == nullptr)
-			return;
-
-		if (gameObject->mParent)
-			gameObject->mParent->RemoveChild(gameObject);
-
-		gameObject->death();
+		if (gameObject != nullptr)
+			gameObject->death();
 	}
 }
 
@@ -37,7 +32,6 @@ namespace huru
 			delete comp;
 			comp = nullptr;
 		}
-		mComponents.clear();
 	}
 
 	void GameObject::Initialize()
@@ -74,14 +68,14 @@ namespace huru
 		}
 	}
 
-	void GameObject::Render(HDC hdc)
+	void GameObject::Render()
 	{
 		for (Component* comp : mComponents)
 		{
 			if (comp == nullptr)
 				continue;
 
-			comp->Render(hdc);
+			comp->Render();
 		}
 	}
 
