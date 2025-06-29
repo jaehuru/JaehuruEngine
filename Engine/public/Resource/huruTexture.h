@@ -22,6 +22,7 @@ namespace huru::graphics
 		Texture();
 		~Texture();
 
+		virtual HRESULT Save(const wstring& path) override;
 		virtual HRESULT Load(const wstring& path) override;
 
 

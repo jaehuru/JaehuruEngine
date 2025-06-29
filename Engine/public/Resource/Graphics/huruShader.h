@@ -11,6 +11,7 @@ namespace huru::graphics
 		Shader();
 		virtual ~Shader();
 
+		virtual HRESULT Save(const wstring& path) override;
 		virtual HRESULT Load(const wstring& path) override;
 		HRESULT Load(const map<eShaderStage, wstring>& shaderPaths);
 

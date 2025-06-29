@@ -26,6 +26,11 @@ namespace huru
 
 	}
 
+	HRESULT Animation::Save(const wstring& path)
+	{
+		return E_NOTIMPL;
+	}
+
 	HRESULT Animation::Load(const wstring& path)
 	{
 		return E_NOTIMPL;

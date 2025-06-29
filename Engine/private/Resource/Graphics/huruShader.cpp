@@ -6,10 +6,17 @@ namespace huru::graphics
 	Shader::Shader() : 
 		Resource(eResourceType::Shader)
 	{
+
 	}
 
 	Shader::~Shader()
 	{
+
+	}
+
+	HRESULT Shader::Save(const std::wstring& path)
+	{
+		return E_NOTIMPL;
 	}
 
 	HRESULT Shader::Load(const wstring& path)

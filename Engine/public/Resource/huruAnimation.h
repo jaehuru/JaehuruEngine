@@ -30,7 +30,8 @@ namespace huru
 		Animation();
 		~Animation();
 
-		HRESULT		Load(const wstring& path) override;
+		virtual	HRESULT	Save(const wstring& path) override;
+		virtual	HRESULT	Load(const wstring& path) override;
 
 		void		Update();
 		void		Render();

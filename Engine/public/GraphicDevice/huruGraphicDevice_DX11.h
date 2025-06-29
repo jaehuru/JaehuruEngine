@@ -37,6 +37,7 @@ namespace huru::graphics
 								const D3D11_SUBRESOURCE_DATA* pInitialData,
 								ID3D11Buffer** ppBuffer);
 
+		void	BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology);
 		void	SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size);
 
 		void	BindVS(ID3D11VertexShader* pVertexShader);
