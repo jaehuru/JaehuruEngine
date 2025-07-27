@@ -359,7 +359,7 @@ void GApplication::SetKeyPressed(int keyCode, int scancode, int action, int mods
 	//To do : repeat check
 	//if (action == PRESS)
 		//action = REPEAT;
-	//static std::unordered_map<key, >
+	//static unordered_map<key, >
 
 	// unordered map key setting
 

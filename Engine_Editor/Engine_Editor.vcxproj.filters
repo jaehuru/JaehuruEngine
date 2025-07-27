@@ -121,6 +121,27 @@
     <ClInclude Include="SOURCE\public\Editor\GImguiEditor.h">
       <Filter>SOURCE\public\Editor</Filter>
     </ClInclude>
+    <ClInclude Include="SOURCE\public\Windows\GProjectWindow.h">
+      <Filter>SOURCE\public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="SOURCE\public\Windows\GWorldOutlinerWindow.h">
+      <Filter>SOURCE\public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="SOURCE\public\Windows\GGameWindow.h">
+      <Filter>SOURCE\public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="SOURCE\public\Windows\GConsoleWindow.h">
+      <Filter>SOURCE\public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\AProjectTile.h">
+      <Filter>Contents\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\JProjectTileScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Contents\JPlayerScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Engine_Editor.rc">
@@ -133,7 +154,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Contents\JLoadingScene.cpp">
       <Filter>Contents\Scenes</Filter>
     </ClCompile>
@@ -172,6 +192,28 @@
     </ClCompile>
     <ClCompile Include="SOURCE\private\Editor\GImguiEditor.cpp">
       <Filter>SOURCE\private\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="SOURCE\private\Windows\GProjectWindow.cpp">
+      <Filter>SOURCE\private\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="SOURCE\private\Windows\GWorldOutlinerWindow.cpp">
+      <Filter>SOURCE\private\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="SOURCE\private\Windows\GGameWindow.cpp">
+      <Filter>SOURCE\private\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SOURCE\private\Windows\GConsoleWindow.cpp">
+      <Filter>SOURCE\private\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\AProjectTile.cpp">
+      <Filter>Contents\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\JProjectTileScript.cpp">
+      <Filter>Contents\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents\JPlayerScript.cpp">
+      <Filter>Contents\Script</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

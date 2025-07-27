@@ -177,8 +177,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Contents\APlayer.h" />
+    <ClInclude Include="Contents\AProjectTile.h" />
     <ClInclude Include="Contents\JCameraScript.h" />
     <ClInclude Include="Contents\JLoadingScene.h" />
+    <ClInclude Include="Contents\JPlayerScript.h" />
+    <ClInclude Include="Contents\JProjectTileScript.h" />
     <ClInclude Include="Contents\LoadScenes.h" />
     <ClInclude Include="Contents\JPlayScene.h" />
     <ClInclude Include="Engine_Editor.h" />
@@ -191,15 +194,22 @@
     <ClInclude Include="SOURCE\public\Editor\GImguiEditor.h" />
     <ClInclude Include="SOURCE\public\Entity\GEntity.h" />
     <ClInclude Include="SOURCE\public\Layout\GLayout.h" />
+    <ClInclude Include="SOURCE\public\Windows\GConsoleWindow.h" />
     <ClInclude Include="SOURCE\public\Windows\GEditorWindow.h" />
+    <ClInclude Include="SOURCE\public\Windows\GGameWindow.h" />
     <ClInclude Include="SOURCE\public\Windows\GInspectorWindow.h" />
+    <ClInclude Include="SOURCE\public\Windows\GProjectWindow.h" />
+    <ClInclude Include="SOURCE\public\Windows\GWorldOutlinerWindow.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Contents\APlayer.cpp" />
+    <ClCompile Include="Contents\AProjectTile.cpp" />
     <ClCompile Include="Contents\JCameraScript.cpp" />
     <ClCompile Include="Contents\JLoadingScene.cpp" />
+    <ClCompile Include="Contents\JPlayerScript.cpp" />
     <ClCompile Include="Contents\JPlayScene.cpp" />
+    <ClCompile Include="Contents\JProjectTileScript.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SOURCE\private\Application\GApplication.cpp" />
     <ClCompile Include="SOURCE\private\Component\GComponent.cpp" />
@@ -208,8 +218,12 @@
     <ClCompile Include="SOURCE\private\Editor\GImguiEditor.cpp" />
     <ClCompile Include="SOURCE\private\Entity\GEntity.cpp" />
     <ClCompile Include="SOURCE\private\Layout\GLayout.cpp" />
+    <ClCompile Include="SOURCE\private\Windows\GConsoleWindow.cpp" />
     <ClCompile Include="SOURCE\private\Windows\GEditorWindow.cpp" />
+    <ClCompile Include="SOURCE\private\Windows\GGameWindow.cpp" />
     <ClCompile Include="SOURCE\private\Windows\GInspectorWindow.cpp" />
+    <ClCompile Include="SOURCE\private\Windows\GProjectWindow.cpp" />
+    <ClCompile Include="SOURCE\private\Windows\GWorldOutlinerWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Engine_Editor.rc" />
