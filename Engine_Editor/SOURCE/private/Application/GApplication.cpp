@@ -4,6 +4,10 @@
 #include "Windows/GEditorWindow.h"
 #include "Windows/GInspectorWindow.h"
 #include "Editor/GImguiEditor.h"
+#include "Windows/GProjectWindow.h"
+#include "Windows/GWorldOutlinerWindow.h"
+#include "Windows/GGameWindow.h"
+#include "Windows/GConsoleWindow.h"
 //Core
 #include "HighLevelInterface/JApplication.h"
 #include "Renderer/RRenderer.h"
@@ -36,13 +40,44 @@ EventCallbackFn GApplication::mEventCallback = nullptr;
 
 bool GApplication::Initialize()
 {
+#ifdef _DEBUG
+	if (::AllocConsole() == TRUE)
+	{
+		FILE* nfp[3];
+		freopen_s(nfp + 0, "CONOUT$", "rb", stdin);
+		freopen_s(nfp + 1, "CONOUT$", "wb", stdout);
+		freopen_s(nfp + 2, "CONOUT$", "wb", stderr);
+		ios::sync_with_stdio();
+	}
+
+	cout << "Console Open" << endl;
+#endif
+
 	mImguiEditor = new GImguiEditor();
 	mFrameBuffer = renderer::FrameBuffer;
-
 	mImguiEditor->Initialize();
+
+	//InspectorWindow
 	GInspectorWindow* inspector = new GInspectorWindow();
 	mEditorWindows.insert(make_pair(L"InspectorWindow", inspector));
 	mEventCallback = &GApplication::OnEvent;
+
+	//CosoleWindow
+	GConsoleWindow* console = new GConsoleWindow();
+	mEditorWindows.insert(make_pair(L"ConsoleWindow", console));
+
+	//ProjectWindow
+	GProjectWindow* project = new GProjectWindow();
+	mEditorWindows.insert(make_pair(L"ProjectWindow", project));
+
+	//GameWindow
+	GGameWindow* game = new GGameWindow();
+	mEditorWindows.insert(make_pair(L"GameWindow", game));
+
+	//WorldOutlinerWindow
+	GWorldOutlinerWindow* worldoutliner = new GWorldOutlinerWindow();
+	mEditorWindows.insert(make_pair(L"WorldOutlinerWindow", worldoutliner));
+
 
 	return true;
 }
@@ -75,6 +110,11 @@ void GApplication::Release()
 	// Cleanup
 	delete mImguiEditor;
 	mImguiEditor = nullptr;
+
+	// Release Console
+#ifdef _DEBUG
+	FreeConsole();
+#endif
 }
 
 void GApplication::OnEvent(IEvent& e)

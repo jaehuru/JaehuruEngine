@@ -193,7 +193,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_MOUSEMOVE:
         {
-            GApplication::SetCursorPos(wParam, lParam);
+            GApplication::SetCursorPos(static_cast<double>(wParam), static_cast<double>(lParam));
         }
     break;
     case WM_PAINT:

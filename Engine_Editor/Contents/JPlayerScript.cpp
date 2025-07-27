@@ -37,7 +37,11 @@ void JPlayerScript::Update()
 
 	if (Input::GetKeyDown(EKeyCode::D))
 	{
-		Destroy(mProjTile);
+		if (mProjTile != nullptr)
+		{
+			Destroy(mProjTile);
+			mProjTile = nullptr;
+		}
 	}
 }
 
